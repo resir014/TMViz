@@ -1,4 +1,19 @@
-import { Stack, Input, Text, Box, Grid, Heading, Divider, Link, Button, InputGroup, InputRightElement, useToast } from '@chakra-ui/core'
+import {
+  Stack,
+  Input,
+  Text,
+  Box,
+  Grid,
+  Heading,
+  Divider,
+  Link,
+  Button,
+  InputGroup,
+  InputRightElement,
+  useToast,
+  Code,
+  useColorMode
+} from '@chakra-ui/core'
 import { Field, FieldProps, Form, Formik } from 'formik'
 import { toClipboard } from 'copee'
 import dynamic from 'next/dynamic'
@@ -10,17 +25,19 @@ import buildURLQuery from './utils/buildURLQuery'
 const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'), { ssr: false })
 
 const CustomizerForm: React.FC = () => {
-  const [url, setURL] = React.useState<string | undefined>(undefined)
-  const [config, setConfig] = React.useState<GlobalOverlaySettings | undefined>(undefined)
   const toast = useToast()
+  const { colorMode } = useColorMode()
 
   const handleSubmit = (values: GlobalOverlaySettings) => {
-    setConfig(values)
-    setURL(`${process.env.NEXT_PUBLIC_BASE_URL}/overlay?${buildURLQuery(values)}`)
+    console.log(values)
   }
 
-  const handleCopy = () => {
-    const success = toClipboard(url || '')
+  const buildURL = (values: GlobalOverlaySettings) => {
+    return `${process.env.NEXT_PUBLIC_BASE_URL}/overlay?${buildURLQuery(values)}`
+  }
+
+  const handleCopy = (values: GlobalOverlaySettings) => () => {
+    const success = toClipboard(buildURL(values))
 
     if (success) {
       toast({
@@ -35,7 +52,7 @@ const CustomizerForm: React.FC = () => {
   return (
     <Box as="section" flex="1 1 auto" px={6} pt={8} pb={24}>
       <Formik initialValues={defaultConfig} onSubmit={handleSubmit}>
-        {({ values, submitCount }) => (
+        {({ values }) => (
           <Form>
             <Grid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} gridGap={12}>
               <Stack spacing={8}>
@@ -106,7 +123,7 @@ const CustomizerForm: React.FC = () => {
                         to find the values that correspond to the button you&apos;re using.
                       </Text>
                     </Stack>
-                    <Grid gridTemplateColumns="repeat(3, 1fr)" gridGap={4}>
+                    <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)', 'repeat(3, 1fr)']} gridGap={4}>
                       <Field name="config.framerate">
                         {({ field, meta }: FieldProps<string>) => (
                           <Stack spacing={2}>
@@ -169,22 +186,22 @@ const CustomizerForm: React.FC = () => {
                     </Heading>
                     <Divider />
                   </Box>
-                  {config && (
-                    <Stack spacing={4}>
-                      <Text>This is the URL which contains your settings. Copy and paste it to your OBS web source.</Text>
-                      <InputGroup>
-                        <Input readOnly value={url} pr="5rem" />
-                        <InputRightElement width="4.5rem" p={0}>
-                          <Button type="button" size="sm" textTransform="uppercase" borderRadius="sm" onClick={handleCopy}>
-                            Copy
-                          </Button>
-                        </InputRightElement>
-                      </InputGroup>
-                    </Stack>
-                  )}
-                  <Box>
-                    <Button type="submit">{submitCount === 0 ? 'Generate' : 'Regenerate'} URL</Button>
-                  </Box>
+                  <Stack spacing={4}>
+                    <Text>
+                      Once you&apos;ve finished configuring your widget, copy the following URL, width, and height into a browser source:
+                    </Text>
+                    <InputGroup>
+                      <Input readOnly value={`${process.env.NEXT_PUBLIC_BASE_URL}/overlay?${buildURLQuery(values)}`} pr="5rem" />
+                      <InputRightElement width="4.5rem" p={0}>
+                        <Button type="button" size="sm" textTransform="uppercase" borderRadius="sm" onClick={handleCopy(values)}>
+                          Copy
+                        </Button>
+                      </InputRightElement>
+                    </InputGroup>
+                    <Text>
+                      width: <Code>256</Code>px, height: <Code>140</Code>px
+                    </Text>
+                  </Stack>
                 </Stack>
                 <Stack spacing={6}>
                   <Box>
@@ -193,7 +210,11 @@ const CustomizerForm: React.FC = () => {
                     </Heading>
                     <Divider />
                   </Box>
-                  <ControllerTelemetry appearance={values.appearance} config={values.config} />
+                  <Box>
+                    <Box display="inline-block" p={6} backgroundColor={colorMode === 'light' ? 'gray.200' : 'gray.800'} borderRadius="lg">
+                      <ControllerTelemetry appearance={values.appearance} config={values.config} />
+                    </Box>
+                  </Box>
                 </Stack>
               </Stack>
             </Grid>
