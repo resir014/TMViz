@@ -41,7 +41,15 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
             description,
             url: baseUrl,
             type: 'website',
-            site_name: title
+            site_name: title,
+            images: [
+              {
+                url: `${siteMetadata.siteUrl}/social.png`,
+                width: 1200,
+                height: 620,
+                alt: siteMetadata.title
+              }
+            ]
           }}
         />
         <Component {...pageProps} />
