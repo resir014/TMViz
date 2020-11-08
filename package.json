@@ -39,6 +39,7 @@
     "typeface-jetbrains-mono": "^2.0.0"
   },
   "devDependencies": {
+    "@types/markdown-it": "^10.0.2",
     "@types/node": "^14.14.6",
     "@types/react": "^16.9.55",
     "@types/react-dom": "^16.9.9",
