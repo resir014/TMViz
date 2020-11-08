@@ -188,7 +188,8 @@ const CustomizerForm: React.FC = () => {
                   </Box>
                   <Stack spacing={4}>
                     <Text>
-                      Once you&apos;ve finished configuring your widget, copy the following URL, width, and height into a browser source:
+                      Once you&apos;ve finished configuring your widget, copy the following URL, width, and height into a{' '}
+                      <strong>browser source</strong>:
                     </Text>
                     <InputGroup>
                       <Input readOnly value={`${process.env.NEXT_PUBLIC_BASE_URL}/overlay?${buildURLQuery(values)}`} pr="5rem" />
