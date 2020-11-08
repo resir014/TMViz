@@ -6,6 +6,9 @@ const theme = extendTheme({
       body: {
         bg: 'transparent',
         color: colorMode === 'dark' ? 'gray.50' : 'gray.900'
+      },
+      a: {
+        color: colorMode === 'dark' ? 'turquoise.500' : 'blue.600'
       }
     })
   },
@@ -133,9 +136,12 @@ const theme = extendTheme({
       }
     },
     Link: {
-      baseStyle: {
-        color: 'turquoise.400'
-      }
+      baseStyle: ({ colorMode }: any) => ({
+        color: colorMode === 'dark' ? 'turquoise.500' : 'blue.500',
+        _hover: {
+          textDecoration: 'underline'
+        }
+      })
     }
   }
 })
