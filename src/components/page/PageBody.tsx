@@ -1,10 +1,27 @@
-import { Box } from '@chakra-ui/core'
+import { Box, BoxProps, Stack } from '@chakra-ui/core'
 import * as React from 'react'
-import { Container } from '../layout'
+import convert from 'htmr'
+import htmrTransform from '~/utils/htmrTransform'
+import { Container, ContainerProps } from '../layout'
 
-const PageBody: React.FC = ({ children }) => {
+interface PageBodyProps extends BoxProps {
+  content?: string
+  _containerProps?: ContainerProps
+}
+
+const PageBody: React.FC<PageBodyProps> = ({ children, content, _containerProps, ...rest }) => {
+  if (content) {
+    return (
+      <Box as="section" px={6} pt={0} pb={12} {...rest}>
+        <Container {..._containerProps}>
+          <Stack spacing={4}>{convert(content, { transform: htmrTransform })}</Stack>
+        </Container>
+      </Box>
+    )
+  }
+
   return (
-    <Box as="section" px={6} pt={0} pb={12}>
+    <Box as="section" px={6} pt={0} pb={12} {...rest}>
       <Container>{children}</Container>
     </Box>
   )
