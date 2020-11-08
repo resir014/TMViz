@@ -1,0 +1,207 @@
+import { Stack, Input, Text, Box, Grid, Heading, Divider, Link, Button, InputGroup, InputRightElement, useToast } from '@chakra-ui/core'
+import { Field, FieldProps, Form, Formik } from 'formik'
+import { toClipboard } from 'copee'
+import dynamic from 'next/dynamic'
+import * as React from 'react'
+import { GlobalOverlaySettings } from '~/types/gamepad'
+import defaultConfig from './utils/defaultConfig'
+import buildURLQuery from './utils/buildURLQuery'
+
+const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'), { ssr: false })
+
+const CustomizerForm: React.FC = () => {
+  const [url, setURL] = React.useState<string | undefined>(undefined)
+  const [config, setConfig] = React.useState<GlobalOverlaySettings | undefined>(undefined)
+  const toast = useToast()
+
+  const handleSubmit = (values: GlobalOverlaySettings) => {
+    setConfig(values)
+    setURL(`${process.env.NEXT_PUBLIC_BASE_URL}/overlay?${buildURLQuery(values)}`)
+  }
+
+  const handleCopy = () => {
+    const success = toClipboard(url || '')
+
+    if (success) {
+      toast({
+        description: 'Successfully copied to clipboard.',
+        status: 'success',
+        duration: 5000,
+        isClosable: true
+      })
+    }
+  }
+
+  return (
+    <Box as="section" flex="1 1 auto" px={6} pt={8} pb={24}>
+      <Formik initialValues={defaultConfig} onSubmit={handleSubmit}>
+        {({ values, submitCount }) => (
+          <Form>
+            <Grid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} gridGap={12}>
+              <Stack spacing={8}>
+                <Box>
+                  <Heading as="h1" mb={2}>
+                    Customizer
+                  </Heading>
+                  <Divider />
+                </Box>
+                <Stack spacing={6}>
+                  <Stack spacing={2}>
+                    <Heading as="h2" size="lg">
+                      Appearance
+                    </Heading>
+                    <Text>Tweak the look and feel of your overlay.</Text>
+                  </Stack>
+                  <Stack spacing={4}>
+                    <Field name="appearance.accelerateColor">
+                      {({ field, meta }: FieldProps<string>) => (
+                        <Stack spacing={2}>
+                          <Text as="label" htmlFor="appearance.accelerateColor" fontSize="sm">
+                            Accelerator color
+                          </Text>
+                          <Grid gridTemplateColumns="1fr 64px" gridGap={4}>
+                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                            <Box backgroundColor={meta.value} borderRadius="md" />
+                          </Grid>
+                        </Stack>
+                      )}
+                    </Field>
+                    <Field name="appearance.brakeColor">
+                      {({ field, meta }: FieldProps<string>) => (
+                        <Stack spacing={2}>
+                          <Text as="label" htmlFor="appearance.brakeColor" fontSize="sm">
+                            Brake color
+                          </Text>
+                          <Grid gridTemplateColumns="1fr 64px" gridGap={4}>
+                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                            <Box backgroundColor={meta.value} borderRadius="md" />
+                          </Grid>
+                        </Stack>
+                      )}
+                    </Field>
+                    <Field name="appearance.steeringColor">
+                      {({ field, meta }: FieldProps<string>) => (
+                        <Stack spacing={2}>
+                          <Text as="label" htmlFor="appearance.steeringColor" fontSize="sm">
+                            Steering color
+                          </Text>
+                          <Grid gridTemplateColumns="1fr 64px" gridGap={4}>
+                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                            <Box backgroundColor={meta.value} borderRadius="md" />
+                          </Grid>
+                        </Stack>
+                      )}
+                    </Field>
+                  </Stack>
+                  <Stack spacing={6}>
+                    <Stack spacing={2}>
+                      <Heading as="h2" size="lg">
+                        Controller settings
+                      </Heading>
+                      <Text>
+                        Customise the button configuration based on your TrackMania keybinds. Use{' '}
+                        <Link href="https://gamepad-tester.com/" isExternal>
+                          Gamepad Tester
+                        </Link>{' '}
+                        to find the values that correspond to the button you&apos;re using.
+                      </Text>
+                    </Stack>
+                    <Grid gridTemplateColumns="repeat(3, 1fr)" gridGap={4}>
+                      <Field name="config.framerate">
+                        {({ field, meta }: FieldProps<string>) => (
+                          <Stack spacing={2}>
+                            <Text as="label" htmlFor="config.framerate" fontSize="sm">
+                              Framerate (fps)
+                            </Text>
+                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                          </Stack>
+                        )}
+                      </Field>
+                      <Field name="config.accelerateButton">
+                        {({ field, meta }: FieldProps<string>) => (
+                          <Stack spacing={2}>
+                            <Text as="label" htmlFor="config.accelerateButton" fontSize="sm">
+                              Accelerate button
+                            </Text>
+                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                          </Stack>
+                        )}
+                      </Field>
+                      <Field name="config.brakeButton">
+                        {({ field, meta }: FieldProps<string>) => (
+                          <Stack spacing={2}>
+                            <Text as="label" htmlFor="config.brakeButton" fontSize="sm">
+                              Brake button
+                            </Text>
+                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                          </Stack>
+                        )}
+                      </Field>
+                      <Field name="config.steeringAxis">
+                        {({ field, meta }: FieldProps<string>) => (
+                          <Stack spacing={2}>
+                            <Text as="label" htmlFor="config.steeringAxis" fontSize="sm">
+                              Steering axis
+                            </Text>
+                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                          </Stack>
+                        )}
+                      </Field>
+                      <Field name="config.steeringDeadzone">
+                        {({ field, meta }: FieldProps<string>) => (
+                          <Stack spacing={2}>
+                            <Text as="label" htmlFor="config.steeringDeadzone" fontSize="sm">
+                              Steering deadzone (advanced)
+                            </Text>
+                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                          </Stack>
+                        )}
+                      </Field>
+                    </Grid>
+                  </Stack>
+                </Stack>
+              </Stack>
+              <Stack spacing={8}>
+                <Stack spacing={6}>
+                  <Box>
+                    <Heading as="h1" mb={2}>
+                      Overlay URL
+                    </Heading>
+                    <Divider />
+                  </Box>
+                  {config && (
+                    <Stack spacing={4}>
+                      <Text>This is the URL which contains your settings. Copy and paste it to your OBS web source.</Text>
+                      <InputGroup>
+                        <Input readOnly value={url} pr="5rem" />
+                        <InputRightElement width="4.5rem" p={0}>
+                          <Button type="button" size="sm" textTransform="uppercase" borderRadius="sm" onClick={handleCopy}>
+                            Copy
+                          </Button>
+                        </InputRightElement>
+                      </InputGroup>
+                    </Stack>
+                  )}
+                  <Box>
+                    <Button type="submit">{submitCount === 0 ? 'Generate' : 'Regenerate'} URL</Button>
+                  </Box>
+                </Stack>
+                <Stack spacing={6}>
+                  <Box>
+                    <Heading as="h1" mb={2}>
+                      Preview
+                    </Heading>
+                    <Divider />
+                  </Box>
+                  <ControllerTelemetry appearance={values.appearance} config={values.config} />
+                </Stack>
+              </Stack>
+            </Grid>
+          </Form>
+        )}
+      </Formik>
+    </Box>
+  )
+}
+
+export default CustomizerForm

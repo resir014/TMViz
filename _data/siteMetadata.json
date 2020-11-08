@@ -1,0 +1,19 @@
+{
+  "title": "TMViz",
+  "description": "Web-based controller visualisation widget for TrackMania.",
+  "siteUrl": "https://tmviz.vercel.app",
+  "author": {
+    "name": "Resi Respati",
+    "description": "Web developer based in Jakarta, Indonesia.",
+    "website": "https://resir014.xyz",
+    "twitter": "@resir014",
+    "url": {
+      "twitter": "https://twitter.com/resir014",
+      "mastodon": "https://icosahedron.website/@resir014",
+      "instagram": "https://instagram.com/resir014",
+      "tumblr": "https://resir014.tumblr.com/",
+      "github": "https://github.com/resir014"
+    },
+    "email": "resir014@gmail.com"
+  }
+}
