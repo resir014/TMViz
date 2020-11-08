@@ -9,3 +9,7 @@ title: About
 - I want an overlay that can be included as a browser source
 - I want my overlays to be customisable
 - I don't want to run any other app locally just to run an overlay.
+
+## Who made this?
+
+[Me!](https://twitter.com/resir014) You can also find me on [these places](https://resir014.xyz/linktree) and take a look at my previous stuff [here](https://resir014.xyz/projects).

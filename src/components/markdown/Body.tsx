@@ -10,7 +10,7 @@ export const P: React.FC<JSX.IntrinsicElements['p']> = ({ children, ...rest }) =
 }
 
 export const Anchor: React.FC<JSX.IntrinsicElements['a']> = ({ children, href, ...rest }) => (
-  <Link href={href} isExternal={href?.substring(0, 4) === 'http'} color="brand.500" _hover={{ backgroundColor: 'brand.600' }} {...rest}>
+  <Link href={href} isExternal={href?.substring(0, 4) === 'http'} {...rest}>
     {children}
   </Link>
 )
