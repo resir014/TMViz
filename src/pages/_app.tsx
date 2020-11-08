@@ -51,6 +51,11 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
               }
             ]
           }}
+          twitter={{
+            cardType: 'summary_large_image',
+            handle: siteMetadata.author.twitter,
+            site: siteMetadata.author.twitter
+          }}
         />
         <Component {...pageProps} />
       </ChakraProvider>
