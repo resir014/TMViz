@@ -4,7 +4,7 @@ import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 
-import { LayoutRoot } from '~/components/layout'
+import { OverlayRoot } from '~/components/layout'
 import { parseOverlayConfigs } from '~/modules/trackmania'
 
 const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'))
@@ -15,11 +15,11 @@ const OverlayPage: NextPage = () => {
   const parsedConfig = React.useMemo(() => parseOverlayConfigs(router.query as Record<string, string>), [router.query])
 
   return (
-    <LayoutRoot pageTitle="Overlay">
+    <OverlayRoot>
       <Flex flexDirection="column" alignItems="center" justifyContent="center" flex="1 1 auto">
         <ControllerTelemetry appearance={parsedConfig.appearance} config={parsedConfig.config} />
       </Flex>
-    </LayoutRoot>
+    </OverlayRoot>
   )
 }
 

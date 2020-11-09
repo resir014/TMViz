@@ -8,26 +8,22 @@ interface PageProps extends Omit<NextSeoProps, 'title'> {
   isDashboard?: boolean
 }
 
-const LayoutRoot: React.FC<PageProps> = ({ children, pageTitle, isDashboard, ...rest }) => {
+const LayoutRoot: React.FC<PageProps> = ({ children, pageTitle, ...rest }) => {
   const { colorMode } = useColorMode()
 
   const backgroundColor = React.useMemo(() => {
-    if (isDashboard) {
-      if (colorMode === 'dark') {
-        return 'black'
-      }
-
-      return 'white'
+    if (colorMode === 'dark') {
+      return 'black'
     }
 
-    return undefined
-  }, [colorMode, isDashboard])
+    return 'white'
+  }, [colorMode])
 
   return (
     <Flex flexDirection="column" minHeight="100vh" overflowX="hidden" backgroundColor={backgroundColor}>
       <NextSeo title={pageTitle || ''} {...rest} />
       {children}
-      {isDashboard && <Footer />}
+      <Footer />
     </Flex>
   )
 }

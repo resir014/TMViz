@@ -11,7 +11,7 @@ interface BrakeIndicatorProps {
 const BrakeIndicator: React.FC<BrakeIndicatorProps> = ({ value, color }) => {
   const backgroundColor = useTelemetryInputStyle(value, color)
 
-  return <Box gridArea="brake" backgroundColor={backgroundColor} width="100%" height="100%" />
+  return <Box gridArea="brake" width="100%" height="100%" style={{ backgroundColor }} />
 }
 
 export default BrakeIndicator
