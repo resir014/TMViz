@@ -8,10 +8,10 @@ export const DEFAULT_STEERING_DEADZONE = 0.01
 
 function gamepadConfigDefaults(config?: Partial<Record<string, any>>): UseGamepadConfig {
   return {
-    accelerateButton: parseInt(config?.accelerateButton || `${DEFAULT_ACCELERATE_BUTTON}`, 10),
-    brakeButton: parseInt(config?.brakeButton || `${DEFAULT_BRAKE_BUTTON}`, 10),
-    framerate: parseInt(config?.framerate || `${DEFAULT_FRAMERATE}`, 10),
-    steeringAxis: parseInt(config?.steeringAxis || `${DEFAULT_STEERING_AXIS}`, 10),
+    accelerateButton: config?.accelerateButton || DEFAULT_ACCELERATE_BUTTON,
+    brakeButton: config?.brakeButton || DEFAULT_BRAKE_BUTTON,
+    framerate: config?.framerate || DEFAULT_FRAMERATE,
+    steeringAxis: config?.steeringAxis || DEFAULT_STEERING_AXIS,
     steeringDeadzone: parseInt(config?.steeringDeadzone || `${DEFAULT_STEERING_DEADZONE}`, 10)
   }
 }
