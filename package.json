@@ -13,8 +13,9 @@
     "start": "next start",
     "format": "prettier --write \"./**/*.{ts,tsx}\"",
     "lint": "eslint \"**/*.{ts,tsx}\" \"*.config.js\"",
-    "test": "npm run type-check && npm run lint",
-    "type-check": "tsc --noEmit"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "type-check": "tsc --noEmit",
+    "validate": "npm run type-check && npm run lint"
   },
   "dependencies": {
     "@chakra-ui/core": "^1.0.0-rc.8",
