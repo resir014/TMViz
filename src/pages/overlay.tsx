@@ -7,7 +7,7 @@ import { useRouter } from 'next/router'
 import { LayoutRoot } from '~/components/layout'
 import { parseOverlayConfigs } from '~/modules/trackmania'
 
-const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'), { ssr: false })
+const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'))
 
 const OverlayPage: NextPage = () => {
   const router = useRouter()

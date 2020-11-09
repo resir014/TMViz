@@ -22,7 +22,7 @@ import { GlobalOverlaySettings } from '~/types/gamepad'
 import defaultConfig from './utils/defaultConfig'
 import buildURLQuery from './utils/buildURLQuery'
 
-const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'), { ssr: false })
+const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'))
 
 const CustomizerForm: React.FC = () => {
   const toast = useToast()
