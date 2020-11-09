@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { parseToHsl, hsl } from 'polished'
-import { Flex } from '@chakra-ui/core'
-import { css } from '@emotion/core'
+import { Box, Flex } from '@chakra-ui/core'
 import { SteeringValues } from '~/types/gamepad'
 import theme from '~/utils/theme'
-import isValidHex from '../utils/isValidHex'
+import isValidHex from '../../../utils/isValidHex'
 
 interface ThrottleIndicatorProps {
   direction: 'left' | 'right'
@@ -37,11 +36,9 @@ const SteeringIndicator: React.FC<ThrottleIndicatorProps> = ({ direction, value,
       backgroundColor={hsl(colorHsl.hue, colorHsl.saturation, colorHsl.lightness * 0.25)}
       overflow="hidden"
     >
-      <div
-        css={css`
-          background-color: ${hsl(colorHsl.hue, colorHsl.saturation, colorHsl.lightness * 0.75)};
-          height: 100%;
-        `}
+      <Box
+        backgroundColor={hsl(colorHsl.hue, colorHsl.saturation, colorHsl.lightness * 0.75)}
+        height="100%"
         style={{
           width: `${direction === 'left' ? steerWidths.left : steerWidths.right}%`
         }}
