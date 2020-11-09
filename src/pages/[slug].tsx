@@ -48,8 +48,8 @@ const MarkdownPage: NextPage<MarkdownPageProps> = ({ post }) => {
         <Navigation />
         <Content>
           <Page>
-            <PageHeader title={post.title} />
-            <PageBody content={post.content} />
+            <PageHeader title={post.title} _containerProps={{ maxWidth: 800 }} />
+            <PageBody content={post.content} _containerProps={{ maxWidth: 800 }} />
           </Page>
         </Content>
       </LayoutRoot>
