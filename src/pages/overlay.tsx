@@ -1,13 +1,10 @@
 import * as React from 'react'
 import { Flex } from '@chakra-ui/core'
 import { NextPage } from 'next'
-import dynamic from 'next/dynamic'
 import { useRouter } from 'next/router'
 
 import { OverlayRoot } from '~/components/layout'
-import { parseOverlayConfigs } from '~/modules/trackmania'
-
-const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'))
+import ControllerTelemetry, { parseOverlayConfigs } from '~/modules/trackmania'
 
 const OverlayPage: NextPage = () => {
   const router = useRouter()

@@ -1,5 +1,5 @@
-function isValidHex(color?: string): boolean {
-  if (color) {
+function isValidHex(color: unknown): boolean {
+  if (typeof color === 'string') {
     return /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/.test(color)
   }
 

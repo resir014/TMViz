@@ -1,9 +1,8 @@
 import { hsl, parseToHsl } from 'polished'
 import * as React from 'react'
 import isValidHex from '~/utils/isValidHex'
-import theme from '~/utils/theme'
 
-function useTelemetryInputStyle(value = 0, color: string = theme.colors.orange[500]) {
+function useTelemetryInputStyle(value = 0, color?: string) {
   // Find the proper HSL lightness based on max-val/min-val percentage:
   // (maxVal - minVal) * percentage + minVal
   const telemetryStyle = React.useMemo(() => {
