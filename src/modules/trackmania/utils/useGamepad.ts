@@ -1,23 +1,7 @@
 import * as React from 'react'
 import { ControllerData, UseGamepadConfig } from '~/types/gamepad'
 import useInterval from '../../../utils/useInterval'
-
-const DEFAULT_FRAMERATE = 60
-const DEFAULT_ACCELERATE_BUTTON = 0
-const DEFAULT_BRAKE_BUTTON = 2
-const DEFAULT_STEERING_AXIS = 0
-
-export const DEFAULT_STEERING_DEADZONE = 0.01
-
-export function gamepadConfigDefaults(config?: Partial<UseGamepadConfig>): UseGamepadConfig {
-  return {
-    accelerateButton: config?.accelerateButton || DEFAULT_ACCELERATE_BUTTON,
-    brakeButton: config?.brakeButton || DEFAULT_BRAKE_BUTTON,
-    framerate: config?.framerate || DEFAULT_FRAMERATE,
-    steeringAxis: config?.steeringAxis || DEFAULT_STEERING_AXIS,
-    steeringDeadzone: config?.steeringDeadzone || DEFAULT_STEERING_DEADZONE
-  }
-}
+import gamepadConfigDefaults from './gamepadConfigDefaults'
 
 export default function useGamepad(config?: Partial<UseGamepadConfig>) {
   const [isControllerConnected, setIsControllerConnected] = React.useState(false)

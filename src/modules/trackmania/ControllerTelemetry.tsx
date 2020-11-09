@@ -3,8 +3,9 @@ import { css } from '@emotion/core'
 import { Grid, Flex } from '@chakra-ui/core'
 import { GlobalOverlaySettings } from '~/types/gamepad'
 
-import useGamepad, { DEFAULT_STEERING_DEADZONE } from './utils/useGamepad'
+import useGamepad from './utils/useGamepad'
 import { BrakeIndicator, SteeringIndicator, ThrottleIndicator } from './telemetry'
+import { DEFAULT_STEERING_DEADZONE } from './utils/gamepadConfigDefaults'
 
 type ControllerTelemetryProps = Partial<GlobalOverlaySettings>
 

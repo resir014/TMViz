@@ -1,5 +1,5 @@
 import { GlobalOverlaySettings } from '~/types/gamepad'
-import { gamepadConfigDefaults } from './useGamepad'
+import gamepadConfigDefaults from './gamepadConfigDefaults'
 
 function parseOverlayConfigs(query?: Partial<Record<string, string>>): Partial<GlobalOverlaySettings> {
   if (query) {
