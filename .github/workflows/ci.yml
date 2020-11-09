@@ -12,7 +12,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
       - run: yarn install --immutable
       - uses: actions/cache@v1
         id: cache-build
@@ -30,7 +32,9 @@ jobs:
         with:
           path: '.'
           key: ${{ github.sha }}
-      - uses: actions/setup-node@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: '12'
       - run: yarn run validate
         env:
           CI: true
