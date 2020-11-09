@@ -1,7 +1,7 @@
 import { GlobalOverlaySettings } from '~/types/gamepad'
 import gamepadConfigDefaults from './gamepadConfigDefaults'
 
-function parseOverlayConfigs(query?: Partial<Record<string, string>>): Partial<GlobalOverlaySettings> {
+function parseOverlayConfigs(query?: Partial<Record<string, any>>): Partial<GlobalOverlaySettings> {
   if (query) {
     const { accelerateColor, brakeColor, steeringColor, ...rest } = query
 

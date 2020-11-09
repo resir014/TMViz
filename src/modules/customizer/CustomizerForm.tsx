@@ -14,6 +14,7 @@ import {
   Code,
   useColorMode
 } from '@chakra-ui/core'
+import * as yup from 'yup'
 import { Field, FieldProps, Form, Formik } from 'formik'
 import { toClipboard } from 'copee'
 import dynamic from 'next/dynamic'
@@ -31,6 +32,21 @@ const CustomizerForm: React.FC = () => {
   const handleSubmit = (values: GlobalOverlaySettings) => {
     console.log(values)
   }
+
+  const validationSchema = yup.object().shape({
+    appearance: yup.object().shape<GlobalOverlaySettings['appearance']>({
+      accelerateColor: yup.string().required('Required field'),
+      brakeColor: yup.string().required('Required field'),
+      steeringColor: yup.string().required('Required field')
+    }),
+    config: yup.object().shape<GlobalOverlaySettings['config']>({
+      accelerateButton: yup.number().required('Required field'),
+      brakeButton: yup.number().required('Required field'),
+      framerate: yup.number().required('Required field'),
+      steeringAxis: yup.number().required('Required field'),
+      steeringDeadzone: yup.number().required('Required field')
+    })
+  })
 
   const buildURL = (values: GlobalOverlaySettings) => {
     return `${process.env.NEXT_PUBLIC_BASE_URL}/overlay?${buildURLQuery(values)}`
@@ -51,7 +67,7 @@ const CustomizerForm: React.FC = () => {
 
   return (
     <Box as="section" flex="1 1 auto" px={6} pt={8} pb={24}>
-      <Formik initialValues={defaultConfig} onSubmit={handleSubmit}>
+      <Formik validationSchema={validationSchema} initialValues={defaultConfig} onSubmit={handleSubmit}>
         {({ values }) => (
           <Form>
             <Grid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} gridGap={12}>
@@ -80,6 +96,11 @@ const CustomizerForm: React.FC = () => {
                             <Input isInvalid={meta.touched && !!meta.error} {...field} />
                             <Box backgroundColor={meta.value} borderRadius="md" />
                           </Grid>
+                          {meta.touched && !!meta.error && (
+                            <Text color="red.500" fontSize="sm">
+                              {meta.error}
+                            </Text>
+                          )}
                         </Stack>
                       )}
                     </Field>
@@ -93,6 +114,11 @@ const CustomizerForm: React.FC = () => {
                             <Input isInvalid={meta.touched && !!meta.error} {...field} />
                             <Box backgroundColor={meta.value} borderRadius="md" />
                           </Grid>
+                          {meta.touched && !!meta.error && (
+                            <Text color="red.500" fontSize="sm">
+                              {meta.error}
+                            </Text>
+                          )}
                         </Stack>
                       )}
                     </Field>
@@ -106,6 +132,11 @@ const CustomizerForm: React.FC = () => {
                             <Input isInvalid={meta.touched && !!meta.error} {...field} />
                             <Box backgroundColor={meta.value} borderRadius="md" />
                           </Grid>
+                          {meta.touched && !!meta.error && (
+                            <Text color="red.500" fontSize="sm">
+                              {meta.error}
+                            </Text>
+                          )}
                         </Stack>
                       )}
                     </Field>
@@ -130,7 +161,12 @@ const CustomizerForm: React.FC = () => {
                             <Text as="label" htmlFor="config.framerate" fontSize="sm">
                               Framerate (fps)
                             </Text>
-                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                            <Input inputMode="numeric" isInvalid={meta.touched && !!meta.error} {...field} />
+                            {meta.touched && !!meta.error && (
+                              <Text color="red.500" fontSize="sm">
+                                {meta.error}
+                              </Text>
+                            )}
                           </Stack>
                         )}
                       </Field>
@@ -140,7 +176,12 @@ const CustomizerForm: React.FC = () => {
                             <Text as="label" htmlFor="config.accelerateButton" fontSize="sm">
                               Accelerate button
                             </Text>
-                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                            <Input inputMode="numeric" isInvalid={meta.touched && !!meta.error} {...field} />
+                            {meta.touched && !!meta.error && (
+                              <Text color="red.500" fontSize="sm">
+                                {meta.error}
+                              </Text>
+                            )}
                           </Stack>
                         )}
                       </Field>
@@ -150,7 +191,12 @@ const CustomizerForm: React.FC = () => {
                             <Text as="label" htmlFor="config.brakeButton" fontSize="sm">
                               Brake button
                             </Text>
-                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                            <Input inputMode="numeric" isInvalid={meta.touched && !!meta.error} {...field} />
+                            {meta.touched && !!meta.error && (
+                              <Text color="red.500" fontSize="sm">
+                                {meta.error}
+                              </Text>
+                            )}
                           </Stack>
                         )}
                       </Field>
@@ -160,7 +206,12 @@ const CustomizerForm: React.FC = () => {
                             <Text as="label" htmlFor="config.steeringAxis" fontSize="sm">
                               Steering axis
                             </Text>
-                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                            <Input inputMode="numeric" isInvalid={meta.touched && !!meta.error} {...field} />
+                            {meta.touched && !!meta.error && (
+                              <Text color="red.500" fontSize="sm">
+                                {meta.error}
+                              </Text>
+                            )}
                           </Stack>
                         )}
                       </Field>
@@ -170,7 +221,12 @@ const CustomizerForm: React.FC = () => {
                             <Text as="label" htmlFor="config.steeringDeadzone" fontSize="sm">
                               Steering deadzone (advanced)
                             </Text>
-                            <Input isInvalid={meta.touched && !!meta.error} {...field} />
+                            <Input inputMode="numeric" isInvalid={meta.touched && !!meta.error} {...field} />
+                            {meta.touched && !!meta.error && (
+                              <Text color="red.500" fontSize="sm">
+                                {meta.error}
+                              </Text>
+                            )}
                           </Stack>
                         )}
                       </Field>
