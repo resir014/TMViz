@@ -12,7 +12,7 @@ const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'))
 const OverlayPage: NextPage = () => {
   const router = useRouter()
 
-  const parsedConfig = React.useMemo(() => parseOverlayConfigs(router.query as Record<string, string>), [router.query])
+  const parsedConfig = React.useMemo(() => parseOverlayConfigs(router.query), [router.query])
 
   return (
     <OverlayRoot>

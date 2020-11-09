@@ -13,7 +13,7 @@ function useTelemetryInputStyle(value = 0, color: string = theme.colors.orange[5
       return hsl(colorHsl.hue, colorHsl.saturation, colorHsl.lightness * ((0.75 - 0.25) * (value || 0 * 100) + 0.25))
     }
 
-    return color
+    return undefined
   }, [value, color])
 
   return telemetryStyle
