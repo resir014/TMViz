@@ -29,7 +29,7 @@ const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ appearance, c
       >
         <SteeringIndicator
           direction="left"
-          steeringDeadzone={config?.steeringDeadzone || DEFAULT_STEERING_DEADZONE}
+          steeringDeadzone={Number(config?.steeringDeadzone || DEFAULT_STEERING_DEADZONE)}
           color={appearance?.steeringColor}
           value={controllerData?.steering}
         />
@@ -37,7 +37,7 @@ const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ appearance, c
         <BrakeIndicator value={controllerData?.brake} color={appearance?.brakeColor} />
         <SteeringIndicator
           direction="right"
-          steeringDeadzone={config?.steeringDeadzone || DEFAULT_STEERING_DEADZONE}
+          steeringDeadzone={Number(config?.steeringDeadzone || DEFAULT_STEERING_DEADZONE)}
           color={appearance?.steeringColor}
           value={controllerData?.steering}
         />

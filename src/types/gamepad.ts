@@ -16,11 +16,11 @@ export interface GamepadAppearanceSettings {
 }
 
 export interface UseGamepadConfig {
-  framerate: number
-  accelerateButton: number
-  brakeButton: number
-  steeringAxis: number
-  steeringDeadzone: number
+  framerate: string
+  accelerateButton: string
+  brakeButton: string
+  steeringAxis: string
+  steeringDeadzone: string
 }
 
 export interface GlobalOverlaySettings {

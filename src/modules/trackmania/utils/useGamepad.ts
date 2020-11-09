@@ -46,13 +46,13 @@ export default function useGamepad(config?: Partial<UseGamepadConfig>) {
 
       if (activeGamepad) {
         // eslint-disable-next-line no-console
-        const accelerate = activeGamepad.buttons[accelerateButton].value
-        const brake = activeGamepad.buttons[brakeButton].value
+        const accelerate = activeGamepad.buttons[Number(accelerateButton)].value
+        const brake = activeGamepad.buttons[Number(brakeButton)].value
         const steering = activeGamepad.axes[0]
         setControllerData({ accelerate, brake, steering })
       }
     }
-  }, 1000 / framerate)
+  }, 1000 / Number(framerate))
 
   return { isControllerConnected, controllerData }
 }

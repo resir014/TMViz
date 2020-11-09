@@ -12,7 +12,7 @@ function gamepadConfigDefaults(config?: Partial<Record<string, any>>): UseGamepa
     brakeButton: config?.brakeButton || DEFAULT_BRAKE_BUTTON,
     framerate: config?.framerate || DEFAULT_FRAMERATE,
     steeringAxis: config?.steeringAxis || DEFAULT_STEERING_AXIS,
-    steeringDeadzone: parseInt(config?.steeringDeadzone || `${DEFAULT_STEERING_DEADZONE}`, 10)
+    steeringDeadzone: config?.steeringDeadzone || DEFAULT_STEERING_DEADZONE
   }
 }
 
