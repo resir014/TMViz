@@ -11,7 +11,7 @@ const IndexPage: NextPage = () => {
   const { title, description } = siteMetadata
 
   return (
-    <LayoutRoot pageTitle={`${title} · ${description}`} titleTemplate="%s" isDashboard>
+    <LayoutRoot pageTitle={`${title} · ${description}`} titleTemplate="%s">
       <Navigation />
       <Content>
         <CustomizerForm />

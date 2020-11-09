@@ -44,7 +44,7 @@ type MarkdownPageProps = InferGetStaticPropsType<typeof getStaticProps>
 const MarkdownPage: NextPage<MarkdownPageProps> = ({ post }) => {
   if (post) {
     return (
-      <LayoutRoot pageTitle={post.title} isDashboard>
+      <LayoutRoot pageTitle={post.title}>
         <Navigation />
         <Content>
           <Page>
