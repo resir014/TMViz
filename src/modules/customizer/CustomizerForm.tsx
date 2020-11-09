@@ -11,23 +11,19 @@ import {
   InputGroup,
   InputRightElement,
   useToast,
-  Code,
-  useColorMode
+  Code
 } from '@chakra-ui/core'
 import * as yup from 'yup'
 import { Field, FieldProps, Form, Formik } from 'formik'
 import { toClipboard } from 'copee'
-import dynamic from 'next/dynamic'
 import * as React from 'react'
 import { GlobalOverlaySettings } from '~/types/gamepad'
 import defaultConfig from './utils/defaultConfig'
 import buildURLQuery from './utils/buildURLQuery'
-
-const ControllerTelemetry = dynamic(() => import('~/modules/trackmania'))
+import CustomizerPreview from './CustomizerPreview'
 
 const CustomizerForm: React.FC = () => {
   const toast = useToast()
-  const { colorMode } = useColorMode()
 
   const handleSubmit = (values: GlobalOverlaySettings) => {
     console.log(values)
@@ -268,9 +264,7 @@ const CustomizerForm: React.FC = () => {
                     <Divider />
                   </Box>
                   <Box>
-                    <Box display="inline-block" p={6} backgroundColor={colorMode === 'light' ? 'gray.200' : 'gray.800'} borderRadius="lg">
-                      <ControllerTelemetry appearance={values.appearance} config={values.config} />
-                    </Box>
+                    <CustomizerPreview values={values} />
                   </Box>
                 </Stack>
               </Stack>

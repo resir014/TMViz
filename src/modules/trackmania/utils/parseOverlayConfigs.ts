@@ -1,15 +1,16 @@
+import { ParsedUrlQuery } from 'querystring'
 import { GlobalOverlaySettings } from '~/types/gamepad'
 import gamepadConfigDefaults from './gamepadConfigDefaults'
 
-function parseOverlayConfigs(query?: Partial<Record<string, any>>): Partial<GlobalOverlaySettings> {
+function parseOverlayConfigs(query?: ParsedUrlQuery): Partial<GlobalOverlaySettings> {
   if (query) {
     const { accelerateColor, brakeColor, steeringColor, ...rest } = query
 
     return {
       appearance: {
-        accelerateColor: accelerateColor || undefined,
-        brakeColor: brakeColor || undefined,
-        steeringColor: steeringColor || undefined
+        accelerateColor: Array.isArray(accelerateColor) ? accelerateColor[0] : accelerateColor || undefined,
+        brakeColor: Array.isArray(brakeColor) ? brakeColor[0] : brakeColor || undefined,
+        steeringColor: Array.isArray(steeringColor) ? steeringColor[0] : steeringColor || undefined
       },
       config: gamepadConfigDefaults(rest)
     }
