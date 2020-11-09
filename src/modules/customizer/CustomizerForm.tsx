@@ -14,10 +14,12 @@ import {
   Code
 } from '@chakra-ui/core'
 import * as yup from 'yup'
-import { Field, FieldProps, Form, Formik } from 'formik'
+import { Form, Formik } from 'formik'
 import { toClipboard } from 'copee'
 import * as React from 'react'
+import { ColorInputField, NumericField } from '~/components/form'
 import { GlobalOverlaySettings } from '~/types/gamepad'
+import isValidHex from '~/utils/isValidHex'
 import defaultConfig from './utils/defaultConfig'
 import buildURLQuery from './utils/buildURLQuery'
 import CustomizerPreview from './CustomizerPreview'
@@ -31,9 +33,9 @@ const CustomizerForm: React.FC = () => {
 
   const validationSchema = yup.object().shape({
     appearance: yup.object().shape<GlobalOverlaySettings['appearance']>({
-      accelerateColor: yup.string().required('Required field'),
-      brakeColor: yup.string().required('Required field'),
-      steeringColor: yup.string().required('Required field')
+      accelerateColor: yup.string().test('valid-color', 'Must be a valid color hex', isValidHex).required('Required field'),
+      brakeColor: yup.string().test('valid-color', 'Must be a valid color hex', isValidHex).required('Required field'),
+      steeringColor: yup.string().test('valid-color', 'Must be a valid color hex', isValidHex).required('Required field')
     }),
     config: yup.object().shape<GlobalOverlaySettings['config']>({
       accelerateButton: yup.string().matches(/^\d+$/, 'Numbers only').required('Required field'),
@@ -85,60 +87,9 @@ const CustomizerForm: React.FC = () => {
                     <Text>Tweak the look and feel of your overlay.</Text>
                   </Stack>
                   <Stack spacing={4}>
-                    <Field name="appearance.accelerateColor">
-                      {({ field, meta }: FieldProps<string>) => (
-                        <Stack spacing={2}>
-                          <Text as="label" htmlFor="appearance.accelerateColor" fontSize="sm">
-                            Accelerator color
-                          </Text>
-                          <Grid gridTemplateColumns="1fr 64px" gridGap={4}>
-                            <Input autoComplete="off" isInvalid={meta.touched && !!meta.error} {...field} />
-                            <Box backgroundColor={meta.value} borderRadius="md" />
-                          </Grid>
-                          {meta.touched && !!meta.error && (
-                            <Text color="red.500" fontSize="sm">
-                              {meta.error}
-                            </Text>
-                          )}
-                        </Stack>
-                      )}
-                    </Field>
-                    <Field name="appearance.brakeColor">
-                      {({ field, meta }: FieldProps<string>) => (
-                        <Stack spacing={2}>
-                          <Text as="label" htmlFor="appearance.brakeColor" fontSize="sm">
-                            Brake color
-                          </Text>
-                          <Grid gridTemplateColumns="1fr 64px" gridGap={4}>
-                            <Input autoComplete="off" isInvalid={meta.touched && !!meta.error} {...field} />
-                            <Box backgroundColor={meta.value} borderRadius="md" />
-                          </Grid>
-                          {meta.touched && !!meta.error && (
-                            <Text color="red.500" fontSize="sm">
-                              {meta.error}
-                            </Text>
-                          )}
-                        </Stack>
-                      )}
-                    </Field>
-                    <Field name="appearance.steeringColor">
-                      {({ field, meta }: FieldProps<string>) => (
-                        <Stack spacing={2}>
-                          <Text as="label" htmlFor="appearance.steeringColor" fontSize="sm">
-                            Steering color
-                          </Text>
-                          <Grid gridTemplateColumns="1fr 64px" gridGap={4}>
-                            <Input autoComplete="off" isInvalid={meta.touched && !!meta.error} {...field} />
-                            <Box backgroundColor={meta.value} borderRadius="md" />
-                          </Grid>
-                          {meta.touched && !!meta.error && (
-                            <Text color="red.500" fontSize="sm">
-                              {meta.error}
-                            </Text>
-                          )}
-                        </Stack>
-                      )}
-                    </Field>
+                    <ColorInputField label="Accelerator color" name="appearance.accelerateColor" autoComplete="off" />
+                    <ColorInputField label="Brake color" name="appearance.brakeColor" autoComplete="off" />
+                    <ColorInputField label="Steering color" name="appearance.steeringColor" autoComplete="off" />
                   </Stack>
                   <Stack spacing={6}>
                     <Stack spacing={2}>
@@ -154,81 +105,11 @@ const CustomizerForm: React.FC = () => {
                       </Text>
                     </Stack>
                     <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)', 'repeat(3, 1fr)']} gridGap={4}>
-                      <Field name="config.framerate">
-                        {({ field, meta }: FieldProps<string>) => (
-                          <Stack spacing={2}>
-                            <Text as="label" htmlFor="config.framerate" fontSize="sm">
-                              Framerate (fps)
-                            </Text>
-                            <Input inputMode="numeric" autoComplete="off" isInvalid={meta.touched && !!meta.error} {...field} />
-                            {meta.touched && !!meta.error && (
-                              <Text color="red.500" fontSize="sm">
-                                {meta.error}
-                              </Text>
-                            )}
-                          </Stack>
-                        )}
-                      </Field>
-                      <Field name="config.accelerateButton">
-                        {({ field, meta }: FieldProps<string>) => (
-                          <Stack spacing={2}>
-                            <Text as="label" htmlFor="config.accelerateButton" fontSize="sm">
-                              Accelerate button
-                            </Text>
-                            <Input inputMode="numeric" autoComplete="off" isInvalid={meta.touched && !!meta.error} {...field} />
-                            {meta.touched && !!meta.error && (
-                              <Text color="red.500" fontSize="sm">
-                                {meta.error}
-                              </Text>
-                            )}
-                          </Stack>
-                        )}
-                      </Field>
-                      <Field name="config.brakeButton">
-                        {({ field, meta }: FieldProps<string>) => (
-                          <Stack spacing={2}>
-                            <Text as="label" htmlFor="config.brakeButton" fontSize="sm">
-                              Brake button
-                            </Text>
-                            <Input inputMode="numeric" autoComplete="off" isInvalid={meta.touched && !!meta.error} {...field} />
-                            {meta.touched && !!meta.error && (
-                              <Text color="red.500" fontSize="sm">
-                                {meta.error}
-                              </Text>
-                            )}
-                          </Stack>
-                        )}
-                      </Field>
-                      <Field name="config.steeringAxis">
-                        {({ field, meta }: FieldProps<string>) => (
-                          <Stack spacing={2}>
-                            <Text as="label" htmlFor="config.steeringAxis" fontSize="sm">
-                              Steering axis
-                            </Text>
-                            <Input inputMode="numeric" autoComplete="off" isInvalid={meta.touched && !!meta.error} {...field} />
-                            {meta.touched && !!meta.error && (
-                              <Text color="red.500" fontSize="sm">
-                                {meta.error}
-                              </Text>
-                            )}
-                          </Stack>
-                        )}
-                      </Field>
-                      <Field name="config.steeringDeadzone">
-                        {({ field, meta }: FieldProps<string>) => (
-                          <Stack spacing={2}>
-                            <Text as="label" htmlFor="config.steeringDeadzone" fontSize="sm">
-                              Steering deadzone (advanced)
-                            </Text>
-                            <Input inputMode="numeric" autoComplete="off" isInvalid={meta.touched && !!meta.error} {...field} />
-                            {meta.touched && !!meta.error && (
-                              <Text color="red.500" fontSize="sm">
-                                {meta.error}
-                              </Text>
-                            )}
-                          </Stack>
-                        )}
-                      </Field>
+                      <NumericField label="Framerate (fps)" name="config.framerate" autoComplete="off" />
+                      <NumericField label="Accelerate button" name="config.accelerateButton" autoComplete="off" />
+                      <NumericField label="Brake button" name="config.brakeButton" autoComplete="off" />
+                      <NumericField label="Steering axis" name="config.steeringAxis" autoComplete="off" />
+                      <NumericField label="Steering deadzone (advanced)" name="config.steeringDeadzone" autoComplete="off" />
                     </Grid>
                   </Stack>
                 </Stack>
