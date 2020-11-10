@@ -13,7 +13,7 @@ const BrakeIndicator: React.FC<BrakeIndicatorProps> = ({ value, color }) => {
 
   return (
     <Box gridArea="brake" position="relative" width="100%" height="100%" backgroundColor={backgroundColor}>
-      <Box position="absolute" top={0} bottom={0} left={0} right={0} backgroundColor={color} style={{ opacity: value }} />
+      <Box position="absolute" top={0} bottom={0} left={0} right={0} backgroundColor={color} style={{ opacity: value || 0 }} />
     </Box>
   )
 }
