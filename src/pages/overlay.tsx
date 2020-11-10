@@ -8,8 +8,7 @@ import ControllerTelemetry, { parseOverlayConfigs } from '~/modules/trackmania'
 
 const OverlayPage: NextPage = () => {
   const router = useRouter()
-
-  const parsedConfig = React.useMemo(() => parseOverlayConfigs(router.query), [router.query])
+  const parsedConfig = parseOverlayConfigs(router.query)
 
   return (
     <OverlayRoot>
