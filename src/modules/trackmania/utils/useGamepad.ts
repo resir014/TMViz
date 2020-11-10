@@ -7,7 +7,8 @@ export default function useGamepad(config?: Partial<UseGamepadConfig>) {
   const [isControllerConnected, setIsControllerConnected] = React.useState(false)
   const [controllerData, setControllerData] = React.useState<ControllerData | undefined>(undefined)
 
-  const { framerate, accelerateButton, brakeButton } = gamepadConfigDefaults(config)
+  const configDefaults = React.useMemo(() => gamepadConfigDefaults(config), [config])
+  const { framerate, accelerateButton, brakeButton } = configDefaults
 
   const handleGamepadConnected = (e: GamepadEvent) => {
     // eslint-disable-next-line no-console
