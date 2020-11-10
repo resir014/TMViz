@@ -1,21 +1,17 @@
-import { hsl, parseToHsl } from 'polished'
-import * as React from 'react'
+import { transparentize } from 'polished'
 import isValidHex from '~/utils/isValidHex'
+import theme from '~/utils/theme'
 
-function useTelemetryInputStyle(value = 0, color?: string) {
+const defaultColor = theme.colors.gray[500]
+
+function useTelemetryInputStyle(color: string = defaultColor) {
   // Find the proper HSL lightness based on max-val/min-val percentage:
   // (maxVal - minVal) * percentage + minVal
-  const telemetryStyle = React.useMemo(() => {
-    if (color && isValidHex(color)) {
-      const colorHsl = parseToHsl(color)
+  if (color && isValidHex(color)) {
+    return transparentize(0.75, color)
+  }
 
-      return hsl(colorHsl.hue, colorHsl.saturation, colorHsl.lightness * ((0.75 - 0.25) * (value || 0 * 100) + 0.25))
-    }
-
-    return undefined
-  }, [value, color])
-
-  return telemetryStyle
+  return transparentize(0.75, defaultColor)
 }
 
 export default useTelemetryInputStyle

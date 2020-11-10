@@ -1,9 +1,7 @@
 import * as React from 'react'
-import { parseToHsl, hsl } from 'polished'
 import { Box, Flex } from '@chakra-ui/core'
 import { SteeringValues } from '~/types/gamepad'
-import theme from '~/utils/theme'
-import isValidHex from '../../../utils/isValidHex'
+import useTelemetryInputStyle from '../utils/useTelemetryInputStyle'
 
 interface ThrottleIndicatorProps {
   direction: 'left' | 'right'
@@ -13,7 +11,7 @@ interface ThrottleIndicatorProps {
 }
 
 const SteeringIndicator: React.FC<ThrottleIndicatorProps> = ({ direction, value, color, steeringDeadzone = 0 }) => {
-  const colorHsl = React.useMemo(() => parseToHsl(color && isValidHex(color) ? color : theme.colors.orange[400]), [color])
+  const backgroundColor = useTelemetryInputStyle(color)
 
   const steerWidths = React.useMemo<SteeringValues>(() => {
     if (value) {
@@ -33,11 +31,11 @@ const SteeringIndicator: React.FC<ThrottleIndicatorProps> = ({ direction, value,
       justifyContent={direction === 'left' ? 'flex-end' : 'flex-start'}
       width="96px"
       height="140px"
-      backgroundColor={hsl(colorHsl.hue, colorHsl.saturation, colorHsl.lightness * 0.25)}
+      backgroundColor={backgroundColor}
       overflow="hidden"
     >
       <Box
-        backgroundColor={hsl(colorHsl.hue, colorHsl.saturation, colorHsl.lightness * 0.75)}
+        backgroundColor={color}
         height="100%"
         style={{
           width: `${direction === 'left' ? steerWidths.left : steerWidths.right}%`

@@ -1,13 +1,13 @@
 import * as React from 'react'
-import { ControllerData, UseGamepadConfig } from '~/types/gamepad'
-import useInterval from '../../../utils/useInterval'
-import gamepadConfigDefaults from './gamepadConfigDefaults'
+import { ControllerData } from '~/types/gamepad'
+import useInterval from '~/utils/useInterval'
+import useOverlayConfig from './useOverlayConfig'
 
-export default function useGamepad(config?: Partial<UseGamepadConfig>) {
+export default function useTelemetry() {
   const [isControllerConnected, setIsControllerConnected] = React.useState(false)
   const [controllerData, setControllerData] = React.useState<ControllerData | undefined>(undefined)
 
-  const { framerate, accelerateButton, brakeButton } = gamepadConfigDefaults(config)
+  const { appearance, config } = useOverlayConfig()
 
   const handleGamepadConnected = (e: GamepadEvent) => {
     // eslint-disable-next-line no-console
@@ -46,13 +46,13 @@ export default function useGamepad(config?: Partial<UseGamepadConfig>) {
 
       if (activeGamepad) {
         // eslint-disable-next-line no-console
-        const accelerate = activeGamepad.buttons[Number(accelerateButton)].value
-        const brake = activeGamepad.buttons[Number(brakeButton)].value
+        const accelerate = activeGamepad.buttons[Number(config?.accelerateButton)].value
+        const brake = activeGamepad.buttons[Number(config?.brakeButton)].value
         const steering = activeGamepad.axes[0]
         setControllerData({ accelerate, brake, steering })
       }
     }
-  }, 1000 / Number(framerate))
+  }, 1000 / Number(config?.framerate))
 
-  return { isControllerConnected, controllerData }
+  return { isControllerConnected, appearance, config, controllerData }
 }
