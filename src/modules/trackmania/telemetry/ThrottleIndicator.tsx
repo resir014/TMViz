@@ -9,9 +9,13 @@ interface ThrottleIndicatorProps {
 }
 
 const ThrottleIndicator: React.FC<ThrottleIndicatorProps> = ({ value, color }) => {
-  const backgroundColor = useTelemetryInputStyle(value, color)
+  const backgroundColor = useTelemetryInputStyle(color)
 
-  return <Box gridArea="throttle" width="100%" height="100%" style={{ backgroundColor }} />
+  return (
+    <Box gridArea="throttle" position="relative" width="100%" height="100%" backgroundColor={backgroundColor}>
+      <Box position="absolute" top={0} bottom={0} left={0} right={0} backgroundColor={color} style={{ opacity: value }} />
+    </Box>
+  )
 }
 
 export default ThrottleIndicator
