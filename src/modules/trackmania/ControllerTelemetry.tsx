@@ -1,12 +1,16 @@
 import * as React from 'react'
 import { Grid, Flex } from '@chakra-ui/core'
 
-import useTelemetry from './utils/useGamepad'
+import { useGamepad } from '../gamepad'
 import { BrakeIndicator, SteeringIndicator, ThrottleIndicator } from './telemetry'
 import { DEFAULT_STEERING_DEADZONE } from './utils/gamepadConfigDefaults'
+import useOverlayConfig from './utils/useOverlayConfig'
 
 const ControllerTelemetry: React.FC = () => {
-  const { controllerData, appearance, config } = useTelemetry()
+  const { config, appearance } = useOverlayConfig()
+  const { globalGamepads } = useGamepad(config?.framerate ? Number(config.framerate) : undefined)
+
+  const currentGamepad = globalGamepads[0]
 
   return (
     <Flex>
@@ -27,15 +31,21 @@ const ControllerTelemetry: React.FC = () => {
           direction="left"
           steeringDeadzone={Number(config?.steeringDeadzone || DEFAULT_STEERING_DEADZONE)}
           color={appearance?.steeringColor}
-          value={controllerData?.steering}
+          value={currentGamepad && currentGamepad.axes[Number(config?.steeringAxis || 0)]}
         />
-        <ThrottleIndicator value={controllerData?.accelerate} color={appearance?.accelerateColor} />
-        <BrakeIndicator value={controllerData?.brake} color={appearance?.brakeColor} />
+        <ThrottleIndicator
+          value={currentGamepad && currentGamepad.buttons[Number(config?.accelerateButton || 0)].value}
+          color={appearance?.accelerateColor}
+        />
+        <BrakeIndicator
+          value={currentGamepad && currentGamepad.buttons[Number(config?.brakeButton || 0)].value}
+          color={appearance?.brakeColor}
+        />
         <SteeringIndicator
           direction="right"
           steeringDeadzone={Number(config?.steeringDeadzone || DEFAULT_STEERING_DEADZONE)}
           color={appearance?.steeringColor}
-          value={controllerData?.steering}
+          value={currentGamepad && currentGamepad.axes[Number(config?.steeringAxis || 0)]}
         />
       </Grid>
     </Flex>
