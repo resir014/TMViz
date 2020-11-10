@@ -1,15 +1,12 @@
 import * as React from 'react'
 import { Grid, Flex } from '@chakra-ui/core'
-import { GlobalOverlaySettings } from '~/types/gamepad'
 
-import useGamepad from './utils/useGamepad'
+import useTelemetry from './utils/useGamepad'
 import { BrakeIndicator, SteeringIndicator, ThrottleIndicator } from './telemetry'
 import { DEFAULT_STEERING_DEADZONE } from './utils/gamepadConfigDefaults'
 
-type ControllerTelemetryProps = Partial<GlobalOverlaySettings>
-
-const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ appearance, config }) => {
-  const { controllerData } = useGamepad(config)
+const ControllerTelemetry: React.FC = () => {
+  const { controllerData, appearance, config } = useTelemetry()
 
   return (
     <Flex>

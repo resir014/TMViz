@@ -1,8 +1,10 @@
+import * as React from 'react'
+import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
 import { GlobalOverlaySettings } from '~/types/gamepad'
 import gamepadConfigDefaults from './gamepadConfigDefaults'
 
-function parseOverlayConfigs(query?: ParsedUrlQuery): Partial<GlobalOverlaySettings> {
+function parseOverlayConfigs(query?: ParsedUrlQuery): GlobalOverlaySettings {
   if (query) {
     const { accelerateColor, brakeColor, steeringColor, ...rest } = query
 
@@ -17,8 +19,16 @@ function parseOverlayConfigs(query?: ParsedUrlQuery): Partial<GlobalOverlaySetti
   }
 
   return {
+    appearance: {},
     config: gamepadConfigDefaults()
   }
 }
 
-export default parseOverlayConfigs
+function useOverlayConfig(): Partial<GlobalOverlaySettings> {
+  const router = useRouter()
+  const overlayConfig = React.useMemo(() => parseOverlayConfigs(router.query), [router.query])
+
+  return overlayConfig
+}
+
+export default useOverlayConfig
