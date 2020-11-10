@@ -8,7 +8,7 @@ import useOverlayConfig from './utils/useOverlayConfig'
 
 const ControllerTelemetry: React.FC = () => {
   const { config, appearance } = useOverlayConfig()
-  const { globalGamepads } = useGamepad(config?.framerate ? Number(config.framerate) : undefined)
+  const { globalGamepads } = useGamepad()
 
   const currentGamepad = globalGamepads[0]
 

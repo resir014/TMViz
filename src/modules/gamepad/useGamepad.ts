@@ -4,7 +4,7 @@ import { GamepadsContext } from '~/modules/gamepad/GamepadsContext'
 import { GamepadValue } from '~/modules/gamepad/types'
 import useInterval from '~/utils/useInterval'
 
-export default function useGamepad(framerate = 60) {
+export default function useGamepad() {
   const requestRef = React.useRef<number>()
   const [gamepads, setGamepads] = React.useState<Record<string, GamepadValue>>({})
   const { gamepads: globalGamepads, updateGlobalGamepads } = React.useContext(GamepadsContext)
@@ -79,7 +79,7 @@ export default function useGamepad(framerate = 60) {
 
   useInterval(() => {
     if ('getGamepads' in navigator) scanGamepads()
-  }, 1000 / framerate)
+  }, 1000)
 
   return { globalGamepads }
 }
