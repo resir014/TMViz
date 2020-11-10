@@ -1,5 +1,4 @@
 import * as React from 'react'
-import { css } from '@emotion/core'
 import { Grid, Flex } from '@chakra-ui/core'
 import { GlobalOverlaySettings } from '~/types/gamepad'
 
@@ -23,9 +22,9 @@ const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ appearance, c
       "left brake right"
     `}
         overflow="hidden"
-        css={css`
-          clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-        `}
+        style={{
+          clipPath: 'polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%)'
+        }}
       >
         <SteeringIndicator
           direction="left"

@@ -133,6 +133,13 @@ const theme = extendTheme({
   },
   colors,
   components: {
+    Button: {
+      baseStyle: ({ colorMode }: any) => ({
+        _focus: {
+          boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? colors.turquoise[500] : colors.blue[500])}`
+        }
+      })
+    },
     Heading: {
       baseStyle: {
         fontWeight: 600
@@ -146,6 +153,15 @@ const theme = extendTheme({
         },
         _focus: {
           boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? colors.turquoise[500] : colors.blue[500])}`
+        }
+      })
+    },
+    Popover: {
+      baseStyle: ({ colorMode }: any) => ({
+        content: {
+          _focus: {
+            boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? colors.turquoise[500] : colors.blue[500])}`
+          }
         }
       })
     }
