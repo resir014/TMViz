@@ -21,12 +21,17 @@
       ]
     },
     {
-      "source": "/(.*)",
+      "source": "/",
       "headers": [
         {
           "key": "X-Frame-Options",
-          "value": "SAMEORIGIN"
-        },
+          "value": "DENY"
+        }
+      ]
+    },
+    {
+      "source": "/(.*)",
+      "headers": [
         {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
