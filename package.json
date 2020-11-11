@@ -20,6 +20,7 @@
   "dependencies": {
     "@chakra-ui/core": "^1.0.0-rc.8",
     "@emotion/babel-preset-css-prop": "^10.2.0",
+    "clsx": "^1.1.1",
     "copee": "^1.0.6",
     "date-fns": "^2.16.1",
     "emotion": "^10.0.27",
