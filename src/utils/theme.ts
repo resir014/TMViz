@@ -1,7 +1,7 @@
 import { extendTheme } from '@chakra-ui/core'
 import { transparentize } from 'polished'
 
-const colors = {
+export const customColors = {
   white: '#ffffff',
   black: '#16161d',
   gray: {
@@ -131,12 +131,12 @@ const theme = extendTheme({
     heading: '"Inter", system-ui, sans-serif',
     mono: '"JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace, monospace'
   },
-  colors,
+  colors: customColors,
   components: {
     Button: {
       baseStyle: ({ colorMode }: any) => ({
         _focus: {
-          boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? colors.turquoise[500] : colors.blue[500])}`
+          boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? customColors.turquoise[500] : customColors.blue[500])}`
         }
       })
     },
@@ -152,7 +152,7 @@ const theme = extendTheme({
           textDecoration: 'underline'
         },
         _focus: {
-          boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? colors.turquoise[500] : colors.blue[500])}`
+          boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? customColors.turquoise[500] : customColors.blue[500])}`
         }
       })
     },
@@ -160,7 +160,7 @@ const theme = extendTheme({
       baseStyle: ({ colorMode }: any) => ({
         content: {
           _focus: {
-            boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? colors.turquoise[500] : colors.blue[500])}`
+            boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? customColors.turquoise[500] : customColors.blue[500])}`
           }
         }
       })

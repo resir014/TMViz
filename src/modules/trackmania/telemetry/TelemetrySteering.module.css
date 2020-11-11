@@ -1,0 +1,21 @@
+.root {
+  display: flex;
+  align-items: center;
+  width: 96px;
+  height: 140px;
+  overflow: hidden;
+}
+
+.axis {
+  height: 100%;
+}
+
+.isLeft {
+  grid-area: left;
+  justify-content: flex-end;
+}
+
+.isRight {
+  grid-area: right;
+  justify-content: flex-start;
+}

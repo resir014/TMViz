@@ -1,3 +1,2 @@
-export { default as BrakeIndicator } from './BrakeIndicator'
-export { default as SteeringIndicator } from './SteeringIndicator'
-export { default as ThrottleIndicator } from './ThrottleIndicator'
+export { default as TelemetrySteering } from './TelemetrySteering'
+export { default as TelemetryButton } from './TelemetryButton'
