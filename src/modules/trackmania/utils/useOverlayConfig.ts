@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useRouter } from 'next/router'
 import { ParsedUrlQuery } from 'querystring'
-import { GlobalOverlaySettings } from '~/types/gamepad'
+import { GlobalOverlaySettings } from '~/types/overlay'
 import gamepadConfigDefaults from './gamepadConfigDefaults'
 
 function parseOverlayConfigs(query?: ParsedUrlQuery): GlobalOverlaySettings {
@@ -24,7 +24,7 @@ function parseOverlayConfigs(query?: ParsedUrlQuery): GlobalOverlaySettings {
   }
 }
 
-function useOverlayConfig(): Partial<GlobalOverlaySettings> {
+function useOverlayConfig(): GlobalOverlaySettings {
   const router = useRouter()
   const overlayConfig = React.useMemo(() => parseOverlayConfigs(router.query), [router.query])
 

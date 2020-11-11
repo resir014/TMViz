@@ -1,9 +1,9 @@
 import * as React from 'react'
 import { transparentize } from 'polished'
 import isValidHex from '~/utils/isValidHex'
-import { customColors } from '~/utils/theme'
+import theme from '~/utils/theme'
 
-const defaultColor = customColors.gray[500]
+const defaultColor = theme.colors.gray[500]
 
 function useTelemetryInputStyle(color: string = defaultColor) {
   const backgroundColor = React.useMemo(() => {

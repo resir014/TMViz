@@ -1,6 +1,6 @@
 import { Box, useColorMode } from '@chakra-ui/core'
 import * as React from 'react'
-import { GlobalOverlaySettings } from '~/types/gamepad'
+import { GlobalOverlaySettings } from '~/types/overlay'
 import buildURLQuery from './utils/buildURLQuery'
 
 interface CustomizerPreviewProps {

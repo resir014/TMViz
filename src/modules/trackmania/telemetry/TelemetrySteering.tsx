@@ -1,6 +1,6 @@
 import * as React from 'react'
 import clsx from 'clsx'
-import { SteeringValues } from '~/types/gamepad'
+import { SteeringValues } from '~/types/overlay'
 import useTelemetryInputStyle from '../utils/useTelemetryInputStyle'
 import styles from './TelemetrySteering.module.css'
 

@@ -1,12 +1,12 @@
 import { gamepadConfigDefaults } from '~/modules/trackmania'
-import { GlobalOverlaySettings } from '~/types/gamepad'
-import { customColors } from '~/utils/theme'
+import { GlobalOverlaySettings } from '~/types/overlay'
+import theme from '~/utils/theme'
 
 const defaultConfig: GlobalOverlaySettings = {
   appearance: {
-    accelerateColor: customColors.green[500],
-    brakeColor: customColors.red[500],
-    steeringColor: customColors.orange[500]
+    accelerateColor: theme.colors.green[500],
+    brakeColor: theme.colors.red[500],
+    steeringColor: theme.colors.orange[500]
   },
   config: gamepadConfigDefaults()
 }

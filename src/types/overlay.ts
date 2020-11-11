@@ -2,6 +2,7 @@ export interface ControllerData {
   accelerate: number
   brake: number
   steering: number
+  steeringDeadzone: number
 }
 
 export interface SteeringValues {
@@ -15,7 +16,7 @@ export interface GamepadAppearanceSettings {
   steeringColor?: string
 }
 
-export interface UseGamepadConfig {
+export interface TrackmaniaOverlayConfig {
   framerate: string
   accelerateButton: string
   brakeButton: string
@@ -25,5 +26,5 @@ export interface UseGamepadConfig {
 
 export interface GlobalOverlaySettings {
   appearance: GamepadAppearanceSettings
-  config: UseGamepadConfig
+  config: TrackmaniaOverlayConfig
 }

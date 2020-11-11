@@ -1,5 +1,5 @@
 import queryString from 'query-string'
-import { GlobalOverlaySettings } from '~/types/gamepad'
+import { GlobalOverlaySettings } from '~/types/overlay'
 
 function buildURLQuery(settings: GlobalOverlaySettings) {
   const query = { ...settings.appearance, ...settings.config }
