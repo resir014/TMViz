@@ -14,24 +14,31 @@ interface ControllerTelemetryProps {
 
 const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ className, style }) => {
   const { appearance } = useOverlayConfig()
-  const currentGamepad = useTrackmaniaTelemetry(0)
+  const { isConnected, data } = useTrackmaniaTelemetry(0)
 
   return (
     <div className={clsx(styles.root, className)} style={style}>
       <div className={styles.telemetryWrapper}>
         <TelemetrySteering
           direction="left"
-          steeringDeadzone={currentGamepad.steeringDeadzone}
+          isConnected={isConnected}
+          steeringDeadzone={data.steeringDeadzone}
           color={appearance?.steeringColor}
-          value={currentGamepad.steering}
+          value={data.steering}
         />
-        <TelemetryButton className={styles.isThrottle} value={currentGamepad.accelerate} color={appearance?.accelerateColor} />
-        <TelemetryButton className={styles.isBrake} value={currentGamepad.brake} color={appearance?.brakeColor} />
+        <TelemetryButton
+          className={styles.isThrottle}
+          isConnected={isConnected}
+          value={data.accelerate}
+          color={appearance?.accelerateColor}
+        />
+        <TelemetryButton className={styles.isBrake} isConnected={isConnected} value={data.brake} color={appearance?.brakeColor} />
         <TelemetrySteering
           direction="right"
-          steeringDeadzone={currentGamepad.steeringDeadzone}
+          isConnected={isConnected}
+          steeringDeadzone={data.steeringDeadzone}
           color={appearance?.steeringColor}
-          value={currentGamepad.steering}
+          value={data.steering}
         />
       </div>
     </div>

@@ -7,12 +7,13 @@ import styles from './TelemetryButton.module.css'
 interface TelemetryButtonProps {
   className?: string
   style?: React.CSSProperties
+  isConnected?: boolean
   value?: number
   color?: string
 }
 
-const TelemetryButton: React.FC<TelemetryButtonProps> = ({ className, style, value, color }) => {
-  const backgroundColor = useTelemetryInputStyle(color)
+const TelemetryButton: React.FC<TelemetryButtonProps> = ({ className, style, isConnected, value, color }) => {
+  const backgroundColor = useTelemetryInputStyle(color, isConnected)
 
   return (
     <div

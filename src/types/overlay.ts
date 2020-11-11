@@ -5,6 +5,11 @@ export interface ControllerData {
   steeringDeadzone: number
 }
 
+export interface ControllerTelemetry {
+  isConnected?: boolean
+  data: Partial<ControllerData>
+}
+
 export interface SteeringValues {
   left: number
   right: number

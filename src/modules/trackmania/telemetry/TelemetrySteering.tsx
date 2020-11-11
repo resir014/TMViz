@@ -8,13 +8,22 @@ interface TelemetrySteeringProps {
   className?: string
   style?: React.CSSProperties
   direction: 'left' | 'right'
+  isConnected?: boolean
   value?: number
   color?: string
   steeringDeadzone?: number
 }
 
-const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({ className, style, direction, value, color, steeringDeadzone = 0 }) => {
-  const backgroundColor = useTelemetryInputStyle(color)
+const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({
+  className,
+  style,
+  direction,
+  isConnected,
+  value,
+  color,
+  steeringDeadzone = 0
+}) => {
+  const backgroundColor = useTelemetryInputStyle(color, isConnected)
 
   const steerWidths = React.useMemo<SteeringValues>(() => {
     if (value) {
