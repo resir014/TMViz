@@ -1,9 +1,11 @@
-import { Flex } from '@chakra-ui/core'
+import { Flex, FlexProps } from '@chakra-ui/core'
 import * as React from 'react'
 
-const Content: React.FC = ({ children }) => {
+export type ContentProps = FlexProps
+
+const Content: React.FC<ContentProps> = ({ children, ...rest }) => {
   return (
-    <Flex as="main" flexDirection="column" flex="1 1 auto">
+    <Flex as="main" flexDirection="column" flex="1 1 auto" {...rest}>
       {children}
     </Flex>
   )

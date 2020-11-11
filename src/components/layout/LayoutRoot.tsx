@@ -3,12 +3,12 @@ import * as React from 'react'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import Footer from './Footer'
 
-interface PageProps extends Omit<NextSeoProps, 'title'> {
+export interface LayoutRootProps extends Omit<NextSeoProps, 'title'> {
   pageTitle?: string
   isDashboard?: boolean
 }
 
-const LayoutRoot: React.FC<PageProps> = ({ children, pageTitle, ...rest }) => {
+const LayoutRoot: React.FC<LayoutRootProps> = ({ children, pageTitle, ...rest }) => {
   const { colorMode } = useColorMode()
 
   const backgroundColor = React.useMemo(() => {

@@ -1,8 +1,10 @@
-import { Flex, Link, Text } from '@chakra-ui/core'
+import { Flex, FlexProps, Link, Text } from '@chakra-ui/core'
 import * as React from 'react'
 
-const Navigation: React.FC = () => (
-  <Flex as="footer" flexDirection="column" px={6} py={3}>
+export type FooterProps = FlexProps
+
+const Footer: React.FC<FooterProps> = ({ className, style, ...rest }) => (
+  <Flex as="footer" className={className} style={style} flexDirection="column" px={6} py={3} {...rest}>
     <Text fontSize="sm">
       TMViz &copy; 2020{' '}
       <Link href="https://resir014.xyz/" isExternal>
@@ -18,7 +20,18 @@ const Navigation: React.FC = () => (
       </Link>
       .
     </Text>
+    <Text fontSize="sm">
+      This project is not affiliated with{' '}
+      <Link href="https://trackmania.com/" isExternal>
+        Trackmania
+      </Link>{' '}
+      or its developers,{' '}
+      <Link href="https://nadeo.com/" isExternal>
+        Ubisoft Nadeo
+      </Link>
+      . All trademarks used belong to their respective owners.
+    </Text>
   </Flex>
 )
 
-export default Navigation
+export default Footer
