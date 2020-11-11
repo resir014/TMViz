@@ -1,0 +1,23 @@
+.root {
+  display: flex;
+}
+
+.telemetryWrapper {
+  display: grid;
+  grid-gap: 8px;
+  grid-auto-columns: 1fr 48px 1fr;
+  grid-template-rows: 1fr 1fr;
+  grid-template-areas:
+    'left throttle right'
+    'left brake right';
+  overflow: hidden;
+  clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+}
+
+.isThrottle {
+  grid-area: throttle;
+}
+
+.isBrake {
+  grid-area: brake;
+}

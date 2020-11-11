@@ -1,16 +1,19 @@
 import * as React from 'react'
-import { Box, Flex } from '@chakra-ui/core'
+import clsx from 'clsx'
 import { SteeringValues } from '~/types/gamepad'
 import useTelemetryInputStyle from '../utils/useTelemetryInputStyle'
+import styles from './TelemetrySteering.module.css'
 
-interface ThrottleIndicatorProps {
+interface TelemetrySteeringProps {
+  className?: string
+  style?: React.CSSProperties
   direction: 'left' | 'right'
   value?: number
   color?: string
   steeringDeadzone?: number
 }
 
-const SteeringIndicator: React.FC<ThrottleIndicatorProps> = ({ direction, value, color, steeringDeadzone = 0 }) => {
+const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({ className, style, direction, value, color, steeringDeadzone = 0 }) => {
   const backgroundColor = useTelemetryInputStyle(color)
 
   const steerWidths = React.useMemo<SteeringValues>(() => {
@@ -25,24 +28,22 @@ const SteeringIndicator: React.FC<ThrottleIndicatorProps> = ({ direction, value,
   }, [value])
 
   return (
-    <Flex
-      gridArea={direction}
-      alignItems="center"
-      justifyContent={direction === 'left' ? 'flex-end' : 'flex-start'}
-      width="96px"
-      height="140px"
-      backgroundColor={backgroundColor}
-      overflow="hidden"
+    <div
+      className={clsx(styles.root, direction === 'left' ? styles.isLeft : styles.isRight, className)}
+      style={{
+        backgroundColor,
+        ...style
+      }}
     >
-      <Box
-        backgroundColor={color}
-        height="100%"
+      <div
+        className={styles.axis}
         style={{
+          backgroundColor: color,
           width: `${direction === 'left' ? steerWidths.left : steerWidths.right}%`
         }}
       />
-    </Flex>
+    </div>
   )
 }
 
-export default SteeringIndicator
+export default TelemetrySteering

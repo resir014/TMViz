@@ -1,12 +1,11 @@
 /* eslint-disable no-plusplus */
 import * as React from 'react'
 import { GamepadsContext } from '~/modules/gamepad/GamepadsContext'
-import { GamepadValue } from '~/modules/gamepad/types'
-import useInterval from '~/utils/useInterval'
+import { GamepadsContextValue } from '~/modules/gamepad/types'
 
 export default function useGamepad() {
-  const requestRef = React.useRef<number>()
-  const [gamepads, setGamepads] = React.useState<Record<string, GamepadValue>>({})
+  const raf = React.useRef<number>()
+  const [gamepads, setGamepads] = React.useState<GamepadsContextValue['gamepads']>({})
   const { gamepads: globalGamepads, updateGlobalGamepads } = React.useContext(GamepadsContext)
 
   const addGamepad = (gamepad: Gamepad | null) => {
@@ -63,23 +62,19 @@ export default function useGamepad() {
     }
   }, [])
 
-  const animate = (_: number) => {
+  const animate = () => {
     if ('getGamepads' in navigator) scanGamepads()
-    requestRef.current = requestAnimationFrame(animate)
+    raf.current = requestAnimationFrame(animate)
   }
 
   React.useEffect(() => {
-    requestRef.current = requestAnimationFrame(animate)
+    raf.current = requestAnimationFrame(animate)
     return () => {
-      if (requestRef.current) {
-        cancelAnimationFrame(requestRef.current)
+      if (raf.current) {
+        cancelAnimationFrame(raf.current)
       }
     }
-  })
-
-  useInterval(() => {
-    if ('getGamepads' in navigator) scanGamepads()
-  }, 1000)
+  }, [])
 
   return { globalGamepads }
 }
