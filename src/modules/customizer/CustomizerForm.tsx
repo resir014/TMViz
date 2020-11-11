@@ -18,7 +18,7 @@ import { Form, Formik } from 'formik'
 import { toClipboard } from 'copee'
 import * as React from 'react'
 import { ColorInputField, NumericField } from '~/components/form'
-import { GlobalOverlaySettings } from '~/types/gamepad'
+import { GlobalOverlaySettings } from '~/types/overlay'
 import isValidHex from '~/utils/isValidHex'
 import defaultConfig from './utils/defaultConfig'
 import buildURLQuery from './utils/buildURLQuery'
@@ -105,7 +105,6 @@ const CustomizerForm: React.FC = () => {
                       </Text>
                     </Stack>
                     <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)', 'repeat(3, 1fr)']} gridGap={4}>
-                      <NumericField label="Framerate (fps)" name="config.framerate" autoComplete="off" />
                       <NumericField label="Accelerate button" name="config.accelerateButton" autoComplete="off" />
                       <NumericField label="Brake button" name="config.brakeButton" autoComplete="off" />
                       <NumericField label="Steering axis" name="config.steeringAxis" autoComplete="off" />
