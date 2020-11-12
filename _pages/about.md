@@ -9,7 +9,7 @@ title: About
 - I want an overlay that can be included as a browser source.
 - I want my overlays to be customisable with a single click.
 - I don't want to run any other app locally just to run an overlay.
-- The most popular controller visualisation tool available out here only supports a limited range of controllers.
+- The most popular, similar tool only supports a limited range of controllers.
 
 ## How does this work?
 
