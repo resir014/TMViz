@@ -42,6 +42,11 @@ export default function useGamepad() {
     addGamepad(e.gamepad)
   }
 
+  const handleGamepadDisconnected = (e: GamepadEvent) => {
+    // eslint-disable-next-line no-console
+    console.log('Gamepad disconnected from index %d: %s', e.gamepad.index, e.gamepad.id)
+  }
+
   const scanGamepads = () => {
     const activeGamepads = navigator.getGamepads()
 
@@ -56,9 +61,11 @@ export default function useGamepad() {
 
   React.useEffect(() => {
     window.addEventListener<any>('gamepadconnected', handleGamepadConnected)
+    window.addEventListener<any>('gamepaddisconnected', handleGamepadDisconnected)
 
     return () => {
       window.removeEventListener<any>('gamepadconnected', handleGamepadConnected)
+      window.removeEventListener<any>('gamepaddisconnected', handleGamepadDisconnected)
     }
   }, [])
 
