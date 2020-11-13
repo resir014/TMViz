@@ -47,18 +47,6 @@ export default function useGamepad() {
     console.log('Gamepad disconnected from index %d: %s', e.gamepad.index, e.gamepad.id)
   }
 
-  const scanGamepads = () => {
-    const activeGamepads = navigator.getGamepads()
-
-    if (activeGamepads) {
-      for (let i = 0; i < activeGamepads.length; i++) {
-        if (activeGamepads[i]) {
-          addGamepad(activeGamepads[i])
-        }
-      }
-    }
-  }
-
   React.useEffect(() => {
     window.addEventListener<any>('gamepadconnected', handleGamepadConnected)
     window.addEventListener<any>('gamepaddisconnected', handleGamepadDisconnected)
@@ -69,13 +57,25 @@ export default function useGamepad() {
     }
   }, [])
 
-  const animate = () => {
-    if ('getGamepads' in navigator) scanGamepads()
-    raf.current = requestAnimationFrame(animate)
+  const scanGamepads = () => {
+    if ('getGamepads' in navigator) {
+      const activeGamepads = navigator.getGamepads()
+
+      if (activeGamepads) {
+        for (let i = 0; i < activeGamepads.length; i++) {
+          if (activeGamepads[i]) {
+            addGamepad(activeGamepads[i])
+          }
+        }
+      }
+    }
+
+    raf.current = requestAnimationFrame(scanGamepads)
   }
 
   React.useEffect(() => {
-    raf.current = requestAnimationFrame(animate)
+    raf.current = requestAnimationFrame(scanGamepads)
+
     return () => {
       if (raf.current) {
         cancelAnimationFrame(raf.current)
