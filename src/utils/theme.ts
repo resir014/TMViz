@@ -1,4 +1,5 @@
-import { extendTheme } from '@chakra-ui/core'
+/* eslint-disable no-underscore-dangle */
+import { extendTheme, theme as defaultTheme } from '@chakra-ui/core'
 import { transparentize } from 'polished'
 
 export const customColors = {
@@ -135,6 +136,7 @@ const theme = extendTheme({
   components: {
     Button: {
       baseStyle: ({ colorMode }: any) => ({
+        ...defaultTheme.components.Button.baseStyle,
         _focus: {
           boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? customColors.turquoise[500] : customColors.blue[500])}`
         }

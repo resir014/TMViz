@@ -11,12 +11,15 @@ import {
   InputGroup,
   InputRightElement,
   useToast,
-  Code
+  Code,
+  Flex
 } from '@chakra-ui/core'
+import { dequal } from 'dequal/lite'
 import * as yup from 'yup'
 import { Form, Formik } from 'formik'
 import { toClipboard } from 'copee'
 import * as React from 'react'
+import { useLocalStorage } from 'react-use'
 import { ColorInputField, NumericField } from '~/components/form'
 import { GlobalOverlaySettings } from '~/types/overlay'
 import isValidHex from '~/utils/isValidHex'
@@ -26,9 +29,16 @@ import CustomizerPreview from './CustomizerPreview'
 
 const CustomizerForm: React.FC = () => {
   const toast = useToast()
+  const [settings, setSettings] = useLocalStorage('tmviz-settings', defaultConfig)
 
   const handleSubmit = (values: GlobalOverlaySettings) => {
-    console.log(values)
+    setSettings(values)
+    toast({
+      description: 'Overlay settings saved.',
+      status: 'success',
+      duration: 5000,
+      isClosable: true
+    })
   }
 
   const validationSchema = yup.object().shape({
@@ -68,8 +78,8 @@ const CustomizerForm: React.FC = () => {
 
   return (
     <Box as="section" flex="1 1 auto" px={6} pt={8} pb={24}>
-      <Formik validationSchema={validationSchema} initialValues={defaultConfig} onSubmit={handleSubmit}>
-        {({ values }) => (
+      <Formik enableReinitialize validationSchema={validationSchema} initialValues={settings || defaultConfig} onSubmit={handleSubmit}>
+        {({ values, initialValues }) => (
           <Form>
             <Grid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} gridGap={12}>
               <Stack spacing={8}>
@@ -136,6 +146,19 @@ const CustomizerForm: React.FC = () => {
                     </InputGroup>
                     <Text>
                       width: <Code>256</Code>px, height: <Code>140</Code>px
+                    </Text>
+                  </Stack>
+                  <Stack spacing={4}>
+                    <Flex alignItems="center">
+                      <Button type="submit">Save settings</Button>
+                      {!dequal(values, initialValues) && (
+                        <Text ml={4} color="red.500" fontSize="sm">
+                          Changes detected.
+                        </Text>
+                      )}
+                    </Flex>
+                    <Text>
+                      <strong>Note:</strong> Settings are saved locally. Clearing your browser history will reset your settings.
                     </Text>
                   </Stack>
                 </Stack>
