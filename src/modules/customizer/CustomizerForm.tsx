@@ -12,7 +12,10 @@ import {
   InputRightElement,
   useToast,
   Code,
-  Flex
+  Flex,
+  Alert,
+  AlertIcon,
+  AlertDescription
 } from '@chakra-ui/core'
 import { dequal } from 'dequal/lite'
 import * as yup from 'yup'
@@ -162,9 +165,12 @@ const CustomizerForm: React.FC = () => {
                           </Text>
                         )}
                       </Flex>
-                      <Text>
-                        <strong>Note:</strong> Settings are saved locally. Clearing your browser history will reset your settings.
-                      </Text>
+                      <Alert status="info">
+                        <AlertIcon />
+                        <AlertDescription>
+                          Settings are saved locally. Clearing your browser history will reset your settings.
+                        </AlertDescription>
+                      </Alert>
                     </Stack>
                   </Stack>
                   <CustomizerPreview />
