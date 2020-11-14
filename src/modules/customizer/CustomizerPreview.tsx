@@ -1,19 +1,29 @@
-import { Box, useColorMode } from '@chakra-ui/core'
+import { Box, Heading, Stack, Divider, useColorMode } from '@chakra-ui/core'
+import { useFormikContext } from 'formik'
 import * as React from 'react'
 import { GlobalOverlaySettings } from '~/types/overlay'
 import buildURLQuery from './utils/buildURLQuery'
 
-interface CustomizerPreviewProps {
-  values: GlobalOverlaySettings
-}
-
-const CustomizerPreview: React.FC<CustomizerPreviewProps> = ({ values }) => {
+const CustomizerPreview: React.FC = () => {
   const { colorMode } = useColorMode()
+  const { values } = useFormikContext<GlobalOverlaySettings>()
+
+  const config = React.useMemo(() => buildURLQuery(values), [values])
 
   return (
-    <Box display="inline-block" p={6} backgroundColor={colorMode === 'light' ? 'gray.200' : 'gray.800'} borderRadius="lg">
-      <iframe title="Customizer Preview" src={`/overlay?${buildURLQuery(values)}`} width={256} height={140} />
-    </Box>
+    <Stack spacing={6}>
+      <Box>
+        <Heading as="h1" mb={2}>
+          Preview
+        </Heading>
+        <Divider />
+      </Box>
+      <Box>
+        <Box display="inline-block" p={6} backgroundColor={colorMode === 'light' ? 'gray.200' : 'gray.800'} borderRadius="lg">
+          <iframe title="Customizer Preview" src={`/overlay?${config}`} width={256} height={140} />
+        </Box>
+      </Box>
+    </Stack>
   )
 }
 
