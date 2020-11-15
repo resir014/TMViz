@@ -1,4 +1,3 @@
-export const DEFAULT_FRAMERATE = 60
 export const DEFAULT_ACCELERATE_BUTTON = 7
 export const DEFAULT_BRAKE_BUTTON = 6
 export const DEFAULT_STEERING_AXIS = 0

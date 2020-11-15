@@ -45,7 +45,6 @@ const CustomizerForm: React.FC = () => {
     config: yup.object().shape<GlobalOverlaySettings['config']>({
       accelerateButton: yup.string().matches(/^\d+$/, 'Numbers only').required('Required field'),
       brakeButton: yup.string().matches(/^\d+$/, 'Numbers only').required('Required field'),
-      framerate: yup.string().matches(/^\d+$/, 'Numbers only').required('Required field'),
       steeringAxis: yup.string().matches(/^\d+$/, 'Numbers only').required('Required field'),
       steeringDeadzone: yup
         .string()
