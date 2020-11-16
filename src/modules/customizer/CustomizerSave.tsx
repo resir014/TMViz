@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Button, Flex, Stack, Text } from '@chakra-ui/core'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Flex, Stack, Text } from '@chakra-ui/core'
 import { dequal } from 'dequal/lite'
 import { useFormikContext } from 'formik'
 import * as React from 'react'
@@ -20,9 +20,15 @@ const CustomizerSave: React.FC = () => {
         )}
       </Flex>
       <Alert status="info">
-        <AlertIcon />
-        <AlertTitle mr={2}>Note:</AlertTitle>
-        <AlertDescription>Settings are saved locally. Clearing your browser history will reset your settings.</AlertDescription>
+        <AlertIcon boxSize="24px" />
+        <Box flex="1">
+          <AlertTitle display="inline" mr={2}>
+            Note:
+          </AlertTitle>
+          <AlertDescription display="inline">
+            Settings are saved locally. Clearing your browser history will reset your settings.
+          </AlertDescription>
+        </Box>
       </Alert>
     </Stack>
   )
