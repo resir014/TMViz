@@ -1,7 +1,7 @@
 import * as React from 'react'
 import theme from '~/utils/theme'
 
-interface LogoProps extends React.SVGProps<SVGSVGElement> {
+export interface LogoProps extends React.SVGProps<SVGSVGElement> {
   mode?: 'light' | 'dark'
 }
 

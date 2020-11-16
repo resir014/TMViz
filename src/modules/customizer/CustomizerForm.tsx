@@ -54,7 +54,7 @@ const CustomizerForm: React.FC = () => {
   })
 
   return (
-    <Box as="section" flex="1 1 auto" px={6} pt={8} pb={24}>
+    <Box as="section" flex="1 1 auto" px={6} pt={8} pb={12}>
       <Formik enableReinitialize validationSchema={validationSchema} initialValues={formInitialValues} onSubmit={handleSubmit}>
         {() => {
           return (

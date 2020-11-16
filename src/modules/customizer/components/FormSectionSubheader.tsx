@@ -8,7 +8,7 @@ interface FormSectionSubheaderProps {
 
 const FormSectionSubheader: React.FC<FormSectionSubheaderProps> = ({ title, subtitle }) => {
   const renderSubtitle = () => {
-    if (typeof subtitle === 'function') {
+    if (typeof subtitle !== 'string') {
       return subtitle
     }
 
