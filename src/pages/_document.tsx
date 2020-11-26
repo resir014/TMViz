@@ -3,6 +3,7 @@ import * as React from 'react'
 import { ColorModeScript } from '@chakra-ui/core'
 import Document, { Html, Head, Main, NextScript, DocumentContext } from 'next/document'
 import { extractCritical } from 'emotion-server'
+import theme from '~/utils/theme'
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {
@@ -22,7 +23,7 @@ export default class MyDocument extends Document {
       <Html>
         <Head />
         <body>
-          <ColorModeScript initialColorMode="system" />
+          <ColorModeScript initialColorMode={theme.config.initialColorMode} />
           <Main />
           <NextScript />
         </body>

@@ -116,6 +116,10 @@ export const customColors = {
 }
 
 const theme = extendTheme({
+  config: {
+    useSystemColorMode: false,
+    initialColorMode: 'dark'
+  },
   styles: {
     global: ({ colorMode }) => ({
       body: {
