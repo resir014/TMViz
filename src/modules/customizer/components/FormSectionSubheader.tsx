@@ -13,15 +13,15 @@ const FormSectionSubheader: React.FC<FormSectionSubheaderProps> = ({ title, subt
     }
 
     if (subtitle) {
-      return <Text>{subtitle}</Text>
+      return <Text fontSize="sm">{subtitle}</Text>
     }
 
     return null
   }
 
   return (
-    <Stack spacing={2}>
-      <Heading as="h2" size="lg">
+    <Stack spacing={1}>
+      <Heading as="h2" size="md">
         {title}
       </Heading>
       {renderSubtitle()}

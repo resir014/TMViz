@@ -73,7 +73,7 @@ const CustomizerForm: React.FC = () => {
                       <FormSectionSubheader
                         title="Controller settings"
                         subtitle={
-                          <Text>
+                          <Text fontSize="sm">
                             Customise the button configuration based on your TrackMania keybinds. Use{' '}
                             <Link href="https://gamepad-tester.com/" isExternal>
                               Gamepad Tester
