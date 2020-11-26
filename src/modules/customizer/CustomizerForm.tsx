@@ -13,7 +13,7 @@ import { FormSectionHeader, FormSectionSubheader } from './components'
 import CustomizerClipboard from './CustomizerClipboard'
 import CustomizerSave from './CustomizerSave'
 
-const CustomizerPreview = dynamic(() => import('./CustomizerPreview'))
+const CustomizerPreview = dynamic(() => import('./CustomizerPreview'), { ssr: false })
 
 const CustomizerForm: React.FC = () => {
   const toast = useToast()
@@ -64,11 +64,11 @@ const CustomizerForm: React.FC = () => {
                   <FormSectionHeader title="Customizer" />
                   <Stack spacing={6}>
                     <FormSectionSubheader title="Appearance" subtitle="Tweak the look and feel of your overlay." />
-                    <Stack spacing={4}>
+                    <Grid gridTemplateColumns={['1fr', null, null, 'repeat(3, 1fr)']} gridGap={4}>
                       <ColorInputField label="Accelerator color" name="appearance.accelerateColor" autoComplete="off" />
                       <ColorInputField label="Brake color" name="appearance.brakeColor" autoComplete="off" />
                       <ColorInputField label="Steering color" name="appearance.steeringColor" autoComplete="off" />
-                    </Stack>
+                    </Grid>
                     <Stack spacing={6}>
                       <FormSectionSubheader
                         title="Controller settings"
@@ -82,7 +82,7 @@ const CustomizerForm: React.FC = () => {
                           </Text>
                         }
                       />
-                      <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)', 'repeat(3, 1fr)']} gridGap={4}>
+                      <Grid gridTemplateColumns={['1fr', null, null, 'repeat(3, 1fr)']} gridGap={4}>
                         <NumericField label="Accelerate button" name="config.accelerateButton" autoComplete="off" />
                         <NumericField label="Brake button" name="config.brakeButton" autoComplete="off" />
                         <NumericField label="Steering axis" name="config.steeringAxis" autoComplete="off" />
