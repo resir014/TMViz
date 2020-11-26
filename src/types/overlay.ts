@@ -22,7 +22,6 @@ export interface GamepadAppearanceSettings {
 }
 
 export interface TrackmaniaOverlayConfig {
-  framerate: string
   accelerateButton: string
   brakeButton: string
   steeringAxis: string

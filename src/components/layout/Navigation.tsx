@@ -1,4 +1,4 @@
-import { Flex, Box, Link as ChakraLink, useColorMode, FlexProps } from '@chakra-ui/core'
+import { Flex, Box, Link as ChakraLink, FlexProps } from '@chakra-ui/core'
 import * as React from 'react'
 import Link from 'next/link'
 import Logo from './Logo'
@@ -6,12 +6,10 @@ import Logo from './Logo'
 export type NavigationProps = FlexProps
 
 const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) => {
-  const { colorMode } = useColorMode()
-
   return (
     <Flex as="header" className={className} style={style} flexDirection="row" px={6} py={3} {...rest}>
       <Box mr={6} userSelect="none">
-        <Logo mode={colorMode} height={24} />
+        <Logo height={24} />
       </Box>
       <Box as="nav" flex="1 1 auto">
         <Link href="/" passHref>
