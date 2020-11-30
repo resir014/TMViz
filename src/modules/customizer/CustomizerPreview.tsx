@@ -1,4 +1,4 @@
-import { Box, Heading, Stack, Divider, useColorMode } from '@chakra-ui/core'
+import { Box, Heading, Stack, Divider, useColorMode } from '@chakra-ui/react'
 import { useFormikContext } from 'formik'
 import * as React from 'react'
 import { GlobalOverlaySettings } from '~/types/overlay'

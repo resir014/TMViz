@@ -1,4 +1,4 @@
-import { Input, Stack, Text } from '@chakra-ui/core'
+import { Input, Stack, Text } from '@chakra-ui/react'
 import { useField } from 'formik'
 import * as React from 'react'
 

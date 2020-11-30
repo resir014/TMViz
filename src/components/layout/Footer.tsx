@@ -1,4 +1,4 @@
-import { Flex, FlexProps, Link, Text } from '@chakra-ui/core'
+import { Flex, FlexProps, Link, Text } from '@chakra-ui/react'
 import * as React from 'react'
 
 export type FooterProps = FlexProps

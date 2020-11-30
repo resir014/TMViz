@@ -1,4 +1,4 @@
-import { Flex, useColorMode } from '@chakra-ui/core'
+import { Flex, useColorMode } from '@chakra-ui/react'
 import * as React from 'react'
 import { NextSeo, NextSeoProps } from 'next-seo'
 import Footer from './Footer'

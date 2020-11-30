@@ -1,4 +1,4 @@
-import { Box, Grid, Input, Stack, Text } from '@chakra-ui/core'
+import { Box, Grid, Input, Stack, Text } from '@chakra-ui/react'
 import { useField } from 'formik'
 import * as React from 'react'
 import isValidHex from '~/utils/isValidHex'

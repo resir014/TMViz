@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { ChakraProvider } from '@chakra-ui/core'
-import { CacheProvider } from '@emotion/core'
-import { cache } from 'emotion'
+import { ChakraProvider } from '@chakra-ui/react'
+import { CacheProvider } from '@emotion/react'
 import { AppProps } from 'next/app'
 import Head from 'next/head'
 import { DefaultSeo } from 'next-seo'
 
 import theme from '~/utils/theme'
+import emotionCache from '~/utils/emotionCache'
 
 import siteMetadata from '~/_data/siteMetadata.json'
 
@@ -18,7 +18,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || siteUrl
 
   return (
-    <CacheProvider value={cache}>
+    <CacheProvider value={emotionCache}>
       <ChakraProvider theme={theme}>
         <Head>
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />

@@ -1,4 +1,4 @@
-import { Flex, Box, Link as ChakraLink, FlexProps } from '@chakra-ui/core'
+import { Flex, Box, Link as ChakraLink, FlexProps } from '@chakra-ui/react'
 import * as React from 'react'
 import Link from 'next/link'
 import Logo from './Logo'
