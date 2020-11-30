@@ -1,4 +1,4 @@
-import { useColorMode } from '@chakra-ui/core'
+import { useColorMode } from '@chakra-ui/react'
 import * as React from 'react'
 import theme from '~/utils/theme'
 

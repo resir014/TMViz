@@ -1,4 +1,4 @@
-import { Button, Code, Input, InputGroup, InputRightElement, Stack, Text, useToast } from '@chakra-ui/core'
+import { Button, Code, Input, InputGroup, InputRightElement, Stack, Text, useToast } from '@chakra-ui/react'
 import { toClipboard } from 'copee'
 import { useFormikContext } from 'formik'
 import * as React from 'react'

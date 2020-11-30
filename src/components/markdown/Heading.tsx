@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Heading } from '@chakra-ui/core'
+import { Heading } from '@chakra-ui/react'
 
 export const H1: React.FC<JSX.IntrinsicElements['h1']> = ({ children, ...rest }) => (
   <Heading as="h1" size="xl" {...rest}>

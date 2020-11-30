@@ -1,4 +1,4 @@
-import { Stack, Divider, Heading } from '@chakra-ui/core'
+import { Stack, Divider, Heading } from '@chakra-ui/react'
 import * as React from 'react'
 
 interface FormSectionHeaderProps {

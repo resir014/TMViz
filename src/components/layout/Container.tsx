@@ -1,4 +1,4 @@
-import { Container as ChakraContainer, ContainerProps as ChakraContainerProps } from '@chakra-ui/core'
+import { Container as ChakraContainer, ContainerProps as ChakraContainerProps } from '@chakra-ui/react'
 import * as React from 'react'
 
 export interface ContainerProps extends ChakraContainerProps {

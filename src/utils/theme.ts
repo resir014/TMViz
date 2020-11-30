@@ -1,5 +1,5 @@
 /* eslint-disable no-underscore-dangle */
-import { extendTheme, theme as defaultTheme } from '@chakra-ui/core'
+import { extendTheme, theme as defaultTheme } from '@chakra-ui/react'
 import { transparentize } from 'polished'
 
 export const customColors = {

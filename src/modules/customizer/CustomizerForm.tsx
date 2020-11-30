@@ -1,4 +1,4 @@
-import { Stack, Text, Box, Grid, Link, useToast } from '@chakra-ui/core'
+import { Stack, Text, Box, Grid, Link, useToast } from '@chakra-ui/react'
 import * as yup from 'yup'
 import { Form, Formik } from 'formik'
 import dynamic from 'next/dynamic'

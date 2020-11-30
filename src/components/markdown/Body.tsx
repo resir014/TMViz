@@ -1,4 +1,4 @@
-import { Link, List, ListItem, Text } from '@chakra-ui/core'
+import { Link, List, ListItem, Text } from '@chakra-ui/react'
 import * as React from 'react'
 
 export const P: React.FC<JSX.IntrinsicElements['p']> = ({ children, ...rest }) => {

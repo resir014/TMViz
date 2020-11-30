@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Flex, Stack, Text } from '@chakra-ui/core'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { dequal } from 'dequal/lite'
 import { useFormikContext } from 'formik'
 import * as React from 'react'
