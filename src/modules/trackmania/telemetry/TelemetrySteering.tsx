@@ -1,6 +1,9 @@
 import * as React from 'react'
 import clsx from 'clsx'
 import { SteeringValues } from '~/types/overlay'
+import clamp from '~/utils/clamp'
+import lerpInverse from '~/utils/lerpInverse'
+
 import useTelemetryInputStyle from '../utils/useTelemetryInputStyle'
 import styles from './TelemetrySteering.module.css'
 
@@ -28,8 +31,8 @@ const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({
   const steerWidths = React.useMemo<SteeringValues>(() => {
     if (value) {
       return {
-        left: value <= steeringDeadzone ? Math.abs(value * 100) : 0,
-        right: value >= steeringDeadzone ? Math.abs(value * 100) : 0
+        left: clamp(1 - lerpInverse(value, -1, -steeringDeadzone), 0, 1) * 100,
+        right: clamp(lerpInverse(value, steeringDeadzone, 1), 0, 1) * 100
       }
     }
 
