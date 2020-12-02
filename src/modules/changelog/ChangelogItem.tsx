@@ -1,9 +1,9 @@
 import { Heading, Stack, StackProps } from '@chakra-ui/react'
 import * as React from 'react'
 import convert from 'htmr'
-import dynamic from 'next/dynamic'
 import { BasePageProps } from '~/types/common'
 import htmrTransform from '~/utils/htmrTransform'
+import { Label, LI, UL } from './components'
 
 interface ChangelogItemProps extends StackProps {
   changelog: BasePageProps
@@ -19,9 +19,9 @@ const ChangelogItem: React.FC<ChangelogItemProps> = ({ changelog, ...rest }) => 
         {convert(changelog.content, {
           transform: {
             ...htmrTransform,
-            ul: dynamic(() => import('./components/UL')),
-            li: dynamic(() => import('./components/LI')),
-            span: dynamic(() => import('./components/Label'))
+            ul: UL,
+            li: LI,
+            span: Label
           }
         })}
       </Stack>
