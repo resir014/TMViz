@@ -1,4 +1,4 @@
-import { Box, Grid, Input, Popover, PopoverContent, PopoverTrigger, Stack, Text } from '@chakra-ui/react'
+import { Button, Grid, Input, Popover, PopoverContent, PopoverTrigger, Stack, Text } from '@chakra-ui/react'
 import { useField } from 'formik'
 import * as React from 'react'
 import { HexColorPicker } from 'react-colorful'
@@ -15,6 +15,8 @@ interface ColorInputFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputE
 const ColorInputField: React.FC<ColorInputFieldProps> = ({ label, name, ...props }) => {
   const [field, meta, helpers] = useField({ name, ...props })
 
+  const buttonColor = isValidHex(meta.value) ? meta.value : undefined
+
   return (
     <Stack as="label" htmlFor={name} spacing={2}>
       {label && (
@@ -26,15 +28,24 @@ const ColorInputField: React.FC<ColorInputFieldProps> = ({ label, name, ...props
         <Input isInvalid={meta.touched && !!meta.error} {...field} {...props} />
         <Popover>
           <PopoverTrigger>
-            <Box
-              as="button"
+            <Button
               type="button"
               aria-label="Pick color"
-              backgroundColor={isValidHex(meta.value) ? meta.value : undefined}
+              backgroundColor={buttonColor}
               borderRadius="md"
+              _hover={{ backgroundColor: buttonColor }}
+              _focus={{ backgroundColor: buttonColor }}
+              _active={{ backgroundColor: buttonColor }}
             />
           </PopoverTrigger>
-          <PopoverContent display="flex" alignItems="center" justifyContent="center" overflow="hidden">
+          <PopoverContent
+            display="flex"
+            alignItems="center"
+            justifyContent="center"
+            border="none"
+            backgroundColor="transparent"
+            borderRadius={8}
+          >
             <HexColorPicker className={styles.root} color={meta.value} onChange={color => helpers.setValue(color)} />
           </PopoverContent>
         </Popover>
