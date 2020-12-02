@@ -21,7 +21,7 @@ const LayoutRoot: React.FC<LayoutRootProps> = ({ children, pageTitle, ...rest })
 
   return (
     <Flex flexDirection="column" minHeight="100vh" overflowX="hidden" backgroundColor={backgroundColor}>
-      <NextSeo title={pageTitle || ''} {...rest} />
+      <NextSeo title={pageTitle || ''} openGraph={{ ...rest.openGraph, title: pageTitle }} {...rest} />
       {children}
       <Footer />
     </Flex>
