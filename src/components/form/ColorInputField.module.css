@@ -1,0 +1,6 @@
+.root {
+  width: 100%;
+}
+.root > * {
+  border-radius: 0;
+}
