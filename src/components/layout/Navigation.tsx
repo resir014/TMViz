@@ -22,6 +22,11 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
             About
           </ChakraLink>
         </Link>
+        <Link href="/changelog" passHref>
+          <ChakraLink mr={6} color="inherit">
+            Changelog
+          </ChakraLink>
+        </Link>
       </Box>
     </Flex>
   )

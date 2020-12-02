@@ -22,7 +22,7 @@ const PageBody: React.FC<PageBodyProps> = ({ children, content, _containerProps,
 
   return (
     <Box as="section" px={6} pt={0} pb={12} {...rest}>
-      <Container>{children}</Container>
+      <Container {..._containerProps}>{children}</Container>
     </Box>
   )
 }
