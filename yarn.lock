@@ -820,6 +820,11 @@
   dependencies:
     tslib "^2.0.0"
 
+"@resir014/lerp@^0.1.1":
+  version "0.1.1"
+  resolved "https://registry.yarnpkg.com/@resir014/lerp/-/lerp-0.1.1.tgz#ab204c96e551b3ce8d7c4e796c7f816470f083c2"
+  integrity sha512-KE8t0epP0jDvBgwiHNzOxBLBrG/XvP0mfVN/osnnpUr5I+pjfFuAnE3okXmwn6HwwesS9WUPDyXY6NG0rDy1gA==
+
 "@styled-system/core@5.1.2":
   version "5.1.2"
   resolved "https://registry.yarnpkg.com/@styled-system/core/-/core-5.1.2.tgz#b8b7b86455d5a0514f071c4fa8e434b987f6a772"

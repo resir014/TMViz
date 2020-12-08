@@ -1,8 +1,7 @@
 import * as React from 'react'
 import clsx from 'clsx'
+import { clamp, lerpInverse } from '@resir014/lerp'
 import { SteeringValues } from '~/types/overlay'
-import clamp from '~/utils/clamp'
-import lerpInverse from '~/utils/lerpInverse'
 
 import useTelemetryInputStyle from '../utils/useTelemetryInputStyle'
 import styles from './TelemetrySteering.module.css'
