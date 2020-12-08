@@ -23,6 +23,7 @@
     "@emotion/react": "^11.1.1",
     "@emotion/server": "^11.0.0",
     "@emotion/styled": "^11.0.0",
+    "@resir014/lerp": "^0.1.1",
     "clsx": "^1.1.1",
     "copee": "^1.0.6",
     "date-fns": "^2.16.1",
