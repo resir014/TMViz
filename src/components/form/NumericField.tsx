@@ -1,6 +1,7 @@
 import { Input, Stack, Text } from '@chakra-ui/react'
 import { useField } from 'formik'
 import * as React from 'react'
+import ErrorMessage from './ErrorMessage'
 
 interface NumericFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
@@ -18,11 +19,7 @@ const NumericField: React.FC<NumericFieldProps> = ({ label, name, ...props }) =>
         </Text>
       )}
       <Input inputMode="numeric" isInvalid={meta.touched && !!meta.error} {...field} {...props} />
-      {meta.touched && !!meta.error && (
-        <Text color="red.500" fontSize="sm">
-          {meta.error}
-        </Text>
-      )}
+      <ErrorMessage name={name} />
     </Stack>
   )
 }

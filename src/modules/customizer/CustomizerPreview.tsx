@@ -1,13 +1,11 @@
 import { Box, Heading, Stack, Divider, useColorMode } from '@chakra-ui/react'
-import { useFormikContext } from 'formik'
 import * as React from 'react'
-import { GlobalOverlaySettings } from '~/types/overlay'
 import buildURLQuery from './utils/buildURLQuery'
+import useOverlayGlobalConfig from './utils/useOverlayGlobalConfig'
 
 const CustomizerPreview: React.FC = () => {
   const { colorMode } = useColorMode()
-  const { values } = useFormikContext<GlobalOverlaySettings>()
-
+  const values = useOverlayGlobalConfig()
   const config = React.useMemo(() => buildURLQuery(values), [values])
 
   return (

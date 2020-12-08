@@ -6,6 +6,7 @@ import isValidHex from '~/utils/isValidHex'
 
 import 'react-colorful/dist/index.css'
 import styles from './ColorInputField.module.css'
+import ErrorMessage from './ErrorMessage'
 
 interface ColorInputFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
@@ -50,11 +51,7 @@ const ColorInputField: React.FC<ColorInputFieldProps> = ({ label, name, ...props
           </PopoverContent>
         </Popover>
       </Grid>
-      {meta.touched && !!meta.error && (
-        <Text color="red.500" fontSize="sm">
-          {meta.error}
-        </Text>
-      )}
+      <ErrorMessage name={name} />
     </Stack>
   )
 }

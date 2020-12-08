@@ -2,10 +2,10 @@ import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Flex, Stac
 import { dequal } from 'dequal/lite'
 import { useFormikContext } from 'formik'
 import * as React from 'react'
-import { GlobalOverlaySettings } from '~/types/overlay'
+import { CustomizerFormSettings } from '~/types/overlay'
 
 const CustomizerSave: React.FC = () => {
-  const { values, initialValues } = useFormikContext<GlobalOverlaySettings>()
+  const { values, initialValues } = useFormikContext<CustomizerFormSettings>()
 
   const isValuesChanged = React.useMemo(() => !dequal(values, initialValues), [values, initialValues])
 

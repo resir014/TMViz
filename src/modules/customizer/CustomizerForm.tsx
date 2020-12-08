@@ -1,17 +1,21 @@
-import { Stack, Text, Box, Grid, Link, useToast } from '@chakra-ui/react'
-import * as yup from 'yup'
-import { Form, Formik } from 'formik'
+/* eslint-disable react/no-array-index-key */
+import { AddIcon, MinusIcon } from '@chakra-ui/icons'
+import { Stack, Text, Box, Grid, Link, useToast, Select, IconButton, Flex } from '@chakra-ui/react'
+import { Field, FieldArray, FieldProps, Form, Formik } from 'formik'
 import dynamic from 'next/dynamic'
 import * as React from 'react'
 import { useLocalStorage } from 'react-use'
 import { ColorInputField, NumericField } from '~/components/form'
-import { GlobalOverlaySettings } from '~/types/overlay'
-import isValidHex from '~/utils/isValidHex'
+import { CustomizerFormSettings } from '~/types/overlay'
 import useHasMounted from '~/utils/useHasMounted'
 import defaultConfig from './utils/defaultConfig'
+import { parseConfigToFormData, parseFormDataToGlobalConfig } from '../parser'
 import { FormSectionHeader, FormSectionSubheader } from './components'
 import CustomizerClipboard from './CustomizerClipboard'
 import CustomizerSave from './CustomizerSave'
+import controllerActions from './utils/controllerActions'
+import validationSchema from './utils/validationSchema'
+import ErrorMessage from '~/components/form/ErrorMessage'
 
 const CustomizerPreview = dynamic(() => import('./CustomizerPreview'), { ssr: false })
 
@@ -20,14 +24,14 @@ const CustomizerForm: React.FC = () => {
   const hasMounted = useHasMounted()
   const [settings, setSettings] = useLocalStorage('tmviz-settings', defaultConfig)
 
-  const formInitialValues = React.useMemo(() => settings || defaultConfig, [settings, defaultConfig])
+  const formInitialValues = React.useMemo(() => parseConfigToFormData(settings), [settings])
 
   if (!hasMounted) {
     return null
   }
 
-  const handleSubmit = (values: GlobalOverlaySettings) => {
-    setSettings(values)
+  const handleSubmit = (values: CustomizerFormSettings) => {
+    setSettings(parseFormDataToGlobalConfig(values))
     toast({
       description: 'Overlay settings saved.',
       status: 'success',
@@ -36,27 +40,10 @@ const CustomizerForm: React.FC = () => {
     })
   }
 
-  const validationSchema = yup.object().shape({
-    appearance: yup.object().shape<GlobalOverlaySettings['appearance']>({
-      accelerateColor: yup.string().test('valid-color', 'Must be a valid color hex', isValidHex).required('Required field'),
-      brakeColor: yup.string().test('valid-color', 'Must be a valid color hex', isValidHex).required('Required field'),
-      steeringColor: yup.string().test('valid-color', 'Must be a valid color hex', isValidHex).required('Required field')
-    }),
-    config: yup.object().shape<GlobalOverlaySettings['config']>({
-      accelerateButton: yup.string().matches(/^\d+$/, 'Numbers only').required('Required field'),
-      brakeButton: yup.string().matches(/^\d+$/, 'Numbers only').required('Required field'),
-      steeringAxis: yup.string().matches(/^\d+$/, 'Numbers only').required('Required field'),
-      steeringDeadzone: yup
-        .string()
-        .matches(/^[0-9]\d*(\.\d+)?$/, 'Numbers only')
-        .required('Required field')
-    })
-  })
-
   return (
     <Box as="section" flex="1 1 auto" px={6} pt={8} pb={12}>
       <Formik enableReinitialize validationSchema={validationSchema} initialValues={formInitialValues} onSubmit={handleSubmit}>
-        {() => {
+        {({ values }) => {
           return (
             <Form>
               <Grid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} gridGap={12}>
@@ -82,12 +69,66 @@ const CustomizerForm: React.FC = () => {
                           </Text>
                         }
                       />
-                      <Grid gridTemplateColumns={['1fr', null, null, 'repeat(3, 1fr)']} gridGap={4}>
-                        <NumericField label="Accelerate button" name="config.accelerateButton" autoComplete="off" />
-                        <NumericField label="Brake button" name="config.brakeButton" autoComplete="off" />
-                        <NumericField label="Steering axis" name="config.steeringAxis" autoComplete="off" />
-                        <NumericField label="Steering deadzone (advanced)" name="config.steeringDeadzone" autoComplete="off" />
-                      </Grid>
+                      <FieldArray name="keybinds">
+                        {arrayHelpers => (
+                          <Stack spacing={4}>
+                            <Box>
+                              <IconButton
+                                type="button"
+                                aria-label="Remove"
+                                icon={<AddIcon />}
+                                onClick={() => arrayHelpers.push({ action: '', button: '' })}
+                              />
+                            </Box>
+                            {values.keybinds && values.keybinds.length > 0
+                              ? values.keybinds.map((_, index) => (
+                                  <Grid gridTemplateColumns="1fr 40px" gridGap={4} key={index}>
+                                    <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)']} gridGap={4}>
+                                      <Box>
+                                        <Field name={`keybinds.${index}.action`}>
+                                          {({ field }: FieldProps<string>) => (
+                                            <Stack as="label" htmlFor="" spacing={2}>
+                                              <Text as="span" fontSize="sm">
+                                                Action
+                                              </Text>
+                                              <Select placeholder="Select option" {...field}>
+                                                {controllerActions.map(action => (
+                                                  <option key={action.value} value={action.value}>
+                                                    {action.label}
+                                                  </option>
+                                                ))}
+                                              </Select>
+                                            </Stack>
+                                          )}
+                                        </Field>
+                                      </Box>
+                                      <Box>
+                                        <NumericField label="Button/Axis" name={`keybinds.${index}.button`} autoComplete="off" />
+                                      </Box>
+                                    </Grid>
+                                    <Flex alignItems="flex-end">
+                                      <IconButton
+                                        type="button"
+                                        aria-label="Remove"
+                                        icon={<MinusIcon />}
+                                        onClick={() => arrayHelpers.remove(index)} // remove a friend from the list
+                                      />
+                                    </Flex>
+                                  </Grid>
+                                ))
+                              : null}
+                            {!values.keybinds.length && (
+                              <Text color="red.500" fontSize="sm">
+                                Must have at least one keybind
+                              </Text>
+                            )}
+                          </Stack>
+                        )}
+                      </FieldArray>
+                      <Stack spacing={6}>
+                        <FormSectionSubheader title="Advanced" />
+                        <NumericField label="Steering deadzone" name="config.steeringDeadzone" autoComplete="off" />
+                      </Stack>
                     </Stack>
                   </Stack>
                 </Stack>

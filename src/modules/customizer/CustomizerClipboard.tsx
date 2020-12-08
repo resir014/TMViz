@@ -1,13 +1,12 @@
 import { Button, Code, Input, InputGroup, InputRightElement, Stack, Text, useToast } from '@chakra-ui/react'
 import { toClipboard } from 'copee'
-import { useFormikContext } from 'formik'
 import * as React from 'react'
-import { GlobalOverlaySettings } from '~/types/overlay'
 import buildURLQuery from './utils/buildURLQuery'
+import useOverlayGlobalConfig from './utils/useOverlayGlobalConfig'
 
 const CustomizerClipboard: React.FC = () => {
   const toast = useToast()
-  const { values } = useFormikContext<GlobalOverlaySettings>()
+  const values = useOverlayGlobalConfig()
 
   const overlayURL = React.useMemo(() => `${process.env.NEXT_PUBLIC_BASE_URL}/overlay?${buildURLQuery(values)}`, [values])
 

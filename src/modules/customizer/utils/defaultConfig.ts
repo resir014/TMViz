@@ -1,4 +1,4 @@
-import { gamepadConfigDefaults } from '~/modules/trackmania'
+import { gamepadConfigDefaults } from '~/modules/parser'
 import { GlobalOverlaySettings } from '~/types/overlay'
 import theme from '~/utils/theme'
 
