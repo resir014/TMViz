@@ -1,5 +1,5 @@
-import { MinusIcon } from '@chakra-ui/icons'
-import { Box, Flex, Grid, IconButton, Select, Stack, Text, useColorMode } from '@chakra-ui/react'
+import { CloseIcon, MinusIcon } from '@chakra-ui/icons'
+import { Box, Fade, Flex, Grid, IconButton, Select, Stack, Text, useColorMode } from '@chakra-ui/react'
 import { Field, FieldProps } from 'formik'
 import * as React from 'react'
 import { NumericField } from '~/components/form'
@@ -12,16 +12,20 @@ interface KeybindFieldProps {
 }
 
 const KeybindField: React.FC<KeybindFieldProps> = ({ index, name, onRemove }) => {
+  const [isOpen, setIsOpen] = React.useState(false)
   const { colorMode } = useColorMode()
 
   return (
-    <Grid
+    <Box
+      position="relative"
+      pt={4}
       pb={6}
-      gridTemplateColumns="1fr 40px"
-      gridGap={4}
       borderBottom="1px solid"
       borderBottomColor={colorMode === 'dark' ? 'gray.900' : 'gray.100'}
-      _notFirst={{ pt: 4 }}
+      transition="background-color 0.2s ease-in-out"
+      _hover={{ backgroundColor: colorMode === 'dark' ? 'gray.900' : 'gray.100' }}
+      onMouseEnter={() => setIsOpen(true)}
+      onMouseLeave={() => setIsOpen(false)}
     >
       <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)']} gridGap={4}>
         <Box>
@@ -46,10 +50,12 @@ const KeybindField: React.FC<KeybindFieldProps> = ({ index, name, onRemove }) =>
           <NumericField label="Button/Axis" name={`${name}.${index}.button`} autoComplete="off" />
         </Box>
       </Grid>
-      <Flex alignItems="flex-end">
-        <IconButton type="button" aria-label="Remove" icon={<MinusIcon />} onClick={onRemove} />
-      </Flex>
-    </Grid>
+      <Fade in={isOpen}>
+        <Flex className="remove-button" alignItems="flex-end" position="absolute" top={-4} right={-4}>
+          <IconButton type="button" size="sm" colorScheme="red" aria-label="Remove" icon={<CloseIcon />} onClick={onRemove} />
+        </Flex>
+      </Fade>
+    </Box>
   )
 }
 
