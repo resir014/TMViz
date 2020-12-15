@@ -1,4 +1,4 @@
-import { CloseIcon, MinusIcon } from '@chakra-ui/icons'
+import { CloseIcon } from '@chakra-ui/icons'
 import { Box, Fade, Flex, Grid, IconButton, Select, Stack, Text, useColorMode } from '@chakra-ui/react'
 import { Field, FieldProps } from 'formik'
 import * as React from 'react'
