@@ -1,5 +1,5 @@
 import { ParsedUrlQuery } from 'querystring'
-import { DEFAULT_ACCELERATE_BUTTON, DEFAULT_BRAKE_BUTTON, DEFAULT_STEERING_AXIS, DEFAULT_STEERING_DEADZONE } from '~/types/constants'
+import { DEFAULT_ACCELERATE_BUTTON, DEFAULT_BRAKE_BUTTON, DEFAULT_STEERING_DEADZONE } from '~/types/constants'
 import { TrackmaniaOverlayConfig } from '~/types/overlay'
 
 export default function parseOverlayConfig(

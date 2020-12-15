@@ -10,10 +10,6 @@ function determineSteeringValue(value = 0, direction: 'left' | 'right' = 'right'
   return value
 }
 
-function normaliseSteering(): number {
-  return 0
-}
-
 function useTrackmaniaTelemetry(controllerIndex = 0): ControllerTelemetry {
   const { appearance, config } = useOverlayConfig()
   const { globalGamepads } = useGamepad()
