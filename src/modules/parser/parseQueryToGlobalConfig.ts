@@ -1,19 +1,30 @@
 import { ParsedUrlQuery } from 'querystring'
 import { GlobalOverlaySettings } from '~/types/overlay'
 import theme from '~/utils/theme'
-import gamepadConfigDefaults from './gamepadConfigDefaults'
+import normaliseVersionNumber from './utils/normaliseVersionNumber'
+import parseAppearance from './utils/parseAppearance'
+import parseOverlayConfig from './utils/parseOverlayConfig'
 
 export default function parseQueryToGlobalConfig(query?: ParsedUrlQuery): GlobalOverlaySettings {
   if (query) {
-    const { accelerateColor, brakeColor, steeringColor, ...rest } = query
+    const { version, ...rest } = query
 
-    return {
-      appearance: {
-        accelerateColor: Array.isArray(accelerateColor) ? accelerateColor[0] : accelerateColor || theme.colors.green[500],
-        brakeColor: Array.isArray(brakeColor) ? brakeColor[0] : brakeColor || theme.colors.red[500],
-        steeringColor: Array.isArray(steeringColor) ? steeringColor[0] : steeringColor || theme.colors.orange[500]
-      },
-      config: gamepadConfigDefaults(rest)
+    const normalisedVersion = normaliseVersionNumber(version)
+    switch (normalisedVersion) {
+      case 1: {
+        // v1 config
+        return {
+          appearance: parseAppearance(query),
+          config: parseOverlayConfig(rest, normalisedVersion)
+        }
+      }
+      default: {
+        // legacy config
+        return {
+          appearance: parseAppearance(query),
+          config: parseOverlayConfig(rest)
+        }
+      }
     }
   }
 
@@ -23,6 +34,6 @@ export default function parseQueryToGlobalConfig(query?: ParsedUrlQuery): Global
       brakeColor: theme.colors.red[500],
       steeringColor: theme.colors.orange[500]
     },
-    config: gamepadConfigDefaults()
+    config: parseOverlayConfig()
   }
 }

@@ -7,16 +7,15 @@ interface ErrorMessageProps extends TextProps {
 }
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ name, ...rest }) => (
-  <Field
-    name={name}
-    render={({ meta }: FieldProps) => {
+  <Field name={name}>
+    {({ meta }: FieldProps) => {
       return meta.touched && meta.error ? (
         <Text color="red.500" fontSize="sm" {...rest}>
           {meta.error}
         </Text>
       ) : null
     }}
-  />
+  </Field>
 )
 
 export default ErrorMessage

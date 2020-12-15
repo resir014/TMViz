@@ -5,11 +5,6 @@ export interface ControllerData {
   steeringDeadzone: number
 }
 
-export interface ControllerTelemetry {
-  isConnected?: boolean
-  data: Partial<ControllerData>
-}
-
 export interface SteeringValues {
   left: number
   right: number
@@ -19,6 +14,12 @@ export interface GamepadAppearanceSettings {
   accelerateColor: string
   brakeColor: string
   steeringColor: string
+}
+
+export interface ControllerTelemetry {
+  isConnected?: boolean
+  appearance?: GamepadAppearanceSettings
+  data: Partial<ControllerData>
 }
 
 export interface TrackmaniaOverlayConfig {
