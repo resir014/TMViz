@@ -21,7 +21,7 @@ const ColorInputField: React.FC<ColorInputFieldProps> = ({ label, name, ...props
   return (
     <Stack as="label" htmlFor={name} spacing={2}>
       {label && (
-        <Text as="span" fontSize="sm">
+        <Text as="span" fontSize="sm" userSelect="none">
           {label}
         </Text>
       )}

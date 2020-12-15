@@ -25,17 +25,19 @@ const CustomizerClipboard: React.FC = () => {
 
   return (
     <Stack spacing={4}>
-      <Text>
-        Once you&apos;ve finished configuring your widget, copy the following URL, width, and height into a <strong>browser source</strong>:
-      </Text>
-      <InputGroup>
-        <Input readOnly value={overlayURL} pr="5rem" />
-        <InputRightElement width="4.5rem" p={0}>
-          <Button type="button" size="sm" textTransform="uppercase" borderRadius="sm" onClick={handleCopy}>
-            Copy
-          </Button>
-        </InputRightElement>
-      </InputGroup>
+      <Stack spacing="2">
+        <Text as="span" fontSize="sm" userSelect="none">
+          Overlay URL
+        </Text>
+        <InputGroup>
+          <Input readOnly value={overlayURL} pr="5rem" />
+          <InputRightElement width="4.5rem" p={0}>
+            <Button type="button" size="sm" textTransform="uppercase" borderRadius="sm" onClick={handleCopy}>
+              Copy
+            </Button>
+          </InputRightElement>
+        </InputGroup>
+      </Stack>
       <Text>
         width: <Code>256</Code>px, height: <Code>140</Code>px
       </Text>
