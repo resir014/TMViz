@@ -15,7 +15,6 @@ import CustomizerClipboard from './CustomizerClipboard'
 import CustomizerSave from './CustomizerSave'
 import controllerActions from './utils/controllerActions'
 import validationSchema from './utils/validationSchema'
-import ErrorMessage from '~/components/form/ErrorMessage'
 
 const CustomizerPreview = dynamic(() => import('./CustomizerPreview'), { ssr: false })
 
