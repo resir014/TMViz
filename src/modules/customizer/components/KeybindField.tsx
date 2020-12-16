@@ -1,5 +1,4 @@
-import { CloseIcon } from '@chakra-ui/icons'
-import { Box, Fade, Flex, Grid, IconButton, Select, Stack, Text, useColorMode } from '@chakra-ui/react'
+import { Box, CloseButton, Flex, Grid, Select, Stack, Text, useColorMode } from '@chakra-ui/react'
 import { Field, FieldProps } from 'formik'
 import * as React from 'react'
 import { NumericField } from '~/components/form'
@@ -12,22 +11,17 @@ interface KeybindFieldProps {
 }
 
 const KeybindField: React.FC<KeybindFieldProps> = ({ index, name, onRemove }) => {
-  const [isOpen, setIsOpen] = React.useState(false)
   const { colorMode } = useColorMode()
 
   return (
-    <Box
-      position="relative"
-      pt={4}
-      pb={6}
-      borderBottom="1px solid"
-      borderBottomColor={colorMode === 'dark' ? 'gray.900' : 'gray.100'}
+    <Flex
+      flexDirection="column-reverse"
+      borderRadius="md"
       transition="background-color 0.2s ease-in-out"
-      _hover={{ backgroundColor: colorMode === 'dark' ? 'gray.900' : 'gray.100' }}
-      onMouseEnter={() => setIsOpen(true)}
-      onMouseLeave={() => setIsOpen(false)}
+      backgroundColor={colorMode === 'dark' ? 'gray.900' : 'gray.50'}
+      boxShadow="base"
     >
-      <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)']} gridGap={4}>
+      <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)']} gridGap={4} p={4}>
         <Box>
           <Field name={`${name}.${index}.action`}>
             {({ field }: FieldProps<string>) => (
@@ -50,12 +44,21 @@ const KeybindField: React.FC<KeybindFieldProps> = ({ index, name, onRemove }) =>
           <NumericField label="Button/Axis" name={`${name}.${index}.button`} autoComplete="off" />
         </Box>
       </Grid>
-      <Fade in={isOpen}>
-        <Flex className="remove-button" alignItems="flex-end" position="absolute" top={-4} right={-4}>
-          <IconButton type="button" size="sm" colorScheme="red" aria-label="Remove" icon={<CloseIcon />} onClick={onRemove} />
-        </Flex>
-      </Fade>
-    </Box>
+      <Flex
+        className="remove-button"
+        alignItems="center"
+        justifyContent="space-between"
+        py={2}
+        px={4}
+        borderBottom="1px solid"
+        borderBottomColor={colorMode === 'dark' ? 'gray.800' : 'gray.100'}
+      >
+        <Text fontSize="md" fontWeight={600}>
+          Keybind
+        </Text>
+        <CloseButton type="button" aria-label="Remove" onClick={onRemove} />
+      </Flex>
+    </Flex>
   )
 }
 

@@ -57,32 +57,30 @@ const CustomizerForm: React.FC = () => {
                   <FieldArray name="keybinds">
                     {arrayHelpers => (
                       <Stack spacing={4}>
-                        <Box>
-                          <FormSectionSubheader
-                            title="Controller settings"
-                            subtitle={
-                              <Text fontSize="md">
-                                Use{' '}
-                                <Link href="https://gamepad-tester.com/" isExternal>
-                                  Gamepad Tester
-                                </Link>{' '}
-                                to find the values that correspond to the button you&apos;re using.
-                              </Text>
-                            }
-                            rightElement={
-                              <Button type="button" leftIcon={<AddIcon />} onClick={() => arrayHelpers.push({ action: '', button: '' })}>
-                                Add Keybind
-                              </Button>
-                            }
-                          />
-                          <Box>
-                            {values.keybinds && values.keybinds.length > 0
-                              ? values.keybinds.map((_, index) => (
-                                  <KeybindField key={index} name="keybinds" index={index} onRemove={() => arrayHelpers.remove(index)} />
-                                ))
-                              : null}
-                          </Box>
-                        </Box>
+                        <FormSectionSubheader
+                          title="Controller settings"
+                          subtitle={
+                            <Text fontSize="sm">
+                              Use{' '}
+                              <Link href="https://gamepad-tester.com/" isExternal>
+                                Gamepad Tester
+                              </Link>{' '}
+                              to find the values that correspond to the button you&apos;re using.
+                            </Text>
+                          }
+                          rightElement={
+                            <Button type="button" leftIcon={<AddIcon />} onClick={() => arrayHelpers.push({ action: '', button: '' })}>
+                              Add Keybind
+                            </Button>
+                          }
+                        />
+                        <Stack spacing={4}>
+                          {values.keybinds && values.keybinds.length > 0
+                            ? values.keybinds.map((_, index) => (
+                                <KeybindField key={index} name="keybinds" index={index} onRemove={() => arrayHelpers.remove(index)} />
+                              ))
+                            : null}
+                        </Stack>
                         {!values.keybinds.length && (
                           <Text color="red.500" fontSize="sm">
                             Must have at least one keybind
@@ -101,7 +99,7 @@ const CustomizerForm: React.FC = () => {
                     <FormSectionSubheader
                       title="Overlay URL"
                       subtitle={
-                        <Text fontSize="md">
+                        <Text fontSize="sm">
                           Once you&apos;ve finished configuring your widget, copy the following URL, width, and height into a{' '}
                           <strong>browser source</strong>:
                         </Text>
