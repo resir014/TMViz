@@ -1,4 +1,4 @@
-import { Button, Grid, Input, Popover, PopoverContent, PopoverTrigger, Stack, Text } from '@chakra-ui/react'
+import { Button, Grid, Input, Popover, PopoverContent, PopoverTrigger, Stack, Text, VisuallyHidden } from '@chakra-ui/react'
 import { useField } from 'formik'
 import * as React from 'react'
 import { HexColorPicker } from 'react-colorful'
@@ -10,21 +10,31 @@ import ErrorMessage from './ErrorMessage'
 
 interface ColorInputFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string
+  hideLabel?: boolean
+  hideErrors?: boolean
   name: string
 }
 
-const ColorInputField: React.FC<ColorInputFieldProps> = ({ label, name, ...props }) => {
+const ColorInputField: React.FC<ColorInputFieldProps> = ({ label, hideLabel, hideErrors, name, ...props }) => {
   const [field, meta, helpers] = useField({ name, ...props })
 
   const buttonColor = isValidHex(meta.value) ? meta.value : undefined
 
+  const renderLabel = () => {
+    if (hideLabel) {
+      return <VisuallyHidden as="span">{label}</VisuallyHidden>
+    }
+
+    return (
+      <Text as="span" fontSize="sm" userSelect="none">
+        {label}
+      </Text>
+    )
+  }
+
   return (
-    <Stack as="label" htmlFor={name} spacing={2}>
-      {label && (
-        <Text as="span" fontSize="sm" userSelect="none">
-          {label}
-        </Text>
-      )}
+    <Stack as="label" htmlFor={name} spacing={hideLabel ? 0 : 2}>
+      {label && renderLabel()}
       <Grid gridTemplateColumns="1fr 64px" gridGap={4}>
         <Input isInvalid={meta.touched && !!meta.error} {...field} {...props} />
         <Popover>
@@ -51,7 +61,7 @@ const ColorInputField: React.FC<ColorInputFieldProps> = ({ label, name, ...props
           </PopoverContent>
         </Popover>
       </Grid>
-      <ErrorMessage name={name} />
+      {!hideErrors && <ErrorMessage name={name} />}
     </Stack>
   )
 }

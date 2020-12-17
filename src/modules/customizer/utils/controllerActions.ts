@@ -1,6 +1,7 @@
 interface ControllerActionsOptions {
   label: string
   value: string
+  description?: string
 }
 
 const controllerActions: ControllerActionsOptions[] = [

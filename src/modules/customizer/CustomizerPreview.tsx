@@ -17,7 +17,7 @@ const CustomizerPreview: React.FC = () => {
         <Divider />
       </Box>
       <Box>
-        <Box display="inline-block" p={6} backgroundColor={colorMode === 'light' ? 'gray.200' : 'gray.800'} borderRadius="lg">
+        <Box display="inline-block" p={6} backgroundColor={colorMode === 'light' ? 'gray.50' : 'gray.900'} borderRadius="lg">
           <iframe title="Customizer Preview" src={`/overlay?${config}`} width={256} height={140} />
         </Box>
       </Box>
