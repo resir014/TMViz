@@ -2,7 +2,6 @@ import * as React from 'react'
 import clsx from 'clsx'
 
 import useTrackmaniaTelemetry from './utils/useTrackmaniaTelemetry'
-import useOverlayConfig from './utils/useOverlayConfig'
 import { TelemetrySteering, TelemetryButton } from './telemetry'
 
 import styles from './ControllerTelemetry.module.css'
@@ -13,8 +12,7 @@ interface ControllerTelemetryProps {
 }
 
 const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ className, style }) => {
-  const { appearance } = useOverlayConfig()
-  const { isConnected, data } = useTrackmaniaTelemetry(0)
+  const { isConnected, appearance, data } = useTrackmaniaTelemetry(0)
 
   return (
     <div className={clsx(styles.root, className)} style={style}>
