@@ -8,7 +8,7 @@ const CustomizerClipboard: React.FC = () => {
   const toast = useToast()
   const values = useOverlayGlobalConfig()
 
-  const overlayURL = React.useMemo(() => `${process.env.NEXT_PUBLIC_BASE_URL}/overlay?${buildURLQuery(values)}`, [values])
+  const overlayURL = React.useMemo(() => buildURLQuery(values), [values])
 
   const handleCopy = React.useCallback(() => {
     const success = toClipboard(overlayURL)

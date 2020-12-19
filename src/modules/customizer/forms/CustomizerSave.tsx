@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Button, Flex, Stack, Text } from '@chakra-ui/react'
+import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Stack, Text } from '@chakra-ui/react'
 import { dequal } from 'dequal/lite'
 import { useFormikContext } from 'formik'
 import * as React from 'react'
@@ -6,7 +6,7 @@ import { CustomizerFormSettings } from '~/types/overlay'
 import { FormSection, FormSectionHeader } from '../components'
 
 const CustomizerSave: React.FC = () => {
-  const { values, initialValues } = useFormikContext<CustomizerFormSettings>()
+  const { values, initialValues, isValid } = useFormikContext<CustomizerFormSettings>()
 
   const isValuesChanged = React.useMemo(() => !dequal(values, initialValues), [values, initialValues])
 
@@ -14,16 +14,18 @@ const CustomizerSave: React.FC = () => {
     <FormSection>
       <FormSectionHeader title="Save" />
       <Stack spacing={4} p={6} flex="1 1 auto">
-        <Flex alignItems="center">
-          <Button type="submit" isFullWidth size="lg" colorScheme="blue">
+        <Stack spacing={2}>
+          <Button type="submit" isFullWidth size="lg" disabled={!isValid} colorScheme="blue">
             Save settings
           </Button>
           {isValuesChanged && (
-            <Text ml={4} color="red.500" fontSize="sm">
-              Changes detected.
-            </Text>
+            <Box textAlign="center">
+              <Text color="red.500" fontSize="sm">
+                Changes detected.
+              </Text>
+            </Box>
           )}
-        </Flex>
+        </Stack>
         <Alert
           status="info"
           flexDirection="column"
