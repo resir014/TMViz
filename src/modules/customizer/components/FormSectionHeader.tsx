@@ -32,7 +32,7 @@ const FormSectionHeader: React.FC<FormSectionSubheaderProps> = ({ title, subtitl
       borderBottomColor={colorMode === 'dark' ? 'gray.800' : 'gray.100'}
       {...rest}
     >
-      <Stack spacing={1} flex="1 1 auto">
+      <Stack spacing={0} flex="1 1 auto">
         <Heading as="h2" size="md">
           {title}
         </Heading>
