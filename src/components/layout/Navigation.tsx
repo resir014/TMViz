@@ -14,7 +14,17 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
   const toggleText = `Switch to ${colorMode === 'dark' ? 'light' : 'dark'} mode`
 
   return (
-    <Grid as="header" className={className} style={style} gridTemplateColumns="auto 1fr auto" gridGap={4} px={6} py={3} {...rest}>
+    <Grid
+      as="header"
+      className={className}
+      style={style}
+      gridTemplateColumns="auto 1fr auto"
+      gridGap={4}
+      px={6}
+      py={3}
+      backgroundColor={colorMode === 'dark' ? 'black' : 'white'}
+      {...rest}
+    >
       <Box display="flex" alignItems="center" userSelect="none">
         <Link href="/" passHref>
           <ChakraLink>

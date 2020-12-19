@@ -1,5 +1,5 @@
 import { Text, TextProps } from '@chakra-ui/react'
-import { Field, FieldProps } from 'formik'
+import { Field, FieldProps, getIn } from 'formik'
 import * as React from 'react'
 
 interface ErrorMessageProps extends TextProps {
@@ -8,10 +8,13 @@ interface ErrorMessageProps extends TextProps {
 
 const ErrorMessage: React.FC<ErrorMessageProps> = ({ name, ...rest }) => (
   <Field name={name}>
-    {({ meta }: FieldProps) => {
-      return meta.touched && meta.error ? (
+    {({ form }: FieldProps) => {
+      const error = getIn(form.errors, name)
+      const touched = getIn(form.touched, name)
+
+      return touched && error && typeof error === 'string' ? (
         <Text color="red.500" fontSize="sm" {...rest}>
-          {meta.error}
+          {error}
         </Text>
       ) : null
     }}

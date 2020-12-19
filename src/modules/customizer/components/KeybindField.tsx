@@ -1,4 +1,4 @@
-import { Box, CloseButton, Flex, Grid, Select, Stack, Text, useColorMode, VisuallyHidden } from '@chakra-ui/react'
+import { Box, CloseButton, Flex, Grid, Select, Stack, useColorMode, VisuallyHidden } from '@chakra-ui/react'
 import { Field, FieldProps } from 'formik'
 import * as React from 'react'
 import { NumericField } from '~/components/form'
@@ -16,52 +16,41 @@ const KeybindField: React.FC<KeybindFieldProps> = ({ index, name, onRemove }) =>
   return (
     <Flex
       flexDirection="column"
-      borderRadius="md"
-      transition="background-color 0.2s ease-in-out"
-      backgroundColor={colorMode === 'dark' ? 'gray.900' : 'gray.50'}
-      boxShadow="base"
+      px={6}
+      py={4}
+      _notLast={{ borderBottom: '1px solid', borderBottomColor: colorMode === 'dark' ? 'gray.800' : 'gray.100' }}
     >
-      <Flex
-        className="remove-button"
-        alignItems="center"
-        justifyContent="space-between"
-        py={1}
-        px={4}
-        borderBottom="1px solid"
-        borderBottomColor={colorMode === 'dark' ? 'gray.800' : 'gray.100'}
-      >
-        <Text fontSize="md" fontWeight={600}>
-          Keybind
-        </Text>
-        <CloseButton type="button" aria-label="Remove" onClick={onRemove} />
-      </Flex>
-      <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)']} gridGap={4} p={4}>
-        <Box>
-          <Field name={`${name}.${index}.action`}>
-            {({ field }: FieldProps<string>) => (
-              <Stack as="label" htmlFor={`${name}.${index}.action`} spacing={0}>
-                <VisuallyHidden as="span">Action</VisuallyHidden>
-                <Select placeholder="Unassigned" {...field}>
-                  {controllerActions.map(action => (
-                    <option key={action.value} value={action.value}>
-                      {action.label}
-                    </option>
-                  ))}
-                </Select>
-              </Stack>
-            )}
-          </Field>
-        </Box>
-        <Box>
-          <NumericField
-            label="Button/axis number"
-            hideLabel
-            hideErrors
-            placeholder="Button/axis number"
-            name={`${name}.${index}.button`}
-            autoComplete="off"
-          />
-        </Box>
+      <Grid gridTemplateColumns="1fr 40px" gridGap={4}>
+        <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)']} gridGap={4}>
+          <Box>
+            <Field name={`${name}.${index}.action`}>
+              {({ field }: FieldProps<string>) => (
+                <Stack as="label" htmlFor={`${name}.${index}.action`} spacing={0}>
+                  <VisuallyHidden as="span">Action</VisuallyHidden>
+                  <Select placeholder="Unassigned" {...field}>
+                    {controllerActions.map(action => (
+                      <option key={action.value} value={action.value}>
+                        {action.label}
+                      </option>
+                    ))}
+                  </Select>
+                </Stack>
+              )}
+            </Field>
+          </Box>
+          <Box>
+            <NumericField
+              label="Button/axis number"
+              hideLabel
+              placeholder="Button/axis number"
+              name={`${name}.${index}.button`}
+              autoComplete="off"
+            />
+          </Box>
+        </Grid>
+        <Flex alignItems="flex-start">
+          <CloseButton type="button" size="lg" aria-label="Remove" onClick={onRemove} />
+        </Flex>
       </Grid>
     </Flex>
   )

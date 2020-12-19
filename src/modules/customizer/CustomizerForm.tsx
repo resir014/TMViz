@@ -2,20 +2,16 @@
 import { AddIcon } from '@chakra-ui/icons'
 import { Stack, Text, Box, Grid, Link, useToast, Button } from '@chakra-ui/react'
 import { FieldArray, Form, Formik } from 'formik'
-import dynamic from 'next/dynamic'
 import * as React from 'react'
 import { useLocalStorage } from 'react-use'
 import { ColorInputField, NumericField } from '~/components/form'
 import { CustomizerFormSettings } from '~/types/overlay'
 import useHasMounted from '~/utils/useHasMounted'
-import defaultConfig from './utils/defaultConfig'
+import isUnique from '~/utils/isUnique'
 import { parseConfigToFormData, parseFormDataToGlobalConfig } from '../parser'
-import { FormSectionSubheader, KeybindField } from './components'
-import CustomizerClipboard from './CustomizerClipboard'
-import CustomizerSave from './CustomizerSave'
-import validationSchema from './utils/validationSchema'
-
-const CustomizerPreview = dynamic(() => import('./CustomizerPreview'), { ssr: false })
+import { FormSection, FormSectionHeader, KeybindField } from './components'
+import { CustomizerClipboard, CustomizerSave, CustomizerPreview } from './forms'
+import { defaultConfig, validationSchema } from './utils'
 
 const CustomizerForm: React.FC = () => {
   const toast = useToast()
@@ -44,20 +40,20 @@ const CustomizerForm: React.FC = () => {
         {({ values }) => {
           return (
             <Form>
-              <Grid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} gridGap={12}>
-                <Stack spacing={10}>
-                  <Stack spacing={4}>
-                    <FormSectionSubheader title="Appearance" subtitle="Tweak the look and feel of your overlay." />
-                    <Grid gridTemplateColumns={['1fr', null, null, 'repeat(3, 1fr)']} gridGap={4}>
+              <Grid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} gridGap={6}>
+                <Stack spacing={6}>
+                  <FormSection>
+                    <FormSectionHeader title="Appearance" subtitle="Tweak the look and feel of your overlay." />
+                    <Grid gridTemplateColumns={['1fr', null, null, 'repeat(3, 1fr)']} gridGap={4} p={6}>
                       <ColorInputField label="Accelerator color" name="appearance.accelerateColor" autoComplete="off" />
                       <ColorInputField label="Brake color" name="appearance.brakeColor" autoComplete="off" />
                       <ColorInputField label="Steering color" name="appearance.steeringColor" autoComplete="off" />
                     </Grid>
-                  </Stack>
+                  </FormSection>
                   <FieldArray name="keybinds">
                     {arrayHelpers => (
-                      <Stack spacing={4}>
-                        <FormSectionSubheader
+                      <FormSection>
+                        <FormSectionHeader
                           title="Controller settings"
                           subtitle={
                             <Text fontSize="sm">
@@ -74,41 +70,43 @@ const CustomizerForm: React.FC = () => {
                             </Button>
                           }
                         />
-                        <Stack spacing={4}>
+                        <Box>
                           {values.keybinds && values.keybinds.length > 0
                             ? values.keybinds.map((_, index) => (
                                 <KeybindField key={index} name="keybinds" index={index} onRemove={() => arrayHelpers.remove(index)} />
                               ))
                             : null}
-                        </Stack>
-                        {!values.keybinds.length && (
-                          <Text color="red.500" fontSize="sm">
-                            Must have at least one keybind
-                          </Text>
-                        )}
-                      </Stack>
+                          {!values.keybinds.length && (
+                            <Box px={6} py={3}>
+                              <Text display="block" color="red.500" fontSize="sm">
+                                Must have at least one keybind
+                              </Text>
+                            </Box>
+                          )}
+                          {(!isUnique(values.keybinds.map(s => s.action)) || !isUnique(values.keybinds.map(s => s.button))) && (
+                            <Box px={6} py={3}>
+                              <Text display="block" color="red.500" fontSize="sm">
+                                Keybinds must be unique
+                              </Text>
+                            </Box>
+                          )}
+                        </Box>
+                      </FormSection>
                     )}
                   </FieldArray>
-                  <Stack spacing={4}>
-                    <FormSectionSubheader title="Advanced" />
-                    <NumericField label="Steering deadzone" name="config.steeringDeadzone" autoComplete="off" />
-                  </Stack>
+                  <FormSection>
+                    <FormSectionHeader title="Advanced" />
+                    <Box p={6}>
+                      <NumericField label="Steering deadzone" name="config.steeringDeadzone" autoComplete="off" />
+                    </Box>
+                  </FormSection>
                 </Stack>
-                <Stack spacing={10}>
-                  <Stack spacing={4}>
-                    <FormSectionSubheader
-                      title="Overlay URL"
-                      subtitle={
-                        <Text fontSize="sm">
-                          Once you&apos;ve finished configuring your widget, copy the following URL, width, and height into a{' '}
-                          <strong>browser source</strong>:
-                        </Text>
-                      }
-                    />
-                    <CustomizerClipboard />
+                <Stack spacing={6}>
+                  <CustomizerClipboard />
+                  <Grid gridTemplateColumns={['1fr', null, null, null, '304px 1fr']} gridGap={6}>
+                    <CustomizerPreview />
                     <CustomizerSave />
-                  </Stack>
-                  <CustomizerPreview />
+                  </Grid>
                 </Stack>
               </Grid>
             </Form>

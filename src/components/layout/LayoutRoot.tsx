@@ -13,10 +13,10 @@ const LayoutRoot: React.FC<LayoutRootProps> = ({ children, pageTitle, ...rest })
 
   const backgroundColor = React.useMemo(() => {
     if (colorMode === 'dark') {
-      return 'black'
+      return 'gray.900'
     }
 
-    return 'white'
+    return 'gray.50'
   }, [colorMode])
 
   return (

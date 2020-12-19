@@ -16,7 +16,19 @@ const validationSchema = yup.object().shape({
     brakeColor: yup.string().test('valid-color', 'Must be a valid color hex', isValidHex).required('Required field'),
     steeringColor: yup.string().test('valid-color', 'Must be a valid color hex', isValidHex).required('Required field')
   }),
-  keybinds: yup.array().of(keybindsSchema).required('Must have at least one keybind'),
+  keybinds: yup
+    .array()
+    .of(keybindsSchema)
+    .test('is-unique', 'All keybinds must be unique', value => {
+      if (value) {
+        const actions = value?.map(v => v?.action)
+        const buttons = value?.map(v => v?.button)
+        return new Set(actions).size === actions?.length || new Set(buttons).size === buttons?.length
+      }
+
+      return false
+    })
+    .required('Must have at least one keybind'),
   config: yup.object().shape({
     steeringDeadzone: yup
       .string()

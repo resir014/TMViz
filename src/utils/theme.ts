@@ -3,19 +3,20 @@ import { extendTheme, theme as defaultTheme } from '@chakra-ui/react'
 import { transparentize } from 'polished'
 
 export const customColors = {
+  ...defaultTheme.colors,
   white: '#ffffff',
-  black: '#16161d',
+  black: '#121220',
   gray: {
-    '50': '#e7e7e8',
-    '100': '#cfcfd1',
-    '200': '#b8b8ba',
-    '300': '#a1a1a5',
-    '400': '#8b8b8f',
-    '500': '#76757a',
-    '600': '#616166',
-    '700': '#4d4d53',
-    '800': '#393940',
-    '900': '#27272e'
+    '50': '#f1f1f3',
+    '100': '#e3e3e7',
+    '200': '#c7c7d0',
+    '300': '#acacb8',
+    '400': '#9191a2',
+    '500': '#78788c',
+    '600': '#5f5f76',
+    '700': '#474862',
+    '800': '#2f324d',
+    '900': '#181d3a'
   },
   red: {
     '50': '#fde7e7',
