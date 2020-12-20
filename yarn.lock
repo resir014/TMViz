@@ -3211,6 +3211,16 @@ focus-lock@^0.7.0:
   resolved "https://registry.yarnpkg.com/focus-lock/-/focus-lock-0.7.0.tgz#b2bfb0ca7beacc8710a1ff74275fe0dc60a1d88a"
   integrity sha512-LI7v2mH02R55SekHYdv9pRHR9RajVNyIJ2N5IEkWbg7FT5ZmJ9Hw4mWxHeEUcd+dJo0QmzztHvDvWcc7prVFsw==
 
+fontsource-inter@^3.1.7:
+  version "3.1.7"
+  resolved "https://registry.yarnpkg.com/fontsource-inter/-/fontsource-inter-3.1.7.tgz#f174bfed86bfab9022d004f4fe0ba8de738ebdde"
+  integrity sha512-vH/DJSOgqKyCRic/LxLKyjWCzqvX88ypu2LLKjYSTlLbI/WvhR5G6Xlq3boNxkNyefdp+G2UMWq8oDBeqT9pyg==
+
+fontsource-jetbrains-mono@^3.1.6:
+  version "3.1.6"
+  resolved "https://registry.yarnpkg.com/fontsource-jetbrains-mono/-/fontsource-jetbrains-mono-3.1.6.tgz#30b224cb4b71918b57a2487c6ca4e1754dd87c9f"
+  integrity sha512-PEqu0HoKEcxNpdV8rkKAU/MU3l/7XTKgSapuTS46U1/6lSx02ovKJ7pfGTzyHC0YXNGaJ3nkhWQJ4pXOcKun3Q==
+
 for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
@@ -6573,16 +6583,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typeface-inter@3.15.0:
-  version "3.15.0"
-  resolved "https://registry.yarnpkg.com/typeface-inter/-/typeface-inter-3.15.0.tgz#7ac09c0bcc5fdd5c5b85727df6478ee287f56deb"
-  integrity sha512-kWLJsvqSJTBKilu1HsBYHwi3usFg8JQ9I9u+bcU2kOkIi48fOZy8sYacbFmlJ9EHRVNqqvM4zeI73WCSKNMOuQ==
-
-typeface-jetbrains-mono@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/typeface-jetbrains-mono/-/typeface-jetbrains-mono-2.0.0.tgz#f522311d18ae5681efce1699a99225b525b82e29"
-  integrity sha512-QrIlq+Jtn5ghF0RUSa6WubXro+DmtBOC9M+YQeODd1fW31jPzvY1qRM0qiarIelLgoj4ytWrj6iXCPxcbDWavw==
 
 typescript@^4.1.2:
   version "4.1.2"

@@ -10,8 +10,8 @@ import emotionCache from '~/utils/emotionCache'
 
 import siteMetadata from '~/_data/siteMetadata.json'
 
-import 'typeface-inter'
-import 'typeface-jetbrains-mono'
+import 'fontsource-inter'
+import 'fontsource-jetbrains-mono'
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
   const { title, description, siteUrl } = siteMetadata
@@ -27,8 +27,8 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
           <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
           <link rel="shortcut icon" href="/favicon.ico" />
           <link rel="manifest" href="/manifest.json" />
-          <meta name="msapplication-TileColor" content="#16161d" />
-          <meta name="theme-color" content="#16161d" />
+          <meta name="msapplication-TileColor" content="#181d3a" />
+          <meta name="theme-color" content="#181d3a" />
         </Head>
 
         <DefaultSeo
