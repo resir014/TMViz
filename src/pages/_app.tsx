@@ -10,8 +10,7 @@ import emotionCache from '~/utils/emotionCache'
 
 import siteMetadata from '~/_data/siteMetadata.json'
 
-import 'fontsource-inter/variable.css'
-import 'fontsource-jetbrains-mono'
+import '~/styles/fonts'
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
   const { title, description, siteUrl } = siteMetadata
