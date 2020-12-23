@@ -10,7 +10,7 @@ import emotionCache from '~/utils/emotionCache'
 
 import siteMetadata from '~/_data/siteMetadata.json'
 
-import 'fontsource-inter'
+import 'fontsource-inter/variable.css'
 import 'fontsource-jetbrains-mono'
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
