@@ -12,3 +12,9 @@ export interface PageMetadata {
 export interface BasePageProps extends PageMetadata {
   content: string
 }
+
+export interface FooterLinks {
+  title: string
+  url: string
+  isExternal?: boolean
+}

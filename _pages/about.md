@@ -22,3 +22,5 @@ A list of compatible controllers is also available [here](https://gamepad-tester
 ## Who made this?
 
 [Me!](https://twitter.com/resir014) You can also find me on [these places](https://resir014.xyz/linktree) and take a look at my previous stuff [here](https://resir014.xyz/projects).
+
+If you think this project is helpful, consider [buying me a cup of coffee](https://paypal.me/resir014)!

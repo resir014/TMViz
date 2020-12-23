@@ -1,36 +1,59 @@
-import { Flex, FlexProps, Link, Text } from '@chakra-ui/react'
+import { Box, Flex, FlexProps, HStack, Link as ChakraLink, Stack, Text, VisuallyHidden } from '@chakra-ui/react'
+import Link from 'next/link'
 import * as React from 'react'
+import footerLinks from '~/_data/footerLinks.json'
+import Logo from './Logo'
 
 export type FooterProps = FlexProps
 
 const Footer: React.FC<FooterProps> = ({ className, style, ...rest }) => (
-  <Flex as="footer" className={className} style={style} flexDirection="column" px={6} py={3} {...rest}>
-    <Text fontSize="sm">
-      TMViz &copy; 2020{' '}
-      <Link href="https://resir014.xyz/" isExternal>
-        resir014
-      </Link>
-      . Released as{' '}
-      <Link href="https://github.com/resir014/TMViz" isExternal>
-        open-source
-      </Link>{' '}
-      under the{' '}
-      <Link href="https://github.com/resir014/TMViz/blob/trunk/LICENSE" isExternal>
-        MIT license
-      </Link>
-      .
-    </Text>
-    <Text fontSize="sm">
-      This project is not affiliated with{' '}
-      <Link href="https://trackmania.com/" isExternal>
-        Trackmania
-      </Link>{' '}
-      or its developers,{' '}
-      <Link href="https://nadeo.com/" isExternal>
-        Ubisoft Nadeo
-      </Link>
-      . All trademarks used belong to their respective owners.
-    </Text>
+  <Flex
+    as="footer"
+    className={className}
+    style={style}
+    flexDirection="column"
+    borderTop="1px solid"
+    borderTopColor="gray.800"
+    px={6}
+    py={12}
+    {...rest}
+  >
+    <Stack spacing={6}>
+      <Stack spacing={2}>
+        <Box display="inline-block">
+          <Logo height={30} aria-hidden />
+          <VisuallyHidden>TMViz</VisuallyHidden>
+        </Box>
+        <Flex alignItems="center">
+          <Text fontSize="sm">Lightweight, customisable controller visualisation widget for Trackmania.</Text>
+        </Flex>
+      </Stack>
+      <HStack spacing={6} as="ul" listStyleType="none">
+        {footerLinks.map(link => {
+          if (link.isExternal) {
+            return (
+              <Text key={link.title} as="li" fontSize="sm">
+                <ChakraLink href={link.url} isExternal>
+                  {link.title}
+                </ChakraLink>
+              </Text>
+            )
+          }
+
+          return (
+            <Text key={link.title} as="li" fontSize="sm">
+              <Link href={link.url} passHref>
+                <ChakraLink>{link.title}</ChakraLink>
+              </Link>
+            </Text>
+          )
+        })}
+      </HStack>
+      <Stack spacing={0} color="gray.200">
+        <Text fontSize="xs">TMViz &copy; 2020 resir014. Released under the MIT License.</Text>
+        <Text fontSize="xs">This project is not affiliated with Trackmania or Ubisoft Nadeo.</Text>
+      </Stack>
+    </Stack>
   </Flex>
 )
 
