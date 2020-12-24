@@ -29,7 +29,9 @@ If one or more of the conditions above are not met, the GitHub Actions CI might 
 
 ## Project Structure
 
-TMViz is built using [Next.js](https://nextjs.org/). This means
+TMViz is built using [Next.js](https://nextjs.org/). This means that there are some folder conventions enforced by the framework itself (e.g. for [Next.js pages](https://nextjs.org/docs/basic-features/pages)).
+
+Outside of that, we have devised our own project structure as follows:
 
 - `_data` - data which are statically generated on build time, e.g. site metadata, and main menu.
 - `_pages` - pages written in Markdown. Every Markdown file inside this folder will be generated with the filename as its slug.
