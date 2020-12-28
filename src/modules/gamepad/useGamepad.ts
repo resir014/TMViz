@@ -1,32 +1,21 @@
 /* eslint-disable no-plusplus */
 import * as React from 'react'
 import { GamepadsContext } from '~/modules/gamepad/GamepadsContext'
-import { GamepadsContextValue } from '~/modules/gamepad/types'
+import { GamepadsMap } from './types'
 
 export default function useGamepad() {
   const raf = React.useRef<number>()
-  const [gamepads, setGamepads] = React.useState<GamepadsContextValue['gamepads']>({})
+  const gamepads = React.useRef<GamepadsMap>({})
   const { gamepads: globalGamepads, updateGlobalGamepads } = React.useContext(GamepadsContext)
 
   const addGamepad = (gamepad: Gamepad | null) => {
     if (gamepad) {
-      updateGlobalGamepads({
-        ...gamepads,
-        [gamepad.index]: {
-          buttons: gamepad.buttons,
-          id: gamepad.id,
-          axes: gamepad.axes
-        }
-      })
+      gamepads.current = {
+        ...gamepads.current,
+        [gamepad.index]: gamepad
+      }
 
-      setGamepads({
-        ...gamepads,
-        [gamepad.index]: {
-          buttons: gamepad.buttons,
-          id: gamepad.id,
-          axes: gamepad.axes
-        }
-      })
+      updateGlobalGamepads(gamepads.current)
     }
   }
 
