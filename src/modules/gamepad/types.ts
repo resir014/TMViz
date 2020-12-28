@@ -1,10 +1,8 @@
-export interface GamepadValue {
-  id: string
-  axes: Gamepad['axes']
-  buttons: Gamepad['buttons']
+export interface GamepadsMap {
+  [key: number]: Gamepad
 }
 
 export interface GamepadsContextValue {
-  gamepads: Record<string, GamepadValue>
-  updateGlobalGamepads: (gamepad: Record<string, GamepadValue>) => void
+  gamepads: GamepadsMap
+  updateGlobalGamepads: (gamepad: GamepadsMap) => void
 }
