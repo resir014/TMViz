@@ -1,21 +1,18 @@
-import { Box, BoxProps, Heading } from '@chakra-ui/react'
+import { Heading } from '@chakra-ui/react'
 import * as React from 'react'
 import { Container, ContainerProps } from '../layout'
 
-export interface PageHeaderProps extends BoxProps {
+export interface PageHeaderProps extends ContainerProps {
   title: string
-  _containerProps?: ContainerProps
 }
 
-const PageHeader: React.FC<PageHeaderProps> = ({ title, _containerProps, ...rest }) => {
+const PageHeader: React.FC<PageHeaderProps> = ({ title, ...rest }) => {
   return (
-    <Box as="header" pt={8} px={6} pb={4} {...rest}>
-      <Container {..._containerProps}>
-        <Heading as="h1" size="2xl">
-          {title}
-        </Heading>
-      </Container>
-    </Box>
+    <Container as="header" pb={4} {...rest}>
+      <Heading as="h1" size="2xl">
+        {title}
+      </Heading>
+    </Container>
   )
 }
 

@@ -1,7 +1,6 @@
 import { Flex, useColorMode } from '@chakra-ui/react'
 import * as React from 'react'
 import { NextSeo, NextSeoProps } from 'next-seo'
-import Footer from './Footer'
 
 export interface LayoutRootProps extends Omit<NextSeoProps, 'title'> {
   pageTitle?: string
@@ -20,10 +19,9 @@ const LayoutRoot: React.FC<LayoutRootProps> = ({ children, pageTitle, ...rest })
   }, [colorMode])
 
   return (
-    <Flex flexDirection="column" minHeight="100vh" overflowX="hidden" backgroundColor={backgroundColor}>
+    <Flex as="main" flexDirection="column" minHeight="100vh" overflowX="hidden" backgroundColor={backgroundColor}>
       <NextSeo title={pageTitle || ''} openGraph={{ ...rest.openGraph, title: pageTitle }} {...rest} />
       {children}
-      <Footer />
     </Flex>
   )
 }

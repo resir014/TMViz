@@ -5,7 +5,7 @@ export interface ContainerProps extends ChakraContainerProps {
   size?: string | number
 }
 
-const Container: React.FC<ContainerProps> = ({ children, size = 'xl', ...rest }) => {
+const Container: React.FC<ContainerProps> = ({ children, size = '80ch', ...rest }) => {
   return (
     <ChakraContainer mx="auto" px={0} width="100%" maxWidth={size} {...rest}>
       {children}
