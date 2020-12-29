@@ -11,10 +11,11 @@ export default function parseOverlayConfig(
       accelerateButton: (config?.accelerateButton as string) || `${DEFAULT_ACCELERATE_BUTTON}`,
       brakeButton: (config?.brakeButton as string) || `${DEFAULT_BRAKE_BUTTON}`,
       steeringAxis: (config?.steeringAxis as string) || `${DEFAULT_STEERING_AXIS}`,
-      steeringDeadzone: (config?.steeringDeadzone as string) || `${DEFAULT_STEERING_DEADZONE}`,
       accelerateAxis: config?.accelerateAxis as string,
       steeringLeftButton: config?.steeringLeftButton as string,
-      steeringRightButton: config?.steeringRightButton as string
+      steeringRightButton: config?.steeringRightButton as string,
+      steeringDeadzone: (config?.steeringDeadzone as string) || `${DEFAULT_STEERING_DEADZONE}`,
+      controllerIndex: (config?.controllerIndex as string) || '0'
     }
   }
 
@@ -22,6 +23,7 @@ export default function parseOverlayConfig(
     accelerateButton: (config?.accelerateButton as string) || `${DEFAULT_ACCELERATE_BUTTON}`,
     brakeButton: (config?.brakeButton as string) || `${DEFAULT_BRAKE_BUTTON}`,
     steeringAxis: (config?.steeringAxis as string) || `${DEFAULT_STEERING_AXIS}`,
-    steeringDeadzone: (config?.steeringDeadzone as string) || `${DEFAULT_STEERING_DEADZONE}`
+    steeringDeadzone: (config?.steeringDeadzone as string) || `${DEFAULT_STEERING_DEADZONE}`,
+    controllerIndex: (config?.controllerIndex as string) || '0'
   }
 }

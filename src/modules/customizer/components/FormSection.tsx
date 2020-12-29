@@ -12,6 +12,7 @@ const FormSection: React.FC<FormSectionProps> = ({ children, ...rest }) => {
       borderTopLeftRadius="2xl"
       borderBottomRightRadius="2xl"
       boxShadow="base"
+      overflow="hidden"
       {...rest}
     >
       {children}

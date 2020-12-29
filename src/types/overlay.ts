@@ -23,6 +23,7 @@ export interface ControllerTelemetry {
 }
 
 export interface TrackmaniaOverlayConfig {
+  controllerIndex: string
   accelerateButton: string
   brakeButton: string
   accelerateAxis: string
@@ -32,14 +33,7 @@ export interface TrackmaniaOverlayConfig {
   steeringDeadzone: string
 }
 
-export type ControllerActions =
-  | 'accelerateButton'
-  | 'brakeButton'
-  | 'accelerateAxis'
-  | 'steeringLeftButton'
-  | 'steeringRightButton'
-  | 'steeringAxis'
-  | 'steeringDeadzone'
+export type ControllerActions = keyof Omit<TrackmaniaOverlayConfig, 'controllerIndex' | 'steeringDeadzone'>
 
 interface ControllerSettingsMap {
   action: ControllerActions
@@ -50,7 +44,7 @@ export interface CustomizerFormSettings {
   version: number
   appearance: GamepadAppearanceSettings
   keybinds: ControllerSettingsMap[]
-  config: Partial<Pick<TrackmaniaOverlayConfig, 'steeringDeadzone'>>
+  config: Partial<Pick<TrackmaniaOverlayConfig, 'controllerIndex' | 'steeringDeadzone'>>
 }
 
 export interface GlobalOverlaySettings {

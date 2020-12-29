@@ -4,7 +4,9 @@ import theme from '~/utils/theme'
 
 function parseKeybinds(globalConfig?: GlobalOverlaySettings): CustomizerFormSettings['keybinds'] {
   if (globalConfig) {
-    const keybinds = (Object.keys(globalConfig.config).filter(keys => keys !== 'steeringDeadzone') as ControllerActions[]).map(keys => ({
+    const keybinds = (Object.keys(globalConfig.config).filter(
+      keys => !['steeringDeadzone', 'controllerIndex'].includes(keys)
+    ) as ControllerActions[]).map(keys => ({
       action: keys,
       button: `${globalConfig.config[keys]}`
     }))
@@ -23,7 +25,8 @@ export default function parseConfigToFormData(globalConfig?: GlobalOverlaySettin
       },
       keybinds: parseKeybinds(globalConfig),
       config: {
-        steeringDeadzone: globalConfig.config.steeringDeadzone
+        steeringDeadzone: globalConfig.config.steeringDeadzone,
+        controllerIndex: globalConfig.config.controllerIndex
       }
     }
   }
@@ -50,7 +53,8 @@ export default function parseConfigToFormData(globalConfig?: GlobalOverlaySettin
       }
     ],
     config: {
-      steeringDeadzone: `${DEFAULT_STEERING_DEADZONE}`
+      steeringDeadzone: `${DEFAULT_STEERING_DEADZONE}`,
+      controllerIndex: '0'
     }
   }
 }
