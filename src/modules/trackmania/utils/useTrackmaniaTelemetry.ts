@@ -12,8 +12,8 @@ function determineSteeringValue(value = 0, direction: 'left' | 'right' = 'right'
 
 function useTrackmaniaTelemetry(controllerIndex = 0): ControllerTelemetry {
   const { appearance, config } = useOverlayConfig()
-  const { globalGamepads } = useGamepad()
-  const currentGamepad = globalGamepads[controllerIndex]
+  const { gamepads } = useGamepad()
+  const currentGamepad = gamepads[controllerIndex]
 
   if (currentGamepad) {
     return {

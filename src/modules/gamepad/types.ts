@@ -4,5 +4,5 @@ export interface GamepadsMap {
 
 export interface GamepadsContextValue {
   gamepads: GamepadsMap
-  updateGlobalGamepads: (gamepad: GamepadsMap) => void
+  updateGamepads: (gamepad: GamepadsMap) => void
 }

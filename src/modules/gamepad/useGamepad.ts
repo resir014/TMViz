@@ -5,17 +5,17 @@ import { GamepadsMap } from './types'
 
 export default function useGamepad() {
   const raf = React.useRef<number>()
-  const gamepads = React.useRef<GamepadsMap>({})
-  const { gamepads: globalGamepads, updateGlobalGamepads } = React.useContext(GamepadsContext)
+  const gamepadsRef = React.useRef<GamepadsMap>({})
+  const { gamepads, updateGamepads } = React.useContext(GamepadsContext)
 
   const addGamepad = (gamepad: Gamepad | null) => {
     if (gamepad) {
-      gamepads.current = {
-        ...gamepads.current,
+      gamepadsRef.current = {
+        ...gamepadsRef.current,
         [gamepad.index]: gamepad
       }
 
-      updateGlobalGamepads(gamepads.current)
+      updateGamepads(gamepadsRef.current)
     }
   }
 
@@ -72,5 +72,5 @@ export default function useGamepad() {
     }
   }, [])
 
-  return { globalGamepads }
+  return { gamepads }
 }
