@@ -1,5 +1,5 @@
 export interface GamepadsMap {
-  [key: number]: Gamepad
+  [key: string]: Gamepad
 }
 
 export interface GamepadsContextValue {

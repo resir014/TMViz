@@ -12,7 +12,7 @@ interface ControllerTelemetryProps {
 }
 
 const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ className, style }) => {
-  const { isConnected, appearance, data } = useTrackmaniaTelemetry(0)
+  const { isConnected, appearance, data } = useTrackmaniaTelemetry()
 
   return (
     <div className={clsx(styles.root, className)} style={style}>

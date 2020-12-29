@@ -14,7 +14,8 @@ export default function parseFormDataToGlobalConfig(values: CustomizerFormSettin
     appearance: values.appearance,
     config: {
       ...(keybinds || {}),
-      steeringDeadzone: values.config.steeringDeadzone
+      steeringDeadzone: values.config.steeringDeadzone,
+      controllerIndex: values.config.controllerIndex
     }
   }
 }

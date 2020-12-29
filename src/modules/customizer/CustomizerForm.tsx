@@ -9,7 +9,7 @@ import { CustomizerFormSettings } from '~/types/overlay'
 import useHasMounted from '~/utils/useHasMounted'
 import isUnique from '~/utils/isUnique'
 import { parseConfigToFormData, parseFormDataToGlobalConfig } from '../parser'
-import { FormSection, FormSectionHeader, KeybindField } from './components'
+import { ControllerSelectField, FormSection, FormSectionHeader, KeybindField } from './components'
 import { CustomizerClipboard, CustomizerSave, CustomizerPreview } from './forms'
 import { defaultConfig, validationSchema } from './utils'
 
@@ -42,6 +42,12 @@ const CustomizerForm: React.FC = () => {
             <Form>
               <Grid gridTemplateColumns={['1fr', null, null, '1fr 1fr']} gridGap={6}>
                 <Stack spacing={6}>
+                  <FormSection>
+                    <FormSectionHeader title="Controller" />
+                    <Box p={6}>
+                      <ControllerSelectField name="config.controllerIndex" />
+                    </Box>
+                  </FormSection>
                   <FormSection>
                     <FormSectionHeader title="Appearance" subtitle="Tweak the look and feel of your overlay." />
                     <Grid gridTemplateColumns={['1fr', null, null, 'repeat(3, 1fr)']} gridGap={4} p={6}>

@@ -33,6 +33,10 @@ const validationSchema = yup.object().shape({
     steeringDeadzone: yup
       .string()
       .matches(/^[0-9]\d*(\.\d+)?$/, 'Numbers only')
+      .required('Required field'),
+    controllerIndex: yup
+      .string()
+      .matches(/^[0-9]\d*(\.\d+)?$/, 'Numbers only')
       .required('Required field')
   })
 })
