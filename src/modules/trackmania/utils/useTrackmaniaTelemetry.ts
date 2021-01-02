@@ -2,12 +2,34 @@ import { useGamepad } from '~/modules/gamepad'
 import { ControllerTelemetry } from '~/types/overlay'
 import useOverlayConfig from './useOverlayConfig'
 
-function determineSteeringValue(value = 0, direction: 'left' | 'right' = 'right'): number {
-  if (direction === 'left') {
-    return -value
+function normalizeSteeringDpadValue(gamepad: Gamepad, config?: string, direction: 'left' | 'right' = 'right'): number {
+  const button = gamepad.buttons[Number(config)]
+
+  if (button?.value) {
+    if (direction === 'left') {
+      return -button.value
+    }
+
+    return button.value
   }
 
-  return value
+  return 0
+}
+
+function normalizeButtonValue(gamepad: Gamepad, config?: string) {
+  const button = gamepad.buttons[Number(config)]
+
+  if (button) {
+    return button.value
+  }
+
+  return 0
+}
+
+function normalizeAxisValue(gamepad: Gamepad, config?: string) {
+  const axis = gamepad.axes[Number(config)]
+
+  return axis || 0
 }
 
 function useTrackmaniaTelemetry(): ControllerTelemetry {
@@ -20,18 +42,12 @@ function useTrackmaniaTelemetry(): ControllerTelemetry {
       isConnected: true,
       appearance,
       data: {
-        accelerate: currentGamepad.buttons[Number(config.accelerateButton)].value,
-        brake: currentGamepad.buttons[Number(config.brakeButton)].value,
+        accelerate: normalizeButtonValue(currentGamepad, config.accelerateButton),
+        brake: normalizeButtonValue(currentGamepad, config.brakeButton),
         steering:
-          determineSteeringValue(
-            config.steeringLeftButton ? currentGamepad.buttons[Number(config.steeringLeftButton)].value : undefined,
-            'left'
-          ) ||
-          determineSteeringValue(
-            config.steeringRightButton ? currentGamepad.buttons[Number(config.steeringRightButton)].value : undefined,
-            'right'
-          ) ||
-          currentGamepad.axes[Number(config.steeringAxis)],
+          normalizeSteeringDpadValue(currentGamepad, config.steeringLeftButton, 'left') ||
+          normalizeSteeringDpadValue(currentGamepad, config.steeringRightButton, 'right') ||
+          normalizeAxisValue(currentGamepad, config.steeringAxis),
         steeringDeadzone: Number(config.steeringDeadzone)
       }
     }
