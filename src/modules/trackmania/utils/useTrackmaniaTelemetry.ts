@@ -2,12 +2,18 @@ import { useGamepad } from '~/modules/gamepad'
 import { ControllerTelemetry } from '~/types/overlay'
 import useOverlayConfig from './useOverlayConfig'
 
-function determineSteeringValue(value = 0, direction: 'left' | 'right' = 'right'): number {
-  if (direction === 'left') {
-    return -value
+function determineSteeringDpadValue(gamepad: Gamepad, config?: string, direction: 'left' | 'right' = 'right'): number {
+  const button = gamepad.buttons[Number(config)]
+
+  if (button?.value) {
+    if (direction === 'left') {
+      return -button.value
+    }
+
+    return button.value
   }
 
-  return value
+  return 0
 }
 
 function useTrackmaniaTelemetry(): ControllerTelemetry {
@@ -23,14 +29,8 @@ function useTrackmaniaTelemetry(): ControllerTelemetry {
         accelerate: currentGamepad.buttons[Number(config.accelerateButton)].value,
         brake: currentGamepad.buttons[Number(config.brakeButton)].value,
         steering:
-          determineSteeringValue(
-            config.steeringLeftButton ? currentGamepad.buttons[Number(config.steeringLeftButton)].value : undefined,
-            'left'
-          ) ||
-          determineSteeringValue(
-            config.steeringRightButton ? currentGamepad.buttons[Number(config.steeringRightButton)].value : undefined,
-            'right'
-          ) ||
+          determineSteeringDpadValue(currentGamepad, config.steeringLeftButton, 'left') ||
+          determineSteeringDpadValue(currentGamepad, config.steeringRightButton, 'right') ||
           currentGamepad.axes[Number(config.steeringAxis)],
         steeringDeadzone: Number(config.steeringDeadzone)
       }
