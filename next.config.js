@@ -7,7 +7,7 @@ const SentryWebpackPlugin = require('@sentry/webpack-plugin')
 
 const { NEXT_PUBLIC_SENTRY_DSN: SENTRY_DSN, SENTRY_ORG, SENTRY_PROJECT, SENTRY_AUTH_TOKEN, NODE_ENV, VERCEL_GIT_COMMIT_SHA } = process.env
 
-const COMMIT_SHA = VERCEL_GIT_COMMIT_SHA.slice(0, 8)
+const COMMIT_SHA = VERCEL_GIT_COMMIT_SHA ? VERCEL_GIT_COMMIT_SHA.substring(0, 8) : undefined
 
 process.env.SENTRY_DSN = SENTRY_DSN
 const basePath = ''
