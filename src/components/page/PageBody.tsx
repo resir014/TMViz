@@ -9,17 +9,21 @@ interface PageBodyProps extends ContainerProps {
 }
 
 const PageBody: React.FC<PageBodyProps> = ({ children, content, ...rest }) => {
-  if (content) {
-    return (
-      <Container as="section" {...rest}>
-        <Stack spacing={4}>{convert(content, { transform: htmrTransform })}</Stack>
-      </Container>
-    )
+  const renderContent = () => {
+    if (content) {
+      return <Stack spacing={4}>{convert(content, { transform: htmrTransform })}</Stack>
+    }
+
+    if (children) {
+      return <Stack spacing={4}>{children}</Stack>
+    }
+
+    return null
   }
 
   return (
     <Container as="section" {...rest}>
-      {children}
+      {renderContent()}
     </Container>
   )
 }
