@@ -3,33 +3,41 @@ import { ControllerTelemetry } from '~/types/overlay'
 import useOverlayConfig from './useOverlayConfig'
 
 function normalizeSteeringDpadValue(gamepad: Gamepad, config?: string, direction: 'left' | 'right' = 'right'): number {
-  const button = gamepad.buttons[Number(config)]
+  if (config) {
+    const button = gamepad.buttons[Number(config)]
 
-  if (button?.value) {
-    if (direction === 'left') {
-      return -button.value
+    if (button?.value) {
+      if (direction === 'left') {
+        return -button.value
+      }
+
+      return button.value
     }
-
-    return button.value
   }
 
   return 0
 }
 
 function normalizeButtonValue(gamepad: Gamepad, config?: string) {
-  const button = gamepad.buttons[Number(config)]
+  if (config) {
+    const button = gamepad.buttons[Number(config)]
 
-  if (button) {
-    return button.value
+    if (button) {
+      return button.value
+    }
   }
 
   return 0
 }
 
 function normalizeAxisValue(gamepad: Gamepad, config?: string) {
-  const axis = gamepad.axes[Number(config)]
+  if (config) {
+    const axis = gamepad.axes[Number(config)]
 
-  return axis || 0
+    return axis || 0
+  }
+
+  return 0
 }
 
 function useTrackmaniaTelemetry(): ControllerTelemetry {
