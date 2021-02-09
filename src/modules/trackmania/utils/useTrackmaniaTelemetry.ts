@@ -51,12 +51,24 @@ function useTrackmaniaTelemetry(config: Partial<TrackmaniaOverlayConfig>): Contr
     return Number(config.controllerIndex?.[0] || '0')
   }, [config.controllerIndex])
 
+  const secondaryGamepad = React.useMemo(() => {
+    if (typeof config.controllerIndex === 'string') {
+      return Number(config.controllerIndex || '0')
+    }
+
+    return Number(config.controllerIndex?.[1] || '0')
+  }, [config.controllerIndex])
+
   if (gamepads[currentGamepad]) {
     return {
       isConnected: true,
       data: {
-        accelerate: normalizeButtonValue(gamepads[currentGamepad], config.accelerateButton),
-        brake: normalizeButtonValue(gamepads[currentGamepad], config.brakeButton),
+        accelerate:
+          normalizeButtonValue(gamepads[currentGamepad], config.accelerateButton) ||
+          normalizeButtonValue(gamepads[secondaryGamepad], config.accelerateButton),
+        brake:
+          normalizeButtonValue(gamepads[currentGamepad], config.brakeButton) ||
+          normalizeButtonValue(gamepads[secondaryGamepad], config.brakeButton),
         steering:
           normalizeSteeringDpadValue(gamepads[currentGamepad], config.steeringLeftButton, 'left') ||
           normalizeSteeringDpadValue(gamepads[currentGamepad], config.steeringRightButton, 'right') ||
