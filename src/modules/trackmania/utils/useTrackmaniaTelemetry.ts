@@ -1,8 +1,9 @@
+import * as React from 'react'
 import { useGamepad } from '~/modules/gamepad'
 import { ControllerTelemetry, TrackmaniaOverlayConfig } from '~/types/overlay'
 
-function normalizeSteeringDpadValue(gamepad: Gamepad, config?: string, direction: 'left' | 'right' = 'right'): number {
-  if (config) {
+function normalizeSteeringDpadValue(gamepad?: Gamepad, config?: string, direction: 'left' | 'right' = 'right'): number {
+  if (gamepad && config) {
     const button = gamepad.buttons[Number(config)]
 
     if (button?.value) {
@@ -17,8 +18,8 @@ function normalizeSteeringDpadValue(gamepad: Gamepad, config?: string, direction
   return 0
 }
 
-function normalizeButtonValue(gamepad: Gamepad, config?: string) {
-  if (config) {
+function normalizeButtonValue(gamepad?: Gamepad, config?: string) {
+  if (gamepad && config) {
     const button = gamepad.buttons[Number(config)]
 
     if (button) {
@@ -29,8 +30,8 @@ function normalizeButtonValue(gamepad: Gamepad, config?: string) {
   return 0
 }
 
-function normalizeAxisValue(gamepad: Gamepad, config?: string) {
-  if (config) {
+function normalizeAxisValue(gamepad?: Gamepad, config?: string) {
+  if (gamepad && config) {
     const axis = gamepad.axes[Number(config)]
 
     return axis || 0
@@ -41,18 +42,25 @@ function normalizeAxisValue(gamepad: Gamepad, config?: string) {
 
 function useTrackmaniaTelemetry(config: Partial<TrackmaniaOverlayConfig>): ControllerTelemetry {
   const { gamepads } = useGamepad()
-  const currentGamepad = gamepads[parseInt(config.controllerIndex || '0', 10)]
 
-  if (currentGamepad) {
+  const currentGamepad = React.useMemo(() => {
+    if (typeof config.controllerIndex === 'string') {
+      return Number(config.controllerIndex || '0')
+    }
+
+    return Number(config.controllerIndex?.[0] || '0')
+  }, [config.controllerIndex])
+
+  if (gamepads[currentGamepad]) {
     return {
       isConnected: true,
       data: {
-        accelerate: normalizeButtonValue(currentGamepad, config.accelerateButton),
-        brake: normalizeButtonValue(currentGamepad, config.brakeButton),
+        accelerate: normalizeButtonValue(gamepads[currentGamepad], config.accelerateButton),
+        brake: normalizeButtonValue(gamepads[currentGamepad], config.brakeButton),
         steering:
-          normalizeSteeringDpadValue(currentGamepad, config.steeringLeftButton, 'left') ||
-          normalizeSteeringDpadValue(currentGamepad, config.steeringRightButton, 'right') ||
-          normalizeAxisValue(currentGamepad, config.steeringAxis),
+          normalizeSteeringDpadValue(gamepads[currentGamepad], config.steeringLeftButton, 'left') ||
+          normalizeSteeringDpadValue(gamepads[currentGamepad], config.steeringRightButton, 'right') ||
+          normalizeAxisValue(gamepads[currentGamepad], config.steeringAxis),
         steeringDeadzone: Number(config.steeringDeadzone)
       }
     }

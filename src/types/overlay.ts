@@ -22,7 +22,7 @@ export interface ControllerTelemetry {
 }
 
 export interface TrackmaniaOverlayConfig {
-  controllerIndex: string
+  controllerIndex: string | string[]
   accelerateButton: string
   brakeButton: string
   accelerateAxis: string
