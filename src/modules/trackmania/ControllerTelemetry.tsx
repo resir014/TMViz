@@ -1,18 +1,21 @@
 import * as React from 'react'
 import clsx from 'clsx'
 
+import { GamepadAppearanceSettings, TrackmaniaOverlayConfig } from '~/types/overlay'
+
 import useTrackmaniaTelemetry from './utils/useTrackmaniaTelemetry'
 import { TelemetrySteering, TelemetryButton } from './telemetry'
-
 import styles from './ControllerTelemetry.module.css'
 
 interface ControllerTelemetryProps {
   className?: string
   style?: React.CSSProperties
+  appearance?: GamepadAppearanceSettings
+  config: Partial<TrackmaniaOverlayConfig>
 }
 
-const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ className, style }) => {
-  const { isConnected, appearance, data } = useTrackmaniaTelemetry()
+const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ className, style, appearance, config }) => {
+  const { isConnected, data } = useTrackmaniaTelemetry(config)
 
   return (
     <div className={clsx(styles.root, className)} style={style}>

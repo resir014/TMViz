@@ -1,6 +1,5 @@
 import { useGamepad } from '~/modules/gamepad'
-import { ControllerTelemetry } from '~/types/overlay'
-import useOverlayConfig from './useOverlayConfig'
+import { ControllerTelemetry, TrackmaniaOverlayConfig } from '~/types/overlay'
 
 function normalizeSteeringDpadValue(gamepad: Gamepad, config?: string, direction: 'left' | 'right' = 'right'): number {
   if (config) {
@@ -40,15 +39,13 @@ function normalizeAxisValue(gamepad: Gamepad, config?: string) {
   return 0
 }
 
-function useTrackmaniaTelemetry(): ControllerTelemetry {
-  const { appearance, config } = useOverlayConfig()
+function useTrackmaniaTelemetry(config: Partial<TrackmaniaOverlayConfig>): ControllerTelemetry {
   const { gamepads } = useGamepad()
   const currentGamepad = gamepads[parseInt(config.controllerIndex || '0', 10)]
 
   if (currentGamepad) {
     return {
       isConnected: true,
-      appearance,
       data: {
         accelerate: normalizeButtonValue(currentGamepad, config.accelerateButton),
         brake: normalizeButtonValue(currentGamepad, config.brakeButton),
