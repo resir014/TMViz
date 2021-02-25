@@ -2,7 +2,7 @@ import { Container as ChakraContainer, ContainerProps as ChakraContainerProps } 
 import * as React from 'react'
 
 export interface ContainerProps extends ChakraContainerProps {
-  size?: string | number
+  size?: string
 }
 
 const Container: React.FC<ContainerProps> = ({ children, size = '80ch', ...rest }) => {

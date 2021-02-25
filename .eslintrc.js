@@ -1,7 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['blvd/react', 'prettier', 'prettier/@typescript-eslint', 'prettier/react', 'plugin:prettier/recommended'],
-  plugins: ['prettier'],
+  extends: ['blvd/react', 'plugin:prettier/recommended'],
   rules: {
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
@@ -24,7 +23,7 @@ module.exports = {
         'no-unused-vars': 'off',
         'spaced-comment': ['error', 'always', { markers: ['/'] }],
         '@typescript-eslint/camelcase': 'off',
-        '@typescript-eslint/explicit-function-return-type': ['off'],
+        '@typescript-eslint/explicit-module-boundary-types': ['off'],
         '@typescript-eslint/no-explicit-any': 'off',
         '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_', varsIgnorePattern: '^_' }]
       }
@@ -34,5 +33,10 @@ module.exports = {
       parserOptions: { sourceType: 'script' },
       env: { node: true }
     }
-  ]
+  ],
+  settings: {
+    'import/resolver': {
+      typescript: {}
+    }
+  }
 }
