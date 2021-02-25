@@ -1,6 +1,7 @@
 export interface NavLinkItem {
-  name: string
-  href: string
+  title: string
+  path: string
+  isExact?: boolean
 }
 
 export interface PageMetadata {

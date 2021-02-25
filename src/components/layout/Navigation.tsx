@@ -1,4 +1,15 @@
-import { Grid, Box, Link as ChakraLink, FlexProps, IconButton, useColorMode, Tooltip, VisuallyHidden, Stack } from '@chakra-ui/react'
+import {
+  Grid,
+  Box,
+  Link as ChakraLink,
+  FlexProps,
+  IconButton,
+  useColorMode,
+  Tooltip,
+  VisuallyHidden,
+  Stack,
+  HStack
+} from '@chakra-ui/react'
 import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
 import * as React from 'react'
 import Link from 'next/link'
@@ -7,6 +18,7 @@ import Logo from './Logo'
 
 import navLinks from '~/_data/navLinks.json'
 import { useSidebarDisclosure } from '~/modules/docs/utils'
+import { NavLinkItem } from '~/types/common'
 
 export type NavigationProps = FlexProps
 
@@ -45,7 +57,7 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
       </Box>
       <Box as="nav" display="flex" alignItems="center">
         <Stack as="ul" direction="row" spacing={4} listStyleType="none">
-          {navLinks.map(({ path, title, isExact }) => (
+          {navLinks.map(({ path, title, isExact }: NavLinkItem) => (
             <Box as="li" key={path}>
               <Link href={path} passHref>
                 <ChakraLink
@@ -60,7 +72,7 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
           ))}
         </Stack>
       </Box>
-      <Box>
+      <HStack spacing={2}>
         <Tooltip label={toggleText} placement="bottom-end">
           <IconButton
             variant="ghost"
@@ -81,7 +93,7 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
             </Tooltip>
           </Box>
         )}
-      </Box>
+      </HStack>
     </Grid>
   )
 }

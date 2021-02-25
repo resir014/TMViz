@@ -1,11 +1,10 @@
 [
   {
-    "title": "Home",
-    "path": "/",
-    "isExact": true
+    "title": "Docs",
+    "path": "/docs/about"
   },
   {
-    "title": "Docs",
-    "path": "/docs"
+    "title": "Changelog",
+    "path": "/docs/changelog"
   }
 ]
