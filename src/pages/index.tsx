@@ -2,7 +2,7 @@ import * as React from 'react'
 import { NextPage } from 'next'
 import dynamic from 'next/dynamic'
 
-import { LayoutRoot, Navigation } from '~/components/layout'
+import { LayoutRoot, Navigation, SidebarAndContent } from '~/components/layout'
 import CustomizerLoading from '~/modules/customizer/CustomizerLoading'
 import siteMetadata from '~/_data/siteMetadata.json'
 
@@ -14,7 +14,9 @@ const IndexPage: NextPage = () => {
   return (
     <LayoutRoot pageTitle={title} titleTemplate={`%s · ${description}`}>
       <Navigation />
-      <CustomizerForm />
+      <SidebarAndContent>
+        <CustomizerForm />
+      </SidebarAndContent>
     </LayoutRoot>
   )
 }

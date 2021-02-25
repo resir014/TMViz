@@ -51,7 +51,8 @@
     "react-colorful": "^4.4.3",
     "react-dom": "^17.0.1",
     "react-use": "^15.3.4",
-    "yup": "^0.31.0"
+    "yup": "^0.31.0",
+    "zustand": "^3.3.2"
   },
   "devDependencies": {
     "@emotion/babel-plugin": "^11.2.0",

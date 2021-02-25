@@ -36,8 +36,8 @@ const CustomizerForm: React.FC = () => {
   }
 
   return (
-    <>
-      <Content as="section">
+    <Content as="section">
+      <Box px={6} pt={8} pb={12}>
         <Formik enableReinitialize validationSchema={validationSchema} initialValues={formInitialValues} onSubmit={handleSubmit}>
           {({ values }) => {
             return (
@@ -121,9 +121,9 @@ const CustomizerForm: React.FC = () => {
             )
           }}
         </Formik>
-      </Content>
+      </Box>
       <Footer />
-    </>
+    </Content>
   )
 }
 

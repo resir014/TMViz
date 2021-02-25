@@ -1,15 +1,19 @@
 import { Grid, Box, Link as ChakraLink, FlexProps, IconButton, useColorMode, Tooltip, VisuallyHidden, Stack } from '@chakra-ui/react'
-import { MoonIcon, SunIcon } from '@chakra-ui/icons'
+import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
 import * as React from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import Logo from './Logo'
+
+import navLinks from '~/_data/navLinks.json'
+import { useSidebarDisclosure } from '~/modules/docs/utils'
 
 export type NavigationProps = FlexProps
 
 const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode()
   const router = useRouter()
+  const { isOpen, onToggle } = useSidebarDisclosure()
 
   const toggleText = `Switch to ${colorMode === 'dark' ? 'light' : 'dark'} mode`
 
@@ -20,9 +24,15 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
       style={style}
       gridTemplateColumns="auto 1fr auto"
       gridGap={4}
+      position="fixed"
+      top={0}
+      left={0}
+      right={0}
+      height="64px"
       px={6}
       py={3}
       backgroundColor={colorMode === 'dark' ? 'black' : 'white'}
+      zIndex="sticky"
       {...rest}
     >
       <Box display="flex" alignItems="center" userSelect="none">
@@ -35,28 +45,19 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
       </Box>
       <Box as="nav" display="flex" alignItems="center">
         <Stack as="ul" direction="row" spacing={4} listStyleType="none">
-          <Box as="li">
-            <Link href="/about" passHref>
-              <ChakraLink
-                color="inherit"
-                fontWeight={router.asPath === '/about' ? 600 : 400}
-                textDecoration={router.asPath === '/about' ? 'underline' : 'none'}
-              >
-                About
-              </ChakraLink>
-            </Link>
-          </Box>
-          <Box as="li">
-            <Link href="/changelog" passHref>
-              <ChakraLink
-                color="inherit"
-                fontWeight={router.asPath === '/changelog' ? 600 : 400}
-                textDecoration={router.asPath === '/changelog' ? 'underline' : 'none'}
-              >
-                Changelog
-              </ChakraLink>
-            </Link>
-          </Box>
+          {navLinks.map(({ path, title, isExact }) => (
+            <Box as="li" key={path}>
+              <Link href={path} passHref>
+                <ChakraLink
+                  color="inherit"
+                  fontWeight={(isExact ? router.asPath === path : router.asPath.startsWith(path)) ? 600 : 400}
+                  textDecoration={(isExact ? router.asPath === path : router.asPath.startsWith(path)) ? 'underline' : 'none'}
+                >
+                  {title}
+                </ChakraLink>
+              </Link>
+            </Box>
+          ))}
         </Stack>
       </Box>
       <Box>
@@ -68,6 +69,18 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
             onClick={toggleColorMode}
           />
         </Tooltip>
+        {router.asPath.startsWith('/docs') && (
+          <Box display={['inline-block', null, 'none']}>
+            <Tooltip label="Toggle navigation" placement="bottom-end">
+              <IconButton
+                variant="ghost"
+                aria-label="Toggle navigation"
+                icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+                onClick={onToggle}
+              />
+            </Tooltip>
+          </Box>
+        )}
       </Box>
     </Grid>
   )

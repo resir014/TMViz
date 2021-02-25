@@ -4,6 +4,7 @@ export interface NavLinkItem {
 }
 
 export interface PageMetadata {
+  template?: string
   date: string
   title: string
   slug: string
