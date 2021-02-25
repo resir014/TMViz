@@ -1,0 +1,17 @@
+[
+  {
+    "id": "about",
+    "title": "About TMViz",
+    "url": "/docs/about"
+  },
+  {
+    "id": "faq",
+    "title": "FAQ",
+    "url": "/docs/faq"
+  },
+  {
+    "id": "changelog",
+    "title": "Changelog",
+    "url": "/docs/changelog"
+  }
+]

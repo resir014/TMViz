@@ -1,9 +1,11 @@
 export interface NavLinkItem {
-  name: string
-  href: string
+  title: string
+  path: string
+  isExact?: boolean
 }
 
 export interface PageMetadata {
+  template?: string
   date: string
   title: string
   slug: string

@@ -38,5 +38,24 @@ module.exports = withSourceMaps({
     }
     return config
   },
-  basePath
+  basePath,
+  async redirects() {
+    return [
+      {
+        source: '/docs',
+        destination: '/docs/about',
+        permanent: false
+      },
+      {
+        source: '/about',
+        destination: '/docs/about',
+        permanent: true
+      },
+      {
+        source: '/changelog',
+        destination: '/docs/changelog',
+        permanent: true
+      }
+    ]
+  }
 })

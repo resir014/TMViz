@@ -3,7 +3,7 @@ import { join } from 'path'
 import matter from 'gray-matter'
 import { BasePageProps } from '~/types/common'
 
-const postsDirectory = join(process.cwd(), '_pages')
+const postsDirectory = join(process.cwd(), '_docs')
 
 export function getPageSlugs() {
   return fs.readdirSync(postsDirectory)

@@ -1,14 +1,15 @@
-import * as React from 'react'
 import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from 'next'
+import * as React from 'react'
 
-import { LayoutRoot, Navigation, Content, Footer } from '~/components/layout'
+import { LayoutRoot, Navigation, Content, Footer, SidebarAndContent } from '~/components/layout'
 import { Page, PageHeader, PageBody } from '~/components/page'
-import { getAllPages, getPageBySlug } from '~/utils/posts'
+import { DocsSidebar } from '~/modules/docs/components'
+import { getAllPages, getPageBySlug } from '~/modules/docs/ssg'
 import markdownToHtml from '~/utils/markdownToHtml'
 
 export async function getStaticProps({ params }: GetStaticPropsContext<{ slug: string }>) {
   if (params) {
-    const post = getPageBySlug(params.slug, ['title', 'date', 'slug', 'content'])
+    const post = getPageBySlug(params.slug, ['template', 'title', 'date', 'slug', 'content'])
     const content = await markdownToHtml(post.content || '')
 
     return {
@@ -39,20 +40,23 @@ export async function getStaticPaths() {
   }
 }
 
-type MarkdownPageProps = InferGetStaticPropsType<typeof getStaticProps>
+type DocsMarkdownPageProps = InferGetStaticPropsType<typeof getStaticProps>
 
-const MarkdownPage: NextPage<MarkdownPageProps> = ({ post }) => {
+const DocsMarkdownPage: NextPage<DocsMarkdownPageProps> = ({ post }) => {
   if (post) {
     return (
       <LayoutRoot pageTitle={post.title}>
         <Navigation />
-        <Content>
-          <Page>
-            <PageHeader title={post.title} />
-            <PageBody content={post.content} />
-          </Page>
-        </Content>
-        <Footer />
+        <SidebarAndContent>
+          <DocsSidebar />
+          <Content>
+            <Page>
+              <PageHeader title={post.title} />
+              <PageBody content={post.content} template={post.template} />
+            </Page>
+            <Footer />
+          </Content>
+        </SidebarAndContent>
       </LayoutRoot>
     )
   }
@@ -60,4 +64,4 @@ const MarkdownPage: NextPage<MarkdownPageProps> = ({ post }) => {
   return null
 }
 
-export default MarkdownPage
+export default DocsMarkdownPage
