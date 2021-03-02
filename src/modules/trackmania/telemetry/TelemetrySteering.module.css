@@ -10,6 +10,10 @@
   height: 100%;
 }
 
+.isHidden {
+  display: none;
+}
+
 .isLeft {
   grid-area: left;
   justify-content: flex-end;
