@@ -24,20 +24,29 @@ const ControllerTelemetry: React.FC<ControllerTelemetryProps> = ({ className, st
           direction="left"
           isConnected={isConnected}
           steeringDeadzone={data.steeringDeadzone}
+          hide={appearance?.disableSteering}
           color={appearance?.steeringColor}
           value={data.steering}
         />
         <TelemetryButton
           className={styles.isThrottle}
           isConnected={isConnected}
+          hide={appearance?.disableAccelerate}
           value={data.accelerate}
           color={appearance?.accelerateColor}
         />
-        <TelemetryButton className={styles.isBrake} isConnected={isConnected} value={data.brake} color={appearance?.brakeColor} />
+        <TelemetryButton
+          className={styles.isBrake}
+          isConnected={isConnected}
+          hide={appearance?.disableBrake}
+          value={data.brake}
+          color={appearance?.brakeColor}
+        />
         <TelemetrySteering
           direction="right"
           isConnected={isConnected}
           steeringDeadzone={data.steeringDeadzone}
+          hide={appearance?.disableSteering}
           color={appearance?.steeringColor}
           value={data.steering}
         />

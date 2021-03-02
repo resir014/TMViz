@@ -11,6 +11,7 @@ interface TelemetrySteeringProps {
   style?: React.CSSProperties
   direction: 'left' | 'right'
   isConnected?: boolean
+  hide?: string
   value?: number
   color?: string
   steeringDeadzone?: number
@@ -22,6 +23,7 @@ const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({
   direction,
   isConnected,
   value,
+  hide,
   color,
   steeringDeadzone = 0
 }) => {
@@ -40,7 +42,7 @@ const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({
 
   return (
     <div
-      className={clsx(styles.root, direction === 'left' ? styles.isLeft : styles.isRight, className)}
+      className={clsx(styles.root, hide && styles.isHidden, direction === 'left' ? styles.isLeft : styles.isRight, className)}
       style={{
         backgroundColor,
         ...style

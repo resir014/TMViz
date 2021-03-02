@@ -8,16 +8,17 @@ interface TelemetryButtonProps {
   className?: string
   style?: React.CSSProperties
   isConnected?: boolean
+  hide?: string
   value?: number
   color?: string
 }
 
-const TelemetryButton: React.FC<TelemetryButtonProps> = ({ className, style, isConnected, value, color }) => {
+const TelemetryButton: React.FC<TelemetryButtonProps> = ({ className, style, isConnected, hide, value, color }) => {
   const backgroundColor = useTelemetryInputStyle(color, isConnected)
 
   return (
     <div
-      className={clsx(styles.root, className)}
+      className={clsx(styles.root, hide && styles.isHidden, className)}
       style={{
         backgroundColor,
         ...style
