@@ -3,6 +3,12 @@ template: changelog
 title: Changelog
 ---
 
+## 02 March 2021
+
+- <span class="feature--new">New</span> Added Docs section! For now, this contains the existing information from the About page, but over time it will be updated to include detailed guides, etc.
+- <span class="feature--new">New</span> You can now hide certain elements of the gamepad overlay (e.g. accelerator, brake, steering). This is useful in case you need to run multiple instances of TMViz for different controllers.
+- <span class="feature--fixed">Fixed</span> When steering axis is not set, the overlay shouldn't fallback to axis 0.
+
 ## 03 January 2021
 
 - <span class="feature--fixed">Fixed</span> Correctly handled edge case where selected button does not exist in the controller.
