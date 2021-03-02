@@ -1,10 +1,10 @@
 /* eslint-disable react/no-array-index-key */
 import { AddIcon } from '@chakra-ui/icons'
-import { Stack, Text, Box, Grid, Link, useToast, Button } from '@chakra-ui/react'
+import { Stack, Text, Box, Grid, Link, useToast, Button, useColorMode } from '@chakra-ui/react'
 import { FieldArray, Form, Formik } from 'formik'
 import * as React from 'react'
 import { useLocalStorage } from 'react-use'
-import { ColorInputField, NumericField } from '~/components/form'
+import { CheckboxField, ColorInputField, NumericField } from '~/components/form'
 import { Content, Footer } from '~/components/layout'
 import { CustomizerFormSettings } from '~/types/overlay'
 import useHasMounted from '~/utils/useHasMounted'
@@ -17,6 +17,7 @@ import { defaultConfig, validationSchema } from './utils'
 const CustomizerForm: React.FC = () => {
   const toast = useToast()
   const hasMounted = useHasMounted()
+  const { colorMode } = useColorMode()
   const [settings, setSettings] = useLocalStorage('tmviz-settings', defaultConfig)
 
   const formInitialValues = React.useMemo(() => parseConfigToFormData(settings), [settings])
@@ -52,11 +53,25 @@ const CustomizerForm: React.FC = () => {
                     </FormSection>
                     <FormSection>
                       <FormSectionHeader title="Appearance" subtitle="Tweak the look and feel of your overlay." />
-                      <Grid gridTemplateColumns={['1fr', null, null, 'repeat(3, 1fr)']} gridGap={4} p={6}>
-                        <ColorInputField label="Accelerator color" name="appearance.accelerateColor" autoComplete="off" />
-                        <ColorInputField label="Brake color" name="appearance.brakeColor" autoComplete="off" />
-                        <ColorInputField label="Steering color" name="appearance.steeringColor" autoComplete="off" />
-                      </Grid>
+                      <Stack spacing={6} p={6}>
+                        <Grid gridTemplateColumns={['1fr', 'repeat(2, 1fr)', null, null, 'repeat(3, 1fr)']} gridGap={4}>
+                          <ColorInputField label="Accelerator color" name="appearance.accelerateColor" autoComplete="off" />
+                          <ColorInputField label="Brake color" name="appearance.brakeColor" autoComplete="off" />
+                          <ColorInputField label="Steering color" name="appearance.steeringColor" autoComplete="off" />
+                        </Grid>
+                        <Grid
+                          gridTemplateColumns={['1fr', 'repeat(2, 1fr)', null, null, 'repeat(3, 1fr)']}
+                          border="1px solid"
+                          borderColor={colorMode === 'dark' ? 'gray.800' : 'gray.100'}
+                          borderRadius="md"
+                          gridGap={4}
+                          p={4}
+                        >
+                          <CheckboxField label="Hide accelerate" name="appearance.disableAccelerate" />
+                          <CheckboxField label="Hide brake" name="appearance.disableBrake" />
+                          <CheckboxField label="Hide steering" name="appearance.disableSteering" />
+                        </Grid>
+                      </Stack>
                     </FormSection>
                     <FieldArray name="keybinds">
                       {arrayHelpers => (

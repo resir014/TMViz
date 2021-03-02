@@ -8,7 +8,7 @@ interface TelemetryButtonProps {
   className?: string
   style?: React.CSSProperties
   isConnected?: boolean
-  hide?: string
+  hide?: boolean
   value?: number
   color?: string
 }

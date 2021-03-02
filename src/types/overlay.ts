@@ -14,9 +14,9 @@ export interface GamepadAppearanceSettings {
   accelerateColor: string
   brakeColor: string
   steeringColor: string
-  disableSteering?: string
-  disableAccelerate?: string
-  disableBrake?: string
+  disableSteering?: boolean
+  disableAccelerate?: boolean
+  disableBrake?: boolean
 }
 
 export interface ControllerTelemetry {

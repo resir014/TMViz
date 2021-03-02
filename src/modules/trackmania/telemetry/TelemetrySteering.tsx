@@ -11,7 +11,7 @@ interface TelemetrySteeringProps {
   style?: React.CSSProperties
   direction: 'left' | 'right'
   isConnected?: boolean
-  hide?: string
+  hide?: boolean
   value?: number
   color?: string
   steeringDeadzone?: number
