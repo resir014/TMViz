@@ -55,7 +55,9 @@ function useTrackmaniaTelemetry(config: Partial<TrackmaniaOverlayConfig>): Contr
     return {
       isConnected: true,
       data: {
-        accelerate: normalizeButtonValue(gamepads[currentGamepad], config.accelerateButton),
+        accelerate:
+          normalizeAxisValue(gamepads[currentGamepad], config.accelerateAxis) ||
+          normalizeButtonValue(gamepads[currentGamepad], config.accelerateButton),
         brake: normalizeButtonValue(gamepads[currentGamepad], config.brakeButton),
         steering:
           normalizeSteeringDpadValue(gamepads[currentGamepad], config.steeringLeftButton, 'left') ||

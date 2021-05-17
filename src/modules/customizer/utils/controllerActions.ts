@@ -10,6 +10,10 @@ const controllerActions: ControllerActionsOptions[] = [
     value: 'accelerateButton'
   },
   {
+    label: 'Accelerate axis',
+    value: 'accelerateAxis'
+  },
+  {
     label: 'Brake button',
     value: 'brakeButton'
   },
