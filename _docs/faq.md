@@ -15,6 +15,10 @@ This tool utilises the [Gamepad API](https://developer.mozilla.org/en-US/docs/We
 
 A list of compatible controllers is also available [here](https://gamepad-tester.com/controllers).
 
+## Help! I added the overlay, but nothing is happening!
+
+It was noticed that controllers are not properly picked up if they have been turned on after the streaming software has been started. Reloading the browser source without cache doesn't seem to fix it, so the only real solution is a full restart of the streaming software.
+
 ## Who made this?
 
 [Me!](https://twitter.com/resir014) You can also find me on [these places](https://resir014.xyz/linktree) and take a look at my previous stuff [here](https://resir014.xyz/projects).
