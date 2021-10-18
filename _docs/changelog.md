@@ -3,6 +3,10 @@ template: changelog
 title: Changelog
 ---
 
+## 18 October 2021
+
+- <span class="feature--fixed">Fixed</span> Fixed an issue where hiding the steering makes the whole overlay disappear.
+
 ## 02 March 2021
 
 - <span class="feature--new">New</span> Added Docs section! For now, this contains the existing information from the About page, but over time it will be updated to include detailed guides, etc.
