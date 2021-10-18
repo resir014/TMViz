@@ -5,8 +5,8 @@
 .telemetryWrapper {
   display: grid;
   grid-gap: 8px;
-  grid-auto-columns: 1fr 48px 1fr;
-  grid-template-rows: 1fr 1fr;
+  grid-auto-columns: 96px 48px 96px;
+  grid-template-rows: 66px 66px;
   grid-template-areas:
     'left throttle right'
     'left brake right';
