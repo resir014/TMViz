@@ -1,10 +1,10 @@
-import { Box, BoxProps, Heading } from '@chakra-ui/react'
-import * as React from 'react'
-import { Container, ContainerProps } from '../layout'
+import { Box, BoxProps, Heading } from '@chakra-ui/react';
+import * as React from 'react';
+import { Container, ContainerProps } from '../layout';
 
 export interface PageHeaderProps extends BoxProps {
-  title: string
-  _containerProps?: ContainerProps
+  title: string;
+  _containerProps?: ContainerProps;
 }
 
 const PageHeader: React.FC<PageHeaderProps> = ({ title, _containerProps, ...rest }) => {
@@ -16,7 +16,7 @@ const PageHeader: React.FC<PageHeaderProps> = ({ title, _containerProps, ...rest
         </Heading>
       </Container>
     </Box>
-  )
-}
+  );
+};
 
-export default PageHeader
+export default PageHeader;

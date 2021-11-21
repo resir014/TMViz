@@ -1,8 +1,8 @@
-import * as React from 'react'
-import { Code } from '@chakra-ui/react'
-import { HtmrOptions } from 'htmr'
+import * as React from 'react';
+import { Code } from '@chakra-ui/react';
+import { HtmrOptions } from 'htmr';
 
-import { Anchor, H1, H2, H3, H4, H5, H6, UL, LI, OL, P } from '~/components/markdown'
+import { Anchor, H1, H2, H3, H4, H5, H6, UL, LI, OL, P } from '~/components/markdown';
 
 const htmrTransform: HtmrOptions['transform'] = {
   p: P,
@@ -16,7 +16,7 @@ const htmrTransform: HtmrOptions['transform'] = {
   ul: UL,
   ol: OL,
   li: LI,
-  code: props => <Code {...props} />
-}
+  code: props => <Code {...props} />,
+};
 
-export default htmrTransform
+export default htmrTransform;

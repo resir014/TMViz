@@ -1,10 +1,10 @@
-import { BoxProps, Flex, useColorMode } from '@chakra-ui/react'
-import * as React from 'react'
+import { BoxProps, Flex, useColorMode } from '@chakra-ui/react';
+import * as React from 'react';
 
-type FormSectionProps = BoxProps
+type FormSectionProps = BoxProps;
 
 const FormSection: React.FC<FormSectionProps> = ({ children, ...rest }) => {
-  const { colorMode } = useColorMode()
+  const { colorMode } = useColorMode();
   return (
     <Flex
       flexDirection="column"
@@ -17,7 +17,7 @@ const FormSection: React.FC<FormSectionProps> = ({ children, ...rest }) => {
     >
       {children}
     </Flex>
-  )
-}
+  );
+};
 
-export default FormSection
+export default FormSection;

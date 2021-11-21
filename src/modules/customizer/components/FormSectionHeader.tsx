@@ -1,26 +1,32 @@
-import { Stack, Text, Heading, Flex, Box, FlexProps, useColorMode } from '@chakra-ui/react'
-import * as React from 'react'
+import { Stack, Text, Heading, Flex, Box, FlexProps, useColorMode } from '@chakra-ui/react';
+import * as React from 'react';
 
 interface FormSectionSubheaderProps extends FlexProps {
-  title: string
-  subtitle?: React.ReactNode
-  rightElement?: React.ReactNode
+  title: string;
+  subtitle?: React.ReactNode;
+  rightElement?: React.ReactNode;
 }
 
-const FormSectionHeader: React.FC<FormSectionSubheaderProps> = ({ title, subtitle, rightElement, alignItems = 'center', ...rest }) => {
-  const { colorMode } = useColorMode()
+const FormSectionHeader: React.FC<FormSectionSubheaderProps> = ({
+  title,
+  subtitle,
+  rightElement,
+  alignItems = 'center',
+  ...rest
+}) => {
+  const { colorMode } = useColorMode();
 
   const renderSubtitle = () => {
     if (typeof subtitle !== 'string') {
-      return subtitle
+      return subtitle;
     }
 
     if (subtitle) {
-      return <Text fontSize="sm">{subtitle}</Text>
+      return <Text fontSize="sm">{subtitle}</Text>;
     }
 
-    return null
-  }
+    return null;
+  };
 
   return (
     <Flex
@@ -40,7 +46,7 @@ const FormSectionHeader: React.FC<FormSectionSubheaderProps> = ({ title, subtitl
       </Stack>
       {rightElement && <Box ml={4}>{rightElement}</Box>}
     </Flex>
-  )
-}
+  );
+};
 
-export default FormSectionHeader
+export default FormSectionHeader;

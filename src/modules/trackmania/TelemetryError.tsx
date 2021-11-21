@@ -1,20 +1,40 @@
-import { Text } from '@chakra-ui/react'
-import clsx from 'clsx'
-import { transparentize } from 'polished'
-import * as React from 'react'
-import theme from '~/utils/theme'
+import { Text } from '@chakra-ui/react';
+import clsx from 'clsx';
+import { transparentize } from 'polished';
+import * as React from 'react';
 
-import styles from './ControllerTelemetry.module.css'
-import errorStyles from './TelemetryError.module.css'
+import styles from './ControllerTelemetry.module.css';
+import errorStyles from './TelemetryError.module.css';
+import theme from '~/utils/theme';
 
 const TelemetryError: React.FC = () => {
   return (
     <div className={clsx(styles.root, errorStyles.root)}>
       <div className={styles.telemetryWrapper}>
-        <div className={styles.isThrottle} style={{ backgroundColor: transparentize(0.75, theme.colors.red[500]) }} />
-        <div className={styles.isBrake} style={{ backgroundColor: transparentize(0.75, theme.colors.red[500]) }} />
-        <div style={{ gridArea: 'left', width: 96, height: 140, backgroundColor: transparentize(0.75, theme.colors.red[500]) }} />
-        <div style={{ gridArea: 'right', width: 96, height: 140, backgroundColor: transparentize(0.75, theme.colors.red[500]) }} />
+        <div
+          className={styles.isThrottle}
+          style={{ backgroundColor: transparentize(0.75, theme.colors.red[500]) }}
+        />
+        <div
+          className={styles.isBrake}
+          style={{ backgroundColor: transparentize(0.75, theme.colors.red[500]) }}
+        />
+        <div
+          style={{
+            gridArea: 'left',
+            width: 96,
+            height: 140,
+            backgroundColor: transparentize(0.75, theme.colors.red[500]),
+          }}
+        />
+        <div
+          style={{
+            gridArea: 'right',
+            width: 96,
+            height: 140,
+            backgroundColor: transparentize(0.75, theme.colors.red[500]),
+          }}
+        />
       </div>
       <div className={errorStyles.inner}>
         <Text
@@ -29,7 +49,7 @@ const TelemetryError: React.FC = () => {
         </Text>
       </div>
     </div>
-  )
-}
+  );
+};
 
-export default TelemetryError
+export default TelemetryError;

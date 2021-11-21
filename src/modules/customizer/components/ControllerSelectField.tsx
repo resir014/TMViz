@@ -1,17 +1,17 @@
-import { Alert, AlertDescription, AlertIcon, Select, Stack } from '@chakra-ui/react'
-import { ErrorMessage, Field, FieldProps } from 'formik'
-import * as React from 'react'
-import { GamepadsMap, useGamepad } from '~/modules/gamepad'
+import { Alert, AlertDescription, AlertIcon, Select, Stack } from '@chakra-ui/react';
+import { ErrorMessage, Field, FieldProps } from 'formik';
+import * as React from 'react';
+import { GamepadsMap, useGamepad } from '~/modules/gamepad';
 
 interface ControllerSelectFieldProps {
-  name: string
+  name: string;
 }
 
 const ControllerSelectField: React.FC<ControllerSelectFieldProps> = ({ name }) => {
-  const [gamepads, setGamepads] = React.useState<GamepadsMap>({})
-  useGamepad(newGamepads => setGamepads(newGamepads))
+  const [gamepads, setGamepads] = React.useState<GamepadsMap>({});
+  useGamepad(newGamepads => setGamepads(newGamepads));
 
-  const gamepadKeys = Object.keys(gamepads)
+  const gamepadKeys = Object.keys(gamepads);
 
   return (
     <Field name={name}>
@@ -31,13 +31,15 @@ const ControllerSelectField: React.FC<ControllerSelectFieldProps> = ({ name }) =
           {gamepadKeys.length === 0 && (
             <Alert status="error">
               <AlertIcon />
-              <AlertDescription>Press any button in your controller to start detection.</AlertDescription>
+              <AlertDescription>
+                Press any button in your controller to start detection.
+              </AlertDescription>
             </Alert>
           )}
         </Stack>
       )}
     </Field>
-  )
-}
+  );
+};
 
-export default ControllerSelectField
+export default ControllerSelectField;

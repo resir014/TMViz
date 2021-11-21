@@ -1,17 +1,17 @@
-import * as React from 'react'
-import { NextPage } from 'next'
+import * as React from 'react';
+import { NextPage } from 'next';
 
-import { ControllerTelemetry, OverlayRoot } from '~/modules/trackmania'
-import useOverlayConfig from '~/modules/trackmania/utils/useOverlayConfig'
+import { ControllerTelemetry, OverlayRoot } from '~/modules/trackmania';
+import useOverlayConfig from '~/modules/trackmania/utils/useOverlayConfig';
 
 const OverlayPage: NextPage = () => {
-  const { appearance, config } = useOverlayConfig()
+  const { appearance, config } = useOverlayConfig();
 
   return (
     <OverlayRoot>
       <ControllerTelemetry appearance={appearance} config={config} />
     </OverlayRoot>
-  )
-}
+  );
+};
 
-export default OverlayPage
+export default OverlayPage;

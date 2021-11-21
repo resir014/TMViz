@@ -1,7 +1,7 @@
-import { Badge, BadgeProps } from '@chakra-ui/react'
-import * as React from 'react'
+import { Badge, BadgeProps } from '@chakra-ui/react';
+import * as React from 'react';
 
-type LabelProps = JSX.IntrinsicElements['span'] & BadgeProps
+type LabelProps = JSX.IntrinsicElements['span'] & BadgeProps;
 
 const Label: React.FC<LabelProps> = ({ className, children, ...rest }) => {
   if (className?.includes('feature--new')) {
@@ -9,7 +9,7 @@ const Label: React.FC<LabelProps> = ({ className, children, ...rest }) => {
       <Badge colorScheme="purple" fontSize="0.8em" {...rest}>
         {children}
       </Badge>
-    )
+    );
   }
 
   if (className?.includes('feature--fixed')) {
@@ -17,7 +17,7 @@ const Label: React.FC<LabelProps> = ({ className, children, ...rest }) => {
       <Badge colorScheme="red" fontSize="0.8em" {...rest}>
         {children}
       </Badge>
-    )
+    );
   }
 
   if (className?.includes('feature--changed')) {
@@ -25,7 +25,7 @@ const Label: React.FC<LabelProps> = ({ className, children, ...rest }) => {
       <Badge colorScheme="blue" fontSize="0.8em" {...rest}>
         {children}
       </Badge>
-    )
+    );
   }
 
   if (className?.includes('feature--deprecated')) {
@@ -33,10 +33,10 @@ const Label: React.FC<LabelProps> = ({ className, children, ...rest }) => {
       <Badge colorScheme="yellow" fontSize="0.8em" {...rest}>
         {children}
       </Badge>
-    )
+    );
   }
 
-  return <span {...rest}>{children}</span>
-}
+  return <span {...rest}>{children}</span>;
+};
 
-export default Label
+export default Label;

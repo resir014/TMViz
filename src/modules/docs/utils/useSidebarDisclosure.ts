@@ -1,23 +1,23 @@
-import create from 'zustand'
+import create from 'zustand';
 
 type SidebarDisclosureState = {
-  isOpen: boolean
-  onOpen: () => void
-  onClose: () => void
-  onToggle: () => void
-}
+  isOpen: boolean;
+  onOpen: () => void;
+  onClose: () => void;
+  onToggle: () => void;
+};
 
 const useSidebarDisclosure = create<SidebarDisclosureState>(set => ({
   isOpen: false,
   onOpen: () => {
-    set(() => ({ isOpen: true }))
+    set(() => ({ isOpen: true }));
   },
   onClose: () => {
-    set(() => ({ isOpen: false }))
+    set(() => ({ isOpen: false }));
   },
   onToggle: () => {
-    set(state => ({ isOpen: !state.isOpen }))
-  }
-}))
+    set(state => ({ isOpen: !state.isOpen }));
+  },
+}));
 
-export default useSidebarDisclosure
+export default useSidebarDisclosure;
