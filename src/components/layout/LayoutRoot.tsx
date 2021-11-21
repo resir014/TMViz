@@ -27,7 +27,7 @@ const LayoutRoot: React.FC<LayoutRootProps> = ({ children, pageTitle, ...rest })
       backgroundColor={backgroundColor}
     >
       <NextSeo
-        title={pageTitle || ''}
+        title={pageTitle ?? ''}
         openGraph={{ ...rest.openGraph, title: pageTitle }}
         {...rest}
       />

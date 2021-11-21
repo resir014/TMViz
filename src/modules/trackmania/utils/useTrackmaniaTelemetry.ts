@@ -53,7 +53,7 @@ function useTrackmaniaTelemetry(config: Partial<TrackmaniaOverlayConfig>): Contr
       return Number(config.controllerIndex || '0');
     }
 
-    return Number(config.controllerIndex?.[0] || '0');
+    return Number(config.controllerIndex?.[0] ?? '0');
   }, [config.controllerIndex]);
 
   if (gamepads[currentGamepad]) {

@@ -17,11 +17,11 @@ export default function parseAppearance({
   return {
     accelerateColor: Array.isArray(accelerateColor)
       ? accelerateColor[0]
-      : accelerateColor || theme.colors.green[500],
-    brakeColor: Array.isArray(brakeColor) ? brakeColor[0] : brakeColor || theme.colors.red[500],
+      : accelerateColor ?? theme.colors.green[500],
+    brakeColor: Array.isArray(brakeColor) ? brakeColor[0] : brakeColor ?? theme.colors.red[500],
     steeringColor: Array.isArray(steeringColor)
       ? steeringColor[0]
-      : steeringColor || theme.colors.orange[500],
+      : steeringColor ?? theme.colors.orange[500],
     disableAccelerate: parseIfDefined(disableAccelerate, false),
     disableBrake: parseIfDefined(disableBrake, false),
     disableSteering: parseIfDefined(disableSteering, false),

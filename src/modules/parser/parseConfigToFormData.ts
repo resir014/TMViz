@@ -28,7 +28,7 @@ export default function parseConfigToFormData(
 ): CustomizerFormSettings {
   if (globalConfig) {
     return {
-      version: globalConfig.version || 1,
+      version: globalConfig.version ?? 1,
       appearance: {
         ...globalConfig.appearance,
       },

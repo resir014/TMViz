@@ -31,7 +31,7 @@ const TelemetryButton: React.FC<TelemetryButtonProps> = ({
         ...style,
       }}
     >
-      <div className={styles.button} style={{ backgroundColor: color, opacity: value || 0 }} />
+      <div className={styles.button} style={{ backgroundColor: color, opacity: value ?? 0 }} />
     </div>
   );
 };

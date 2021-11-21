@@ -48,7 +48,7 @@ interface ControllerSettingsMap {
 export interface CustomizerFormSettings {
   version: number;
   appearance: GamepadAppearanceSettings;
-  keybinds: ControllerSettingsMap[];
+  keybinds?: ControllerSettingsMap[];
   config: Partial<Pick<TrackmaniaOverlayConfig, 'controllerIndex' | 'steeringDeadzone'>>;
 }
 

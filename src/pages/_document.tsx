@@ -6,7 +6,8 @@ import createEmotionServer from '@emotion/server/create-instance';
 import theme from '~/utils/theme';
 import emotionCache from '~/utils/emotionCache';
 
-const { extractCritical } = createEmotionServer(emotionCache);
+const server = createEmotionServer(emotionCache);
+const extractCritical = server.extractCritical.bind(server);
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: DocumentContext) {

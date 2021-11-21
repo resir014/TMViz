@@ -146,14 +146,14 @@ const CustomizerForm: React.FC = () => {
                                   />
                                 ))
                               : null}
-                            {!values.keybinds.length && (
+                            {!values.keybinds?.length && (
                               <Box px={6} py={3}>
                                 <Text display="block" color="red.500" fontSize="sm">
                                   Must have at least one keybind
                                 </Text>
                               </Box>
                             )}
-                            {!isUnique(values.keybinds.map(s => s.action)) && (
+                            {!isUnique(values.keybinds?.map(s => s.action) ?? []) && (
                               <Box px={6} py={3}>
                                 <Text display="block" color="red.500" fontSize="sm">
                                   Keybinds must be unique

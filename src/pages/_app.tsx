@@ -31,13 +31,13 @@ export default class MyApp extends App {
       this.setState({ eventId });
     });
 
-    super.componentDidCatch(error, errorInfo);
+    super.componentDidCatch?.(error, errorInfo);
   }
 
   render() {
     const { Component, pageProps, router } = this.props;
     const { title, description, siteUrl } = siteMetadata;
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || siteUrl;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? siteUrl;
 
     return (
       <CacheProvider value={emotionCache}>

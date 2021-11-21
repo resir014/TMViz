@@ -46,7 +46,7 @@ export default function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
     };
   }, []);
 
-  const scanGamepads = () => {
+  const scanGamepads = React.useCallback(() => {
     if ('getGamepads' in navigator) {
       const activeGamepads = navigator.getGamepads ? navigator.getGamepads() : [];
 
@@ -60,7 +60,7 @@ export default function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
     }
 
     raf.current = requestAnimationFrame(scanGamepads);
-  };
+  }, [addGamepad]);
 
   React.useEffect(() => {
     raf.current = requestAnimationFrame(scanGamepads);
@@ -70,7 +70,7 @@ export default function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
         cancelAnimationFrame(raf.current);
       }
     };
-  }, []);
+  }, [scanGamepads]);
 
   return gamepadsRef.current;
 }

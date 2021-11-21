@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
 import { Box, Link as ChakraLink, useColorMode, useTheme } from '@chakra-ui/react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';

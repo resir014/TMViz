@@ -38,7 +38,7 @@ const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({
     }
 
     return { left: 0, right: 0 };
-  }, [value]);
+  }, [value, steeringDeadzone]);
 
   return (
     <div

@@ -11,6 +11,7 @@ module.exports = {
   plugins: ['prettier'],
   rules: {
     '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/no-unnecessary-condition': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
   },
   settings: {
