@@ -4,8 +4,10 @@ module.exports = {
   rules: {
     'import/no-unresolved': 'off',
     'import/no-extraneous-dependencies': 'off',
+    'import/prefer-default-export': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
     'react/jsx-props-no-spreading': 'off',
+    'react/require-default-props': 'off',
     'prettier/prettier': 'error'
   },
   overrides: [
@@ -29,7 +31,7 @@ module.exports = {
       }
     },
     {
-      files: ['.eslintrc.js', '*.config.js'],
+      files: ['.eslintrc.js', 'next.config.js'],
       parserOptions: { sourceType: 'script' },
       env: { node: true }
     }
