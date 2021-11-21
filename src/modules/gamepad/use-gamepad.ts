@@ -47,7 +47,7 @@ export default function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
   }, [])
 
   const scanGamepads = () => {
-    if ('ongamepadconnected' in window) {
+    if ('getGamepads' in navigator) {
       const activeGamepads = navigator.getGamepads ? navigator.getGamepads() : []
 
       if (activeGamepads) {
