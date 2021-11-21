@@ -1,14 +1,15 @@
 import { Alert, AlertDescription, AlertIcon, Select, Stack } from '@chakra-ui/react'
 import { ErrorMessage, Field, FieldProps } from 'formik'
 import * as React from 'react'
-import { useGamepad } from '~/modules/gamepad'
+import { GamepadsMap, useGamepad } from '~/modules/gamepad'
 
 interface ControllerSelectFieldProps {
   name: string
 }
 
 const ControllerSelectField: React.FC<ControllerSelectFieldProps> = ({ name }) => {
-  const { gamepads } = useGamepad()
+  const [gamepads, setGamepads] = React.useState<GamepadsMap>({})
+  useGamepad(newGamepads => setGamepads(newGamepads))
 
   const gamepadKeys = Object.keys(gamepads)
 

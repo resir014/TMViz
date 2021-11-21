@@ -1,3 +1,2 @@
-export { default as useGamepad } from './useGamepad'
-export * from './GamepadsContext'
+export { default as useGamepad } from './use-gamepad'
 export * from './types'

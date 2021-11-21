@@ -1,12 +1,10 @@
 /* eslint-disable no-plusplus */
 import * as React from 'react'
-import { GamepadsContext } from '~/modules/gamepad/GamepadsContext'
 import { GamepadsMap } from './types'
 
-export default function useGamepad() {
+export default function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
   const raf = React.useRef<number>()
   const gamepadsRef = React.useRef<GamepadsMap>({})
-  const { gamepads, updateGamepads } = React.useContext(GamepadsContext)
 
   const addGamepad = (gamepad: Gamepad | null) => {
     if (gamepad) {
@@ -15,7 +13,9 @@ export default function useGamepad() {
         [gamepad.index]: gamepad
       }
 
-      updateGamepads(gamepadsRef.current)
+      if (callback) {
+        callback(gamepadsRef.current)
+      }
     }
   }
 
@@ -47,8 +47,8 @@ export default function useGamepad() {
   }, [])
 
   const scanGamepads = () => {
-    if ('getGamepads' in navigator) {
-      const activeGamepads = navigator.getGamepads()
+    if ('ongamepadconnected' in window) {
+      const activeGamepads = navigator.getGamepads ? navigator.getGamepads() : []
 
       if (activeGamepads) {
         for (let i = 0; i < activeGamepads.length; i++) {
@@ -72,5 +72,5 @@ export default function useGamepad() {
     }
   }, [])
 
-  return { gamepads }
+  return gamepadsRef.current
 }
