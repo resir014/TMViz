@@ -1,13 +1,23 @@
-import { Box, Flex, FlexProps, HStack, Link as ChakraLink, Stack, Text, useColorMode, VisuallyHidden } from '@chakra-ui/react'
-import Link from 'next/link'
-import * as React from 'react'
-import footerLinks from '~/_data/footerLinks.json'
-import Logo from './Logo'
+import {
+  Box,
+  Flex,
+  FlexProps,
+  HStack,
+  Link as ChakraLink,
+  Stack,
+  Text,
+  useColorMode,
+  VisuallyHidden,
+} from '@chakra-ui/react';
+import Link from 'next/link';
+import * as React from 'react';
+import Logo from './Logo';
+import footerLinks from '~/_data/footerLinks.json';
 
-export type FooterProps = FlexProps
+export type FooterProps = FlexProps;
 
 const Footer: React.FC<FooterProps> = ({ className, style, ...rest }) => {
-  const { colorMode } = useColorMode()
+  const { colorMode } = useColorMode();
 
   return (
     <Flex
@@ -28,7 +38,9 @@ const Footer: React.FC<FooterProps> = ({ className, style, ...rest }) => {
             <VisuallyHidden>TMViz</VisuallyHidden>
           </Box>
           <Flex alignItems="center">
-            <Text fontSize="sm">Lightweight, customisable controller visualisation widget for Trackmania.</Text>
+            <Text fontSize="sm">
+              Lightweight, customisable controller visualisation widget for Trackmania.
+            </Text>
           </Flex>
         </Stack>
         <HStack spacing={6} as="ul" listStyleType="none">
@@ -40,7 +52,7 @@ const Footer: React.FC<FooterProps> = ({ className, style, ...rest }) => {
                     {link.title}
                   </ChakraLink>
                 </Text>
-              )
+              );
             }
 
             return (
@@ -49,16 +61,18 @@ const Footer: React.FC<FooterProps> = ({ className, style, ...rest }) => {
                   <ChakraLink>{link.title}</ChakraLink>
                 </Link>
               </Text>
-            )
+            );
           })}
         </HStack>
         <Stack spacing={0} color={colorMode === 'dark' ? 'gray.200' : 'gray.800'}>
           <Text fontSize="xs">TMViz &copy; 2020 resir014. Released under the MIT License.</Text>
-          <Text fontSize="xs">This project is not affiliated with Trackmania or Ubisoft Nadeo.</Text>
+          <Text fontSize="xs">
+            This project is not affiliated with Trackmania or Ubisoft Nadeo.
+          </Text>
         </Stack>
       </Stack>
     </Flex>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

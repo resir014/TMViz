@@ -1,9 +1,9 @@
-import { NextPage } from 'next'
-import Link from 'next/link'
-import * as React from 'react'
-import { Content, Footer, LayoutRoot, Navigation, SidebarAndContent } from '~/components/layout'
-import { Anchor, P } from '~/components/markdown'
-import { Page, PageBody, PageHeader } from '~/components/page'
+import { NextPage } from 'next';
+import Link from 'next/link';
+import * as React from 'react';
+import { Content, Footer, LayoutRoot, Navigation, SidebarAndContent } from '~/components/layout';
+import { Anchor, P } from '~/components/markdown';
+import { Page, PageBody, PageHeader } from '~/components/page';
 
 const NotFoundPage: NextPage = () => {
   return (
@@ -26,7 +26,7 @@ const NotFoundPage: NextPage = () => {
         </Content>
       </SidebarAndContent>
     </LayoutRoot>
-  )
-}
+  );
+};
 
-export default NotFoundPage
+export default NotFoundPage;

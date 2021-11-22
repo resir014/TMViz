@@ -1,22 +1,26 @@
-import { Box, Link as ChakraLink, useColorMode, useTheme } from '@chakra-ui/react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import { transparentize } from 'polished'
-import * as React from 'react'
-import { useSidebarDisclosure } from '../../utils'
+/* eslint-disable @typescript-eslint/no-unsafe-argument */
+import { Box, Link as ChakraLink, useColorMode, useTheme } from '@chakra-ui/react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import { transparentize } from 'polished';
+import * as React from 'react';
+import { useSidebarDisclosure } from '../../utils';
 
-import sidebarData from '../../_data/sidebarData.json'
+import sidebarData from '../../_data/sidebarData.json';
 
 const DocsSidebar: React.FC = () => {
-  const { colorMode } = useColorMode()
-  const { isOpen } = useSidebarDisclosure()
-  const theme = useTheme()
-  const router = useRouter()
+  const { colorMode } = useColorMode();
+  const { isOpen } = useSidebarDisclosure();
+  const theme = useTheme();
+  const router = useRouter();
 
   const backgroundColor = React.useMemo(
-    () => (colorMode === 'dark' ? transparentize(0.9, theme.colors.green[400]) : transparentize(0.9, theme.colors.blue[500])),
-    [theme, colorMode]
-  )
+    () =>
+      colorMode === 'dark'
+        ? transparentize(0.9, theme.colors.green[400])
+        : transparentize(0.9, theme.colors.blue[500]),
+    [theme, colorMode],
+  );
 
   return (
     <Box
@@ -46,7 +50,7 @@ const DocsSidebar: React.FC = () => {
               backgroundColor={router.asPath === data.url ? backgroundColor : undefined}
               borderRadius="base"
               _hover={{
-                backgroundColor
+                backgroundColor,
               }}
             >
               {data.title}
@@ -55,7 +59,7 @@ const DocsSidebar: React.FC = () => {
         ))}
       </Box>
     </Box>
-  )
-}
+  );
+};
 
-export default DocsSidebar
+export default DocsSidebar;

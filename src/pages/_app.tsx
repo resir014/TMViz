@@ -1,43 +1,43 @@
-import * as React from 'react'
-import * as Sentry from '@sentry/browser'
-import { Integrations } from '@sentry/tracing'
-import { ChakraProvider } from '@chakra-ui/react'
-import { CacheProvider } from '@emotion/react'
-import App from 'next/app'
-import Head from 'next/head'
-import { DefaultSeo } from 'next-seo'
+import * as React from 'react';
+import * as Sentry from '@sentry/browser';
+import { Integrations } from '@sentry/tracing';
+import { ChakraProvider } from '@chakra-ui/react';
+import { CacheProvider } from '@emotion/react';
+import App from 'next/app';
+import Head from 'next/head';
+import { DefaultSeo } from 'next-seo';
 
-import theme from '~/utils/theme'
-import emotionCache from '~/utils/emotionCache'
+import theme from '~/utils/theme';
+import emotionCache from '~/utils/emotionCache';
 
-import siteMetadata from '~/_data/siteMetadata.json'
+import siteMetadata from '~/_data/siteMetadata.json';
 
-import '~/styles/fonts'
+import '~/styles/fonts';
 
 Sentry.init({
   enabled: process.env.NODE_ENV === 'production',
   dsn: process.env.NEXT_PUBLIC_SENTRY_DSN,
   release: `tmviz@${process.env.NEXT_PUBLIC_COMMIT_SHA}`,
-  integrations: [new Integrations.BrowserTracing()]
-})
+  integrations: [new Integrations.BrowserTracing()],
+});
 
 export default class MyApp extends App {
   componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    const { componentStack } = errorInfo
+    const { componentStack } = errorInfo;
 
     Sentry.withScope(scope => {
-      scope.setExtras({ componentStack })
-      const eventId = Sentry.captureException(error)
-      this.setState({ eventId })
-    })
+      scope.setExtras({ componentStack });
+      const eventId = Sentry.captureException(error);
+      this.setState({ eventId });
+    });
 
-    super.componentDidCatch(error, errorInfo)
+    super.componentDidCatch?.(error, errorInfo);
   }
 
   render() {
-    const { Component, pageProps, router } = this.props
-    const { title, description, siteUrl } = siteMetadata
-    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || siteUrl
+    const { Component, pageProps, router } = this.props;
+    const { title, description, siteUrl } = siteMetadata;
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? siteUrl;
 
     return (
       <CacheProvider value={emotionCache}>
@@ -69,19 +69,19 @@ export default class MyApp extends App {
                   url: `${siteMetadata.siteUrl}/social.png`,
                   width: 1200,
                   height: 620,
-                  alt: siteMetadata.title
-                }
-              ]
+                  alt: siteMetadata.title,
+                },
+              ],
             }}
             twitter={{
               cardType: 'summary_large_image',
               handle: siteMetadata.author.twitter,
-              site: siteMetadata.author.twitter
+              site: siteMetadata.author.twitter,
             }}
           />
           <Component {...pageProps} />
         </ChakraProvider>
       </CacheProvider>
-    )
+    );
   }
 }

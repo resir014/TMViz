@@ -1,7 +1,7 @@
-import { NextSeo } from 'next-seo'
-import * as React from 'react'
+import { NextSeo } from 'next-seo';
+import * as React from 'react';
 
-import styles from './OverlayRoot.module.css'
+import styles from './OverlayRoot.module.css';
 
 const OverlayRoot: React.FC = ({ children }) => {
   return (
@@ -9,7 +9,7 @@ const OverlayRoot: React.FC = ({ children }) => {
       <NextSeo title="Overlay" />
       <div className={styles.inner}>{children}</div>
     </div>
-  )
-}
+  );
+};
 
-export default OverlayRoot
+export default OverlayRoot;

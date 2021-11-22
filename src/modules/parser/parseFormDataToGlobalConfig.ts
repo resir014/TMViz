@@ -1,12 +1,14 @@
-import { CustomizerFormSettings, GlobalOverlaySettings } from '~/types/overlay'
+import { CustomizerFormSettings, GlobalOverlaySettings } from '~/types/overlay';
 
-export default function parseFormDataToGlobalConfig(values: CustomizerFormSettings): GlobalOverlaySettings {
-  const keybinds: GlobalOverlaySettings['config'] = {}
+export default function parseFormDataToGlobalConfig(
+  values: CustomizerFormSettings,
+): GlobalOverlaySettings {
+  const keybinds: GlobalOverlaySettings['config'] = {};
 
   if (values.keybinds) {
     values.keybinds.forEach(keybind => {
-      keybinds[keybind.action] = keybind.button
-    })
+      keybinds[keybind.action] = keybind.button;
+    });
   }
 
   return {
@@ -15,7 +17,7 @@ export default function parseFormDataToGlobalConfig(values: CustomizerFormSettin
     config: {
       ...(keybinds || {}),
       steeringDeadzone: values.config.steeringDeadzone,
-      controllerIndex: values.config.controllerIndex
-    }
-  }
+      controllerIndex: values.config.controllerIndex,
+    },
+  };
 }

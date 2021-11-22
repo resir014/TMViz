@@ -1,23 +1,23 @@
 /* eslint-disable no-plusplus */
-import * as React from 'react'
-import { GamepadsMap } from './types'
+import * as React from 'react';
+import { GamepadsMap } from './types';
 
 export default function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
-  const raf = React.useRef<number>()
-  const gamepadsRef = React.useRef<GamepadsMap>({})
+  const raf = React.useRef<number>();
+  const gamepadsRef = React.useRef<GamepadsMap>({});
 
   const addGamepad = (gamepad: Gamepad | null) => {
     if (gamepad) {
       gamepadsRef.current = {
         ...gamepadsRef.current,
-        [gamepad.index]: gamepad
-      }
+        [gamepad.index]: gamepad,
+      };
 
       if (callback) {
-        callback(gamepadsRef.current)
+        callback(gamepadsRef.current);
       }
     }
-  }
+  };
 
   const handleGamepadConnected = (e: GamepadEvent) => {
     // eslint-disable-next-line no-console
@@ -26,51 +26,51 @@ export default function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
       e.gamepad.index,
       e.gamepad.id,
       e.gamepad.buttons.length,
-      e.gamepad.axes.length
-    )
-    addGamepad(e.gamepad)
-  }
+      e.gamepad.axes.length,
+    );
+    addGamepad(e.gamepad);
+  };
 
   const handleGamepadDisconnected = (e: GamepadEvent) => {
     // eslint-disable-next-line no-console
-    console.log('Gamepad disconnected from index %d: %s', e.gamepad.index, e.gamepad.id)
-  }
+    console.log('Gamepad disconnected from index %d: %s', e.gamepad.index, e.gamepad.id);
+  };
 
   React.useEffect(() => {
-    window.addEventListener<any>('gamepadconnected', handleGamepadConnected)
-    window.addEventListener<any>('gamepaddisconnected', handleGamepadDisconnected)
+    window.addEventListener<any>('gamepadconnected', handleGamepadConnected);
+    window.addEventListener<any>('gamepaddisconnected', handleGamepadDisconnected);
 
     return () => {
-      window.removeEventListener<any>('gamepadconnected', handleGamepadConnected)
-      window.removeEventListener<any>('gamepaddisconnected', handleGamepadDisconnected)
-    }
-  }, [])
+      window.removeEventListener<any>('gamepadconnected', handleGamepadConnected);
+      window.removeEventListener<any>('gamepaddisconnected', handleGamepadDisconnected);
+    };
+  }, []);
 
-  const scanGamepads = () => {
+  const scanGamepads = React.useCallback(() => {
     if ('getGamepads' in navigator) {
-      const activeGamepads = navigator.getGamepads ? navigator.getGamepads() : []
+      const activeGamepads = navigator.getGamepads ? navigator.getGamepads() : [];
 
       if (activeGamepads) {
         for (let i = 0; i < activeGamepads.length; i++) {
           if (activeGamepads[i]) {
-            addGamepad(activeGamepads[i])
+            addGamepad(activeGamepads[i]);
           }
         }
       }
     }
 
-    raf.current = requestAnimationFrame(scanGamepads)
-  }
+    raf.current = requestAnimationFrame(scanGamepads);
+  }, [addGamepad]);
 
   React.useEffect(() => {
-    raf.current = requestAnimationFrame(scanGamepads)
+    raf.current = requestAnimationFrame(scanGamepads);
 
     return () => {
       if (raf.current) {
-        cancelAnimationFrame(raf.current)
+        cancelAnimationFrame(raf.current);
       }
-    }
-  }, [])
+    };
+  }, [scanGamepads]);
 
-  return gamepadsRef.current
+  return gamepadsRef.current;
 }

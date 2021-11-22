@@ -1,34 +1,34 @@
 interface ControllerActionsOptions {
-  label: string
-  value: string
-  description?: string
+  label: string;
+  value: string;
+  description?: string;
 }
 
 const controllerActions: ControllerActionsOptions[] = [
   {
     label: 'Accelerate button',
-    value: 'accelerateButton'
+    value: 'accelerateButton',
   },
   {
     label: 'Accelerate axis',
-    value: 'accelerateAxis'
+    value: 'accelerateAxis',
   },
   {
     label: 'Brake button',
-    value: 'brakeButton'
+    value: 'brakeButton',
   },
   {
     label: 'Steering button (left)',
-    value: 'steeringLeftButton'
+    value: 'steeringLeftButton',
   },
   {
     label: 'Steering button (right)',
-    value: 'steeringRightButton'
+    value: 'steeringRightButton',
   },
   {
     label: 'Steering axis',
-    value: 'steeringAxis'
-  }
-]
+    value: 'steeringAxis',
+  },
+];
 
-export default controllerActions
+export default controllerActions;

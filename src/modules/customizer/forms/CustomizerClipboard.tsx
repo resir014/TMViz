@@ -1,27 +1,36 @@
-import { Button, Code, Input, InputGroup, InputRightElement, Stack, Text, useToast } from '@chakra-ui/react'
-import { toClipboard } from 'copee'
-import * as React from 'react'
-import { FormSection, FormSectionHeader } from '../components'
-import { buildURLQuery, useOverlayGlobalConfig } from '../utils'
+import {
+  Button,
+  Code,
+  Input,
+  InputGroup,
+  InputRightElement,
+  Stack,
+  Text,
+  useToast,
+} from '@chakra-ui/react';
+import { toClipboard } from 'copee';
+import * as React from 'react';
+import { FormSection, FormSectionHeader } from '../components';
+import { buildURLQuery, useOverlayGlobalConfig } from '../utils';
 
 const CustomizerClipboard: React.FC = () => {
-  const toast = useToast()
-  const values = useOverlayGlobalConfig()
+  const toast = useToast();
+  const values = useOverlayGlobalConfig();
 
-  const overlayURL = React.useMemo(() => buildURLQuery(values), [values])
+  const overlayURL = React.useMemo(() => buildURLQuery(values), [values]);
 
   const handleCopy = React.useCallback(() => {
-    const success = toClipboard(overlayURL)
+    const success = toClipboard(overlayURL);
 
     if (success) {
       toast({
         description: 'Successfully copied to clipboard.',
         status: 'success',
         duration: 5000,
-        isClosable: true
-      })
+        isClosable: true,
+      });
     }
-  }, [overlayURL])
+  }, [overlayURL]);
 
   return (
     <FormSection>
@@ -31,8 +40,8 @@ const CustomizerClipboard: React.FC = () => {
         title="Overlay URL"
         subtitle={
           <Text fontSize="sm">
-            Once you&apos;ve finished configuring your widget, copy the following URL, width, and height into a{' '}
-            <strong>browser source</strong>.
+            Once you&apos;ve finished configuring your widget, copy the following URL, width, and
+            height into a <strong>browser source</strong>.
           </Text>
         }
       />
@@ -44,7 +53,13 @@ const CustomizerClipboard: React.FC = () => {
           <InputGroup>
             <Input readOnly value={overlayURL} pr="5rem" />
             <InputRightElement width="4.5rem" p={0}>
-              <Button type="button" size="sm" textTransform="uppercase" borderRadius="sm" onClick={handleCopy}>
+              <Button
+                type="button"
+                size="sm"
+                textTransform="uppercase"
+                borderRadius="sm"
+                onClick={handleCopy}
+              >
                 Copy
               </Button>
             </InputRightElement>
@@ -55,7 +70,7 @@ const CustomizerClipboard: React.FC = () => {
         </Text>
       </Stack>
     </FormSection>
-  )
-}
+  );
+};
 
-export default CustomizerClipboard
+export default CustomizerClipboard;

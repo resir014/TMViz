@@ -1,9 +1,9 @@
-import { NextPage } from 'next'
-import * as React from 'react'
-import { OverlayRoot, TelemetryError } from '~/modules/trackmania'
+import { NextPage } from 'next';
+import * as React from 'react';
+import { OverlayRoot, TelemetryError } from '~/modules/trackmania';
 
 interface ErrorProps {
-  statusCode: number
+  statusCode: number;
 }
 
 const Error: NextPage<ErrorProps> = () => {
@@ -11,12 +11,12 @@ const Error: NextPage<ErrorProps> = () => {
     <OverlayRoot>
       <TelemetryError />
     </OverlayRoot>
-  )
-}
+  );
+};
 
 Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res?.statusCode || err?.statusCode || 404
-  return { statusCode }
-}
+  const statusCode = res?.statusCode ?? err?.statusCode ?? 404;
+  return { statusCode };
+};
 
-export default Error
+export default Error;
