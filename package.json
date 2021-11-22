@@ -36,6 +36,7 @@
     "framer-motion": "^2.9.4",
     "gray-matter": "^4.0.2",
     "htmr": "^1.0.1",
+    "jotai": "^1.4.4",
     "lodash": "^4.17.21",
     "markdown-it": "^12.0.4",
     "markdown-it-implicit-figures": "^0.10.0",

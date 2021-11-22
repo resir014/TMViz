@@ -4,13 +4,13 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { transparentize } from 'polished';
 import * as React from 'react';
-import { useSidebarDisclosure } from '../../utils';
+import { useSidebarDisclosure } from '../../utils/sidebar-disclosure';
 
 import sidebarData from '../../_data/sidebarData.json';
 
 const DocsSidebar: React.FC = () => {
   const { colorMode } = useColorMode();
-  const { isOpen } = useSidebarDisclosure();
+  const [sidebarState] = useSidebarDisclosure();
   const theme = useTheme();
   const router = useRouter();
 
@@ -27,7 +27,7 @@ const DocsSidebar: React.FC = () => {
       as="aside"
       width="100%"
       maxWidth={280}
-      display={[isOpen ? 'flex' : 'none', null, 'flex']}
+      display={[sidebarState.isOpen ? 'flex' : 'none', null, 'flex']}
       flexDirection="column"
       backgroundColor={colorMode === 'dark' ? 'gray.900' : 'gray.50'}
       position={['fixed', null, 'relative']}
