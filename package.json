@@ -26,7 +26,6 @@
     "@emotion/styled": "^11.1.5",
     "@resir014/lerp": "^0.1.1",
     "@sentry/nextjs": "^6.15.0",
-    "@zeit/next-source-maps": "0.0.4-canary.1",
     "clsx": "^1.1.1",
     "copee": "^1.0.6",
     "date-fns": "^2.16.1",
