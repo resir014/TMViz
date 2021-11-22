@@ -2,7 +2,7 @@
 import * as React from 'react';
 import { GamepadsMap } from './types';
 
-export default function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
+export function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
   const raf = React.useRef<number>();
   const gamepadsRef = React.useRef<GamepadsMap>({});
 
