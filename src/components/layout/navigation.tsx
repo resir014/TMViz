@@ -17,7 +17,7 @@ import { useRouter } from 'next/router';
 import { Logo } from './logo';
 
 import navLinks from '~/_data/navLinks.json';
-import { useSidebarDisclosure } from '~/modules/docs/utils';
+import { useSidebarDisclosure } from '~/modules/docs/utils/sidebar-disclosure';
 import { NavLinkItem } from '~/types/common';
 
 export type NavigationProps = FlexProps;
@@ -25,7 +25,12 @@ export type NavigationProps = FlexProps;
 export const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
-  const { isOpen, onToggle } = useSidebarDisclosure();
+  const [sidebarState, setSidebarState] = useSidebarDisclosure();
+
+  const onToggle = React.useCallback(() => {
+    // eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+    setSidebarState(prev => ({ ...prev, isOpen: !prev.isOpen }));
+  }, [setSidebarState]);
 
   const toggleText = `Switch to ${colorMode === 'dark' ? 'light' : 'dark'} mode`;
 
@@ -93,7 +98,7 @@ export const Navigation: React.FC<NavigationProps> = ({ className, style, ...res
               <IconButton
                 variant="ghost"
                 aria-label="Toggle navigation"
-                icon={isOpen ? <CloseIcon /> : <HamburgerIcon />}
+                icon={sidebarState.isOpen ? <CloseIcon /> : <HamburgerIcon />}
                 onClick={onToggle}
               />
             </Tooltip>
@@ -103,5 +108,3 @@ export const Navigation: React.FC<NavigationProps> = ({ className, style, ...res
     </Grid>
   );
 };
-
-export default Navigation;
