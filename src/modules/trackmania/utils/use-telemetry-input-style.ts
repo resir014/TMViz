@@ -5,7 +5,7 @@ import theme from '~/utils/theme';
 
 const defaultColor = theme.colors.gray[500];
 
-function useTelemetryInputStyle(color: string = defaultColor, isConnected?: boolean) {
+export function useTelemetryInputStyle(color: string = defaultColor, isConnected?: boolean) {
   const backgroundColor = React.useMemo(() => {
     // Find the proper HSL lightness based on max-val/min-val percentage:
     // (maxVal - minVal) * percentage + minVal
@@ -18,5 +18,3 @@ function useTelemetryInputStyle(color: string = defaultColor, isConnected?: bool
 
   return backgroundColor;
 }
-
-export default useTelemetryInputStyle;

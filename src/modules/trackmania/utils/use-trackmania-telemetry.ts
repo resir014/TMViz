@@ -46,7 +46,9 @@ function normalizeAxisValue(gamepad?: Gamepad, config?: string) {
   return 0;
 }
 
-function useTrackmaniaTelemetry(config: Partial<TrackmaniaOverlayConfig>): ControllerTelemetry {
+export function useTrackmaniaTelemetry(
+  config: Partial<TrackmaniaOverlayConfig>,
+): ControllerTelemetry {
   const [gamepads, setGamepads] = useAtom(gamepadStoreAtom);
   useGamepad(newGamepads => {
     if (!dequal(gamepads, newGamepads)) {
@@ -85,5 +87,3 @@ function useTrackmaniaTelemetry(config: Partial<TrackmaniaOverlayConfig>): Contr
 
   return { isConnected: false, data: {} };
 }
-
-export default useTrackmaniaTelemetry;

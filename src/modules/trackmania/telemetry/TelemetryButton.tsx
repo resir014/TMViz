@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import useTelemetryInputStyle from '../utils/use-telemetry-input-style';
+import { useTelemetryInputStyle } from '../utils/use-telemetry-input-style';
 import styles from './TelemetryButton.module.css';
 
 interface TelemetryButtonProps {

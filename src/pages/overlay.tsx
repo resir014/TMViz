@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import { OverlayLayout } from '~/layouts/overlay-layout';
 import { ControllerTelemetry } from '~/modules/trackmania';
-import useOverlayConfig from '~/modules/trackmania/utils/use-overlay-config';
+import { useOverlayConfig } from '~/modules/trackmania/utils/use-overlay-config';
 import { createNextPage } from '~/utils/create-next-page';
 
 function OverlayPage() {

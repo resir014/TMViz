@@ -1,7 +1,7 @@
 import * as React from 'react';
 import clsx from 'clsx';
 
-import useTrackmaniaTelemetry from './utils/use-trackmania-telemetry';
+import { useTrackmaniaTelemetry } from './utils/use-trackmania-telemetry';
 import { TelemetrySteering, TelemetryButton } from './telemetry';
 import styles from './ControllerTelemetry.module.css';
 import { GamepadAppearanceSettings, TrackmaniaOverlayConfig } from '~/types/overlay';
