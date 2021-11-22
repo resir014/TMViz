@@ -5,7 +5,7 @@ import { clamp, lerpInverse } from '@resir014/lerp';
 import { useTelemetryInputStyle } from '../utils/use-telemetry-input-style';
 import { useOverlayConfig } from '../utils/use-overlay-config';
 import { normalizeAxisValue, normalizeSteeringDpadValue } from '../utils/normalize-gamepad-values';
-import styles from './TelemetrySteering.module.css';
+import styles from './telemetry-steering.module.css';
 import { SteeringValues } from '~/types/overlay';
 import { parseNumber } from '~/utils/query-parser';
 import { useGamepad, useIsGamepadActive } from '~/modules/gamepad';
