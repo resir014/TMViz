@@ -14,7 +14,7 @@ import '~/styles/fonts';
 
 export default function MyApp({ Component, pageProps, router }: AppProps) {
   const { title, description, siteUrl } = siteMetadata;
-  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || siteUrl;
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? siteUrl;
 
   return (
     <CacheProvider value={emotionCache}>
