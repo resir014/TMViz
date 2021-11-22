@@ -50,14 +50,12 @@ export function useGamepad(callback?: (gamepads: GamepadsMap) => void) {
   }, [addGamepad]);
 
   const scanGamepads = React.useCallback(() => {
-    if ('getGamepads' in navigator) {
-      const activeGamepads = navigator.getGamepads ? navigator.getGamepads() : [];
+    const activeGamepads = navigator.getGamepads ? navigator.getGamepads() : [];
 
-      if (activeGamepads) {
-        for (let i = 0; i < activeGamepads.length; i++) {
-          if (activeGamepads[i]) {
-            addGamepad(activeGamepads[i]);
-          }
+    if (activeGamepads) {
+      for (let i = 0; i < activeGamepads.length; i++) {
+        if (activeGamepads[i]) {
+          addGamepad(activeGamepads[i]);
         }
       }
     }
