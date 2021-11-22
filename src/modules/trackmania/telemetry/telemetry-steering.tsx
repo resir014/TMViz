@@ -3,30 +3,34 @@ import clsx from 'clsx';
 import { clamp, lerpInverse } from '@resir014/lerp';
 
 import { useTelemetryInputStyle } from '../utils/use-telemetry-input-style';
+import { useOverlayConfig } from '../utils/use-overlay-config';
+import { normalizeAxisValue, normalizeSteeringDpadValue } from '../utils/normalize-gamepad-values';
 import styles from './TelemetrySteering.module.css';
 import { SteeringValues } from '~/types/overlay';
+import { parseNumber } from '~/utils/query-parser';
+import { useGamepad, useIsGamepadActive } from '~/modules/gamepad';
 
 interface TelemetrySteeringProps {
   className?: string;
   style?: React.CSSProperties;
   direction: 'left' | 'right';
-  isConnected?: boolean;
-  hide?: boolean;
-  value?: number;
-  color?: string;
-  steeringDeadzone?: number;
 }
 
-const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({
-  className,
-  style,
-  direction,
-  isConnected,
-  value,
-  hide,
-  color,
-  steeringDeadzone = 0,
-}) => {
+const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({ className, style, direction }) => {
+  const { appearance, config } = useOverlayConfig();
+  const gamepads = useGamepad();
+
+  const currentController = parseNumber(config.controllerIndex) ?? 0;
+  const hide = appearance.disableSteering;
+  const color = appearance.steeringColor;
+  const steeringDeadzone = Number(config.steeringDeadzone) || 0;
+
+  const value =
+    normalizeSteeringDpadValue(gamepads[currentController], config.steeringLeftButton, 'left') ||
+    normalizeSteeringDpadValue(gamepads[currentController], config.steeringRightButton, 'right') ||
+    normalizeAxisValue(gamepads[currentController], config.steeringAxis);
+
+  const isConnected = useIsGamepadActive(currentController);
   const backgroundColor = useTelemetryInputStyle(color, isConnected);
 
   const steerWidths = React.useMemo<SteeringValues>(() => {

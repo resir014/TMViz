@@ -1,3 +1,3 @@
-export * from './gamepad-store';
-export * from './use-gamepad';
+export * from './use-gamepad-store';
+export * from './gamepad-hooks';
 export * from './types';

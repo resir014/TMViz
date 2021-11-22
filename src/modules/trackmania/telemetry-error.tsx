@@ -3,8 +3,8 @@ import clsx from 'clsx';
 import { transparentize } from 'polished';
 import * as React from 'react';
 
-import styles from './ControllerTelemetry.module.css';
-import errorStyles from './TelemetryError.module.css';
+import styles from './controller-telemetry.module.css';
+import errorStyles from './telemetry-error.module.css';
 import theme from '~/utils/theme';
 
 const TelemetryError: React.FC = () => {

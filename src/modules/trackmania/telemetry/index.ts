@@ -1,2 +1,2 @@
-export { default as TelemetrySteering } from './TelemetrySteering';
-export { default as TelemetryButton } from './TelemetryButton';
+export { default as TelemetrySteering } from './telemetry-steering';
+export { default as TelemetryButton } from './telemetry-button';

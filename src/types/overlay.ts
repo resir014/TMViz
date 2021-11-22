@@ -20,7 +20,6 @@ export interface GamepadAppearanceSettings {
 }
 
 export interface ControllerTelemetry {
-  isConnected?: boolean;
   data: Partial<ControllerData>;
 }
 
