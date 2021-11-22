@@ -2,7 +2,7 @@ import * as React from 'react';
 import clsx from 'clsx';
 import { clamp, lerpInverse } from '@resir014/lerp';
 
-import useTelemetryInputStyle from '../utils/useTelemetryInputStyle';
+import useTelemetryInputStyle from '../utils/use-telemetry-input-style';
 import styles from './TelemetrySteering.module.css';
 import { SteeringValues } from '~/types/overlay';
 

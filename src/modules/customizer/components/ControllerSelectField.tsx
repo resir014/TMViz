@@ -1,15 +1,21 @@
 import { Alert, AlertDescription, AlertIcon, Select, Stack } from '@chakra-ui/react';
+import { dequal } from 'dequal/lite';
 import { ErrorMessage, Field, FieldProps } from 'formik';
+import { useAtom } from 'jotai';
 import * as React from 'react';
-import { GamepadsMap, useGamepad } from '~/modules/gamepad';
+import { gamepadStoreAtom, useGamepad } from '~/modules/gamepad';
 
 interface ControllerSelectFieldProps {
   name: string;
 }
 
 const ControllerSelectField: React.FC<ControllerSelectFieldProps> = ({ name }) => {
-  const [gamepads, setGamepads] = React.useState<GamepadsMap>({});
-  useGamepad(newGamepads => setGamepads(newGamepads));
+  const [gamepads, setGamepads] = useAtom(gamepadStoreAtom);
+  useGamepad(newGamepads => {
+    if (!dequal(gamepads, newGamepads)) {
+      setGamepads(newGamepads);
+    }
+  });
 
   const gamepadKeys = Object.keys(gamepads);
 

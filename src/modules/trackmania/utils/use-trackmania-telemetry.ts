@@ -1,5 +1,7 @@
 import * as React from 'react';
-import { GamepadsMap, useGamepad } from '~/modules/gamepad';
+import { dequal } from 'dequal/lite';
+import { useAtom } from 'jotai';
+import { gamepadStoreAtom, useGamepad } from '~/modules/gamepad';
 import { ControllerTelemetry, TrackmaniaOverlayConfig } from '~/types/overlay';
 
 function normalizeSteeringDpadValue(
@@ -45,8 +47,12 @@ function normalizeAxisValue(gamepad?: Gamepad, config?: string) {
 }
 
 function useTrackmaniaTelemetry(config: Partial<TrackmaniaOverlayConfig>): ControllerTelemetry {
-  const [gamepads, setGamepads] = React.useState<GamepadsMap>({});
-  useGamepad(newGamepads => setGamepads(newGamepads));
+  const [gamepads, setGamepads] = useAtom(gamepadStoreAtom);
+  useGamepad(newGamepads => {
+    if (!dequal(gamepads, newGamepads)) {
+      setGamepads(newGamepads);
+    }
+  });
 
   const currentGamepad = React.useMemo(() => {
     if (typeof config.controllerIndex === 'string') {
