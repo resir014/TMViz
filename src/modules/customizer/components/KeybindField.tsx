@@ -1,24 +1,36 @@
-import { Box, CloseButton, Flex, Grid, Select, Stack, useColorMode, VisuallyHidden } from '@chakra-ui/react'
-import { Field, FieldProps } from 'formik'
-import * as React from 'react'
-import { NumericField } from '~/components/form'
-import controllerActions from '../utils/controllerActions'
+import {
+  Box,
+  CloseButton,
+  Flex,
+  Grid,
+  Select,
+  Stack,
+  useColorMode,
+  VisuallyHidden,
+} from '@chakra-ui/react';
+import { Field, FieldProps } from 'formik';
+import * as React from 'react';
+import controllerActions from '../utils/controllerActions';
+import { NumericField } from '~/components/form';
 
 interface KeybindFieldProps {
-  index: number
-  name: string
-  onRemove: () => void
+  index: number;
+  name: string;
+  onRemove: () => void;
 }
 
 const KeybindField: React.FC<KeybindFieldProps> = ({ index, name, onRemove }) => {
-  const { colorMode } = useColorMode()
+  const { colorMode } = useColorMode();
 
   return (
     <Flex
       flexDirection="column"
       px={6}
       py={4}
-      _notLast={{ borderBottom: '1px solid', borderBottomColor: colorMode === 'dark' ? 'gray.800' : 'gray.100' }}
+      _notLast={{
+        borderBottom: '1px solid',
+        borderBottomColor: colorMode === 'dark' ? 'gray.800' : 'gray.100',
+      }}
     >
       <Grid gridTemplateColumns="1fr 40px" gridGap={4}>
         <Grid gridTemplateColumns={['1fr', null, 'repeat(2, 1fr)']} gridGap={4}>
@@ -53,7 +65,7 @@ const KeybindField: React.FC<KeybindFieldProps> = ({ index, name, onRemove }) =>
         </Flex>
       </Grid>
     </Flex>
-  )
-}
+  );
+};
 
-export default KeybindField
+export default KeybindField;

@@ -1,6 +1,6 @@
-import { join } from 'path'
-import htmrTransform from '~/utils/htmrTransform'
-import { H2, H3, UL, LI, Label } from './components/markdown'
+import { join } from 'path';
+import { H2, H3, UL, LI, Label } from './components/markdown';
+import htmrTransform from '~/utils/htmrTransform';
 
 export const changelogsTransform = {
   ...htmrTransform,
@@ -8,9 +8,9 @@ export const changelogsTransform = {
   h3: H3,
   ul: UL,
   li: LI,
-  span: Label
-}
+  span: Label,
+};
 
-export const changelogsDirectory = join(process.cwd(), '_changelog')
+export const changelogsDirectory = join(process.cwd(), '_changelog');
 
-export const defaultChangelogsLength = 3
+export const defaultChangelogsLength = 3;

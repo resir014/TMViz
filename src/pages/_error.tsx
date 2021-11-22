@@ -1,12 +1,12 @@
-import { NextPageContext } from 'next'
-import ErrorBase, { ErrorProps } from 'next/error'
-import * as React from 'react'
-import * as Sentry from '@sentry/nextjs'
-import { OverlayRoot, TelemetryError } from '~/modules/trackmania'
+import { NextPageContext } from 'next';
+import ErrorBase, { ErrorProps } from 'next/error';
+import * as React from 'react';
+import * as Sentry from '@sentry/nextjs';
+import { OverlayRoot, TelemetryError } from '~/modules/trackmania';
 
 interface CustomErrorPageProps extends ErrorProps {
-  hasGetInitialPropsRun?: boolean
-  err?: NextPageContext['err']
+  hasGetInitialPropsRun?: boolean;
+  err?: NextPageContext['err'];
 }
 
 export default function CustomErrorPage({ hasGetInitialPropsRun, err }: CustomErrorPageProps) {
@@ -14,7 +14,7 @@ export default function CustomErrorPage({ hasGetInitialPropsRun, err }: CustomEr
     // getInitialProps is not called in case of
     // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass
     // err via _app.js so it can be captured
-    Sentry.captureException(err)
+    Sentry.captureException(err);
     // Flushing is not required in this case as it only happens on the client
   }
 
@@ -22,18 +22,18 @@ export default function CustomErrorPage({ hasGetInitialPropsRun, err }: CustomEr
     <OverlayRoot>
       <TelemetryError />
     </OverlayRoot>
-  )
+  );
 }
 
 CustomErrorPage.getInitialProps = async ({ res, err, asPath }: NextPageContext) => {
   const errorInitialProps: CustomErrorPageProps = await ErrorBase.getInitialProps({
     res,
-    err
-  } as NextPageContext)
+    err,
+  } as NextPageContext);
 
   // Workaround for https://github.com/vercel/next.js/issues/8592, mark when
   // getInitialProps has run
-  errorInitialProps.hasGetInitialPropsRun = true
+  errorInitialProps.hasGetInitialPropsRun = true;
 
   // Running on the server, the response object (`res`) is available.
   //
@@ -49,20 +49,20 @@ CustomErrorPage.getInitialProps = async ({ res, err, asPath }: NextPageContext) 
   //    Boundaries: https://reactjs.org/docs/error-boundaries.html
 
   if (err) {
-    Sentry.captureException(err)
+    Sentry.captureException(err);
 
     // Flushing before returning is necessary if deploying to Vercel, see
     // https://vercel.com/docs/platform/limits#streaming-responses
-    await Sentry.flush(2000)
+    await Sentry.flush(2000);
 
-    return errorInitialProps
+    return errorInitialProps;
   }
 
   // If this point is reached, getInitialProps was called without any
   // information about what the error might be. This is unexpected and may
   // indicate a bug introduced in Next.js, so record it in Sentry
-  Sentry.captureException(new Error(`_error.tsx getInitialProps missing data at path: ${asPath}`))
-  await Sentry.flush(2000)
+  Sentry.captureException(new Error(`_error.tsx getInitialProps missing data at path: ${asPath}`));
+  await Sentry.flush(2000);
 
-  return errorInitialProps
-}
+  return errorInitialProps;
+};

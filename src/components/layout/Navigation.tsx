@@ -8,26 +8,26 @@ import {
   Tooltip,
   VisuallyHidden,
   Stack,
-  HStack
-} from '@chakra-ui/react'
-import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons'
-import * as React from 'react'
-import Link from 'next/link'
-import { useRouter } from 'next/router'
-import Logo from './Logo'
+  HStack,
+} from '@chakra-ui/react';
+import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
+import * as React from 'react';
+import Link from 'next/link';
+import { useRouter } from 'next/router';
+import Logo from './Logo';
 
-import navLinks from '~/_data/navLinks.json'
-import { useSidebarDisclosure } from '~/modules/docs/utils'
-import { NavLinkItem } from '~/types/common'
+import navLinks from '~/_data/navLinks.json';
+import { useSidebarDisclosure } from '~/modules/docs/utils';
+import { NavLinkItem } from '~/types/common';
 
-export type NavigationProps = FlexProps
+export type NavigationProps = FlexProps;
 
 const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) => {
-  const { colorMode, toggleColorMode } = useColorMode()
-  const router = useRouter()
-  const { isOpen, onToggle } = useSidebarDisclosure()
+  const { colorMode, toggleColorMode } = useColorMode();
+  const router = useRouter();
+  const { isOpen, onToggle } = useSidebarDisclosure();
 
-  const toggleText = `Switch to ${colorMode === 'dark' ? 'light' : 'dark'} mode`
+  const toggleText = `Switch to ${colorMode === 'dark' ? 'light' : 'dark'} mode`;
 
   return (
     <Grid
@@ -62,8 +62,14 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
               <Link href={path} passHref>
                 <ChakraLink
                   color="inherit"
-                  fontWeight={(isExact ? router.asPath === path : router.asPath.startsWith(path)) ? 600 : 400}
-                  textDecoration={(isExact ? router.asPath === path : router.asPath.startsWith(path)) ? 'underline' : 'none'}
+                  fontWeight={
+                    (isExact ? router.asPath === path : router.asPath.startsWith(path)) ? 600 : 400
+                  }
+                  textDecoration={
+                    (isExact ? router.asPath === path : router.asPath.startsWith(path))
+                      ? 'underline'
+                      : 'none'
+                  }
                 >
                   {title}
                 </ChakraLink>
@@ -95,7 +101,7 @@ const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) =>
         )}
       </HStack>
     </Grid>
-  )
-}
+  );
+};
 
-export default Navigation
+export default Navigation;

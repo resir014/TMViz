@@ -1,46 +1,46 @@
-import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from 'next'
-import * as React from 'react'
+import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from 'next';
+import * as React from 'react';
 
-import { LayoutRoot, Navigation, Content, Footer, SidebarAndContent } from '~/components/layout'
-import { Page, PageHeader, PageBody } from '~/components/page'
-import { DocsSidebar } from '~/modules/docs/components'
-import { getAllPages, getPageBySlug } from '~/modules/docs/ssg'
-import markdownToHtml from '~/utils/markdownToHtml'
+import { LayoutRoot, Navigation, Content, Footer, SidebarAndContent } from '~/components/layout';
+import { Page, PageHeader, PageBody } from '~/components/page';
+import { DocsSidebar } from '~/modules/docs/components';
+import { getAllPages, getPageBySlug } from '~/modules/docs/ssg';
+import markdownToHtml from '~/utils/markdownToHtml';
 
 export async function getStaticProps({ params }: GetStaticPropsContext<{ slug: string }>) {
   if (params) {
-    const post = getPageBySlug(params.slug, ['template', 'title', 'date', 'slug', 'content'])
-    const content = await markdownToHtml(post.content || '')
+    const post = getPageBySlug(params.slug, ['template', 'title', 'date', 'slug', 'content']);
+    const content = await markdownToHtml(post.content || '');
 
     return {
       props: {
         post: {
           ...post,
-          content
-        }
-      }
-    }
+          content,
+        },
+      },
+    };
   }
 
-  return { props: {} }
+  return { props: {} };
 }
 
 export async function getStaticPaths() {
-  const posts = getAllPages(['slug'])
+  const posts = getAllPages(['slug']);
 
   return {
     paths: posts.map(post => {
       return {
         params: {
-          slug: post.slug
-        }
-      }
+          slug: post.slug,
+        },
+      };
     }),
-    fallback: false
-  }
+    fallback: false,
+  };
 }
 
-type DocsMarkdownPageProps = InferGetStaticPropsType<typeof getStaticProps>
+type DocsMarkdownPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const DocsMarkdownPage: NextPage<DocsMarkdownPageProps> = ({ post }) => {
   if (post) {
@@ -58,10 +58,10 @@ const DocsMarkdownPage: NextPage<DocsMarkdownPageProps> = ({ post }) => {
           </Content>
         </SidebarAndContent>
       </LayoutRoot>
-    )
+    );
   }
 
-  return null
-}
+  return null;
+};
 
-export default DocsMarkdownPage
+export default DocsMarkdownPage;

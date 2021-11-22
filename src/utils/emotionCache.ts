@@ -1,7 +1,7 @@
-import createCache from '@emotion/cache'
+import createCache from '@emotion/cache';
 
 const emotionCache = createCache({
-  key: 'tmviz'
-})
+  key: 'tmviz',
+});
 
-export default emotionCache
+export default emotionCache;

@@ -1,14 +1,26 @@
-import { Alert, AlertDescription, AlertIcon, AlertTitle, Box, Button, Stack, Text } from '@chakra-ui/react'
-import { dequal } from 'dequal/lite'
-import { useFormikContext } from 'formik'
-import * as React from 'react'
-import { CustomizerFormSettings } from '~/types/overlay'
-import { FormSection, FormSectionHeader } from '../components'
+import {
+  Alert,
+  AlertDescription,
+  AlertIcon,
+  AlertTitle,
+  Box,
+  Button,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
+import { dequal } from 'dequal/lite';
+import { useFormikContext } from 'formik';
+import * as React from 'react';
+import { FormSection, FormSectionHeader } from '../components';
+import { CustomizerFormSettings } from '~/types/overlay';
 
 const CustomizerSave: React.FC = () => {
-  const { values, initialValues, isValid } = useFormikContext<CustomizerFormSettings>()
+  const { values, initialValues, isValid } = useFormikContext<CustomizerFormSettings>();
 
-  const isValuesChanged = React.useMemo(() => !dequal(values, initialValues), [values, initialValues])
+  const isValuesChanged = React.useMemo(
+    () => !dequal(values, initialValues),
+    [values, initialValues],
+  );
 
   return (
     <FormSection>
@@ -39,11 +51,13 @@ const CustomizerSave: React.FC = () => {
           <AlertTitle mt={4} mb={1} mr={0} fontSize="lg">
             Settings are saved locally
           </AlertTitle>
-          <AlertDescription>Clearing your browser history will reset your settings.</AlertDescription>
+          <AlertDescription>
+            Clearing your browser history will reset your settings.
+          </AlertDescription>
         </Alert>
       </Stack>
     </FormSection>
-  )
-}
+  );
+};
 
-export default CustomizerSave
+export default CustomizerSave;

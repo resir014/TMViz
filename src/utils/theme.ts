@@ -1,6 +1,6 @@
 /* eslint-disable no-underscore-dangle */
-import { extendTheme, theme as defaultTheme } from '@chakra-ui/react'
-import { transparentize } from 'polished'
+import { extendTheme, theme as defaultTheme } from '@chakra-ui/react';
+import { transparentize } from 'polished';
 
 export const customColors = {
   white: '#ffffff',
@@ -15,7 +15,7 @@ export const customColors = {
     '600': '#5f5f76',
     '700': '#474862',
     '800': '#2f324d',
-    '900': '#181d3a'
+    '900': '#181d3a',
   },
   red: {
     '50': '#fde7e7',
@@ -27,7 +27,7 @@ export const customColors = {
     '600': '#b60000',
     '700': '#860000',
     '800': '#550000',
-    '900': '#250000'
+    '900': '#250000',
   },
   orange: {
     '50': '#faf5e8',
@@ -39,7 +39,7 @@ export const customColors = {
     '600': '#e15f08',
     '700': '#c1470d',
     '800': '#9e3813',
-    '900': '#822e14'
+    '900': '#822e14',
   },
   cyan: {
     '50': '#f1fafb',
@@ -51,7 +51,7 @@ export const customColors = {
     '600': '#0d86c6',
     '700': '#116aa0',
     '800': '#125176',
-    '900': '#11415b'
+    '900': '#11415b',
   },
   blue: {
     50: '#ebf8ff',
@@ -63,7 +63,7 @@ export const customColors = {
     600: '#2b6cb0',
     700: '#2c5282',
     800: '#2a4365',
-    900: '#1a365d'
+    900: '#1a365d',
   },
   green: {
     '50': '#e9f8f6',
@@ -75,30 +75,30 @@ export const customColors = {
     '600': '#06b15b',
     '700': '#0c934f',
     '800': '#107445',
-    '900': '#105e3b'
-  }
-}
+    '900': '#105e3b',
+  },
+};
 
 const theme = extendTheme({
   config: {
     useSystemColorMode: false,
-    initialColorMode: 'dark'
+    initialColorMode: 'dark',
   },
   styles: {
     global: ({ colorMode }) => ({
       body: {
         bg: 'transparent',
-        color: colorMode === 'dark' ? 'gray.50' : 'gray.900'
+        color: colorMode === 'dark' ? 'gray.50' : 'gray.900',
       },
       a: {
-        color: colorMode === 'dark' ? 'turquoise.500' : 'blue.600'
-      }
-    })
+        color: colorMode === 'dark' ? 'turquoise.500' : 'blue.600',
+      },
+    }),
   },
   fonts: {
     body: '"Inter", system-ui, sans-serif',
     heading: '"Inter", system-ui, sans-serif',
-    mono: '"JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace, monospace'
+    mono: '"JetBrains Mono", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace, monospace',
   },
   colors: customColors,
   components: {
@@ -106,36 +106,45 @@ const theme = extendTheme({
       baseStyle: ({ colorMode }: any) => ({
         ...defaultTheme.components.Button.baseStyle,
         _focus: {
-          boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? customColors.green[400] : customColors.blue[500])}`
-        }
-      })
+          boxShadow: `0 0 0 3px ${transparentize(
+            0.4,
+            colorMode === 'dark' ? customColors.green[400] : customColors.blue[500],
+          )}`,
+        },
+      }),
     },
     Heading: {
       baseStyle: {
-        fontWeight: 600
-      }
+        fontWeight: 600,
+      },
     },
     Link: {
       baseStyle: ({ colorMode }: any) => ({
         color: colorMode === 'dark' ? 'green.400' : 'blue.500',
         _hover: {
-          textDecoration: 'underline'
+          textDecoration: 'underline',
         },
         _focus: {
-          boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? customColors.green[400] : customColors.blue[500])}`
-        }
-      })
+          boxShadow: `0 0 0 3px ${transparentize(
+            0.4,
+            colorMode === 'dark' ? customColors.green[400] : customColors.blue[500],
+          )}`,
+        },
+      }),
     },
     Popover: {
       baseStyle: ({ colorMode }: any) => ({
         content: {
           _focus: {
-            boxShadow: `0 0 0 3px ${transparentize(0.4, colorMode === 'dark' ? customColors.green[400] : customColors.blue[500])}`
-          }
-        }
-      })
-    }
-  }
-})
+            boxShadow: `0 0 0 3px ${transparentize(
+              0.4,
+              colorMode === 'dark' ? customColors.green[400] : customColors.blue[500],
+            )}`,
+          },
+        },
+      }),
+    },
+  },
+});
 
-export default theme
+export default theme;
