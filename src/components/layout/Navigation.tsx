@@ -14,7 +14,7 @@ import { CloseIcon, HamburgerIcon, MoonIcon, SunIcon } from '@chakra-ui/icons';
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import Logo from './Logo';
+import { Logo } from './logo';
 
 import navLinks from '~/_data/navLinks.json';
 import { useSidebarDisclosure } from '~/modules/docs/utils';
@@ -22,7 +22,7 @@ import { NavLinkItem } from '~/types/common';
 
 export type NavigationProps = FlexProps;
 
-const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) => {
+export const Navigation: React.FC<NavigationProps> = ({ className, style, ...rest }) => {
   const { colorMode, toggleColorMode } = useColorMode();
   const router = useRouter();
   const { isOpen, onToggle } = useSidebarDisclosure();

@@ -1,6 +1,6 @@
 import { join } from 'path';
 import { H2, H3, UL, LI, Label } from './components/markdown';
-import htmrTransform from '~/utils/htmrTransform';
+import htmrTransform from '~/utils/htmr-transform';
 
 export const changelogsTransform = {
   ...htmrTransform,

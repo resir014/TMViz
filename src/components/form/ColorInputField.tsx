@@ -12,7 +12,7 @@ import {
 import { useField } from 'formik';
 import * as React from 'react';
 import { HexColorPicker } from 'react-colorful';
-import isValidHex from '~/utils/isValidHex';
+import isValidHex from '~/utils/is-valid-hex';
 
 import 'react-colorful/dist/index.css';
 import styles from './ColorInputField.module.css';

@@ -1,13 +1,16 @@
-import { NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import Link from 'next/link';
 import * as React from 'react';
-import { Content, Footer, LayoutRoot, Navigation, SidebarAndContent } from '~/components/layout';
+import { Content, DashboardRoot, Footer, Navigation, SidebarAndContent } from '~/components/layout';
 import { Anchor, P } from '~/components/markdown';
 import { Page, PageBody, PageHeader } from '~/components/page';
+import { DefaultLayout } from '~/layouts/default-layout';
+import { createNextPage } from '~/utils/create-next-page';
 
-const NotFoundPage: NextPage = () => {
+function NotFoundPage() {
   return (
-    <LayoutRoot pageTitle="404: Page not found.">
+    <DashboardRoot>
+      <NextSeo title="404: Page not found." />
       <Navigation />
       <SidebarAndContent>
         <Content>
@@ -25,8 +28,10 @@ const NotFoundPage: NextPage = () => {
           <Footer />
         </Content>
       </SidebarAndContent>
-    </LayoutRoot>
+    </DashboardRoot>
   );
-};
+}
 
-export default NotFoundPage;
+export default createNextPage(NotFoundPage, {
+  layout: page => <DefaultLayout>{page}</DefaultLayout>,
+});

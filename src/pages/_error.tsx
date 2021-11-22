@@ -2,7 +2,8 @@ import { NextPageContext } from 'next';
 import ErrorBase, { ErrorProps } from 'next/error';
 import * as React from 'react';
 import * as Sentry from '@sentry/nextjs';
-import { OverlayRoot, TelemetryError } from '~/modules/trackmania';
+import { TelemetryError } from '~/modules/trackmania';
+import { OverlayLayout } from '~/layouts/overlay-layout';
 
 interface CustomErrorPageProps extends ErrorProps {
   hasGetInitialPropsRun?: boolean;
@@ -19,9 +20,9 @@ export default function CustomErrorPage({ hasGetInitialPropsRun, err }: CustomEr
   }
 
   return (
-    <OverlayRoot>
+    <OverlayLayout>
       <TelemetryError />
-    </OverlayRoot>
+    </OverlayLayout>
   );
 }
 

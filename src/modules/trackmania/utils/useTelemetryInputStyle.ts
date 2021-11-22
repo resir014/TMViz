@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { transparentize } from 'polished';
-import isValidHex from '~/utils/isValidHex';
+import isValidHex from '~/utils/is-valid-hex';
 import theme from '~/utils/theme';
 
 const defaultColor = theme.colors.gray[500];

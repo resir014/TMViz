@@ -1,5 +1,5 @@
 import * as yup from 'yup';
-import isValidHex from '~/utils/isValidHex';
+import isValidHex from '~/utils/is-valid-hex';
 
 const keybindsSchema = yup.object().shape({
   action: yup.string().required('Required field'),

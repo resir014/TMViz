@@ -11,8 +11,8 @@ import { defaultConfig, validationSchema } from './utils';
 import { CheckboxField, ColorInputField, NumericField } from '~/components/form';
 import { Content, Footer } from '~/components/layout';
 import { CustomizerFormSettings } from '~/types/overlay';
-import useHasMounted from '~/utils/useHasMounted';
-import isUnique from '~/utils/isUnique';
+import useHasMounted from '~/utils/use-has-mounted';
+import isUnique from '~/utils/is-unique';
 
 const CustomizerForm: React.FC = () => {
   const toast = useToast();

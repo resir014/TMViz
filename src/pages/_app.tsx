@@ -1,20 +1,23 @@
 import * as React from 'react';
 import { ChakraProvider } from '@chakra-ui/react';
 import { CacheProvider } from '@emotion/react';
-import { AppProps } from 'next/app';
 import Head from 'next/head';
 import { DefaultSeo } from 'next-seo';
 
 import theme from '~/utils/theme';
-import emotionCache from '~/utils/emotionCache';
+import emotionCache from '~/utils/emotion-cache';
+import { NextAppProps } from '~/types/next';
 
 import siteMetadata from '~/_data/siteMetadata.json';
 
 import '~/styles/fonts';
 
-export default function MyApp({ Component, pageProps, router }: AppProps) {
+export default function MyApp({ Component, pageProps, router }: NextAppProps) {
   const { title, description, siteUrl } = siteMetadata;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? siteUrl;
+
+  const getLayout = Component.layout ?? ((children: JSX.Element) => children);
+  const page = getLayout(<Component {...pageProps} />);
 
   return (
     <CacheProvider value={emotionCache}>
@@ -56,7 +59,7 @@ export default function MyApp({ Component, pageProps, router }: AppProps) {
             site: siteMetadata.author.twitter,
           }}
         />
-        <Component {...pageProps} />
+        {page}
       </ChakraProvider>
     </CacheProvider>
   );

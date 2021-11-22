@@ -1,27 +1,32 @@
 import * as React from 'react';
-import { NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import dynamic from 'next/dynamic';
 
-import { LayoutRoot, Navigation, SidebarAndContent } from '~/components/layout';
+import { DashboardRoot, Navigation, SidebarAndContent } from '~/components/layout';
+import { DefaultLayout } from '~/layouts/default-layout';
 import CustomizerLoading from '~/modules/customizer/CustomizerLoading';
 import siteMetadata from '~/_data/siteMetadata.json';
+import { createNextPage } from '~/utils/create-next-page';
 
 const CustomizerForm = dynamic(() => import('~/modules/customizer/CustomizerForm'), {
   ssr: false,
   loading: () => <CustomizerLoading />,
 });
 
-const IndexPage: NextPage = () => {
+function IndexPage() {
   const { title, description } = siteMetadata;
 
   return (
-    <LayoutRoot pageTitle={title} titleTemplate={`%s · ${description}`}>
+    <DashboardRoot>
+      <NextSeo title={title} titleTemplate={`%s · ${description}`} />
       <Navigation />
       <SidebarAndContent>
         <CustomizerForm />
       </SidebarAndContent>
-    </LayoutRoot>
+    </DashboardRoot>
   );
-};
+}
 
-export default IndexPage;
+export default createNextPage(IndexPage, {
+  layout: page => <DefaultLayout>{page}</DefaultLayout>,
+});

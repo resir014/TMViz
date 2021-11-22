@@ -1,11 +1,14 @@
 import { GetStaticPropsContext, InferGetStaticPropsType, NextPage } from 'next';
+import { NextSeo } from 'next-seo';
 import * as React from 'react';
 
-import { LayoutRoot, Navigation, Content, Footer, SidebarAndContent } from '~/components/layout';
+import { Navigation, Content, Footer, SidebarAndContent, DashboardRoot } from '~/components/layout';
 import { Page, PageHeader, PageBody } from '~/components/page';
+import { DefaultLayout } from '~/layouts/default-layout';
 import { DocsSidebar } from '~/modules/docs/components';
 import { getAllPages, getPageBySlug } from '~/modules/docs/ssg';
-import markdownToHtml from '~/utils/markdownToHtml';
+import { createNextPage } from '~/utils/create-next-page';
+import markdownToHtml from '~/utils/markdown-to-html';
 
 export async function getStaticProps({ params }: GetStaticPropsContext<{ slug: string }>) {
   if (params) {
@@ -45,7 +48,8 @@ type DocsMarkdownPageProps = InferGetStaticPropsType<typeof getStaticProps>;
 const DocsMarkdownPage: NextPage<DocsMarkdownPageProps> = ({ post }) => {
   if (post) {
     return (
-      <LayoutRoot pageTitle={post.title}>
+      <DashboardRoot>
+        <NextSeo title={post.title} />
         <Navigation />
         <SidebarAndContent>
           <DocsSidebar />
@@ -57,11 +61,13 @@ const DocsMarkdownPage: NextPage<DocsMarkdownPageProps> = ({ post }) => {
             <Footer />
           </Content>
         </SidebarAndContent>
-      </LayoutRoot>
+      </DashboardRoot>
     );
   }
 
   return null;
 };
 
-export default DocsMarkdownPage;
+export default createNextPage(DocsMarkdownPage, {
+  layout: page => <DefaultLayout>{page}</DefaultLayout>,
+});

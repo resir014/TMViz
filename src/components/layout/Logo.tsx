@@ -4,7 +4,7 @@ import theme from '~/utils/theme';
 
 export type LogoProps = React.SVGProps<SVGSVGElement>;
 
-const Logo: React.FC<LogoProps> = ({ width, height, ...rest }) => {
+export const Logo: React.FC<LogoProps> = ({ width, height, ...rest }) => {
   const { colorMode } = useColorMode();
 
   return (
@@ -33,5 +33,3 @@ const Logo: React.FC<LogoProps> = ({ width, height, ...rest }) => {
     </svg>
   );
 };
-
-export default Logo;

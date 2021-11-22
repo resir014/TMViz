@@ -2,7 +2,7 @@ import { Box, BoxProps, Stack } from '@chakra-ui/react';
 import * as React from 'react';
 import convert from 'htmr';
 import { Container, ContainerProps } from '../layout';
-import htmrTransform from '~/utils/htmrTransform';
+import htmrTransform from '~/utils/htmr-transform';
 import { changelogsTransform } from '~/modules/docs';
 
 interface PageBodyProps extends BoxProps {

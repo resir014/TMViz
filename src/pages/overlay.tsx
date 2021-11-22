@@ -1,17 +1,22 @@
+import { NextSeo } from 'next-seo';
 import * as React from 'react';
-import { NextPage } from 'next';
 
-import { ControllerTelemetry, OverlayRoot } from '~/modules/trackmania';
+import { OverlayLayout } from '~/layouts/overlay-layout';
+import { ControllerTelemetry } from '~/modules/trackmania';
 import useOverlayConfig from '~/modules/trackmania/utils/useOverlayConfig';
+import { createNextPage } from '~/utils/create-next-page';
 
-const OverlayPage: NextPage = () => {
+function OverlayPage() {
   const { appearance, config } = useOverlayConfig();
 
   return (
-    <OverlayRoot>
+    <>
+      <NextSeo title="Overlay" />
       <ControllerTelemetry appearance={appearance} config={config} />
-    </OverlayRoot>
+    </>
   );
-};
+}
 
-export default OverlayPage;
+export default createNextPage(OverlayPage, {
+  layout: page => <OverlayLayout>{page}</OverlayLayout>,
+});

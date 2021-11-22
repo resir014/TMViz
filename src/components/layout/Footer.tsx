@@ -11,12 +11,12 @@ import {
 } from '@chakra-ui/react';
 import Link from 'next/link';
 import * as React from 'react';
-import Logo from './Logo';
+import { Logo } from './logo';
 import footerLinks from '~/_data/footerLinks.json';
 
 export type FooterProps = FlexProps;
 
-const Footer: React.FC<FooterProps> = ({ className, style, ...rest }) => {
+export const Footer: React.FC<FooterProps> = ({ className, style, ...rest }) => {
   const { colorMode } = useColorMode();
 
   return (
@@ -74,5 +74,3 @@ const Footer: React.FC<FooterProps> = ({ className, style, ...rest }) => {
     </Flex>
   );
 };
-
-export default Footer;

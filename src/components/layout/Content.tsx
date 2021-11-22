@@ -3,12 +3,10 @@ import * as React from 'react';
 
 export type ContentProps = FlexProps;
 
-const Content: React.FC<ContentProps> = ({ children, ...rest }) => {
+export const Content: React.FC<ContentProps> = ({ children, ...rest }) => {
   return (
     <Flex flexDirection="column" flex="1 1 auto" {...rest}>
       {children}
     </Flex>
   );
 };
-
-export default Content;
