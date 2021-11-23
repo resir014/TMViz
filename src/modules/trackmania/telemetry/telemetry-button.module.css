@@ -15,3 +15,11 @@
 .isHidden {
   display: none;
 }
+
+.isAccelerate {
+  grid-area: throttle;
+}
+
+.isBrake {
+  grid-area: brake;
+}
