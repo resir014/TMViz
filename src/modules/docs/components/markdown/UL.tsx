@@ -9,4 +9,12 @@ const UL: React.FC<JSX.IntrinsicElements['ul']> = ({ children, ...rest }) => {
   );
 };
 
+export const ULChangelog: React.FC<JSX.IntrinsicElements['ul']> = ({ children, ...rest }) => {
+  return (
+    <List styleType="none" spacing="1" {...rest}>
+      {children}
+    </List>
+  );
+};
+
 export default UL;
