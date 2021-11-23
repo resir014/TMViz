@@ -4,7 +4,6 @@
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from '@sentry/nextjs';
-import * as SentryBrowser from '@sentry/browser';
 
 const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
 
@@ -14,7 +13,7 @@ const isAffectedByIssue3388 = navigator.userAgent.includes('Chrome/74.0.3729');
 Sentry.init({
   dsn: SENTRY_DSN,
   integrations: [
-    new SentryBrowser.Integrations.TryCatch({
+    new Sentry.Integrations.TryCatch({
       requestAnimationFrame: !isAffectedByIssue3388,
     }),
   ],
