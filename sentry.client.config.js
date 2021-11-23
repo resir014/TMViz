@@ -1,13 +1,23 @@
+/* eslint-disable import/no-extraneous-dependencies */
 // This file configures the initialization of Sentry on the browser.
 // The config you add here will be used whenever a page is visited.
 // https://docs.sentry.io/platforms/javascript/guides/nextjs/
 
 import * as Sentry from '@sentry/nextjs';
+import * as SentryBrowser from '@sentry/browser';
 
 const SENTRY_DSN = process.env.SENTRY_DSN || process.env.NEXT_PUBLIC_SENTRY_DSN;
 
+// https://github.com/getsentry/sentry-javascript/issues/3388
+const isAffectedByIssue3388 = navigator.userAgent.includes('Chrome/74.0.3729');
+
 Sentry.init({
   dsn: SENTRY_DSN,
+  integrations: [
+    new SentryBrowser.Integrations.TryCatch({
+      requestAnimationFrame: !isAffectedByIssue3388,
+    }),
+  ],
   // Adjust this value in production, or use tracesSampler for greater control
   tracesSampleRate: 1.0,
   // ...
