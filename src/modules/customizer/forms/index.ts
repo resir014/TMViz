@@ -1,3 +1,3 @@
-export { default as CustomizerClipboard } from './CustomizerClipboard';
-export { default as CustomizerPreview } from './CustomizerPreview';
-export { default as CustomizerSave } from './CustomizerSave';
+export { default as CustomizerClipboard } from './customizer-clipboard';
+export { default as CustomizerPreview } from './customizer-preview';
+export { default as CustomizerSave } from './customizer-save';
