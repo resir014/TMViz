@@ -1,16 +1,17 @@
 import { Input, Stack, Text, VisuallyHidden } from '@chakra-ui/react';
 import { useField } from 'formik';
 import * as React from 'react';
-import ErrorMessage from './ErrorMessage';
+import { ErrorMessage } from './error-message';
 
-interface NumericFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface NumericFieldProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
   hideLabel?: boolean;
   hideErrors?: boolean;
   name: string;
 }
 
-const NumericField: React.FC<NumericFieldProps> = ({
+export const NumericField: React.FC<NumericFieldProps> = ({
   label,
   hideLabel,
   hideErrors,
@@ -39,5 +40,3 @@ const NumericField: React.FC<NumericFieldProps> = ({
     </Stack>
   );
 };
-
-export default NumericField;

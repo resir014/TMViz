@@ -17,17 +17,18 @@ import { useField } from 'formik';
 import * as React from 'react';
 import { HexColorPicker } from 'react-colorful';
 
-import ErrorMessage from './ErrorMessage';
+import { ErrorMessage } from './error-message';
 import isValidHex from '~/utils/is-valid-hex';
 
-interface ColorInputFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+export interface ColorInputFieldProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
   hideLabel?: boolean;
   hideErrors?: boolean;
   name: string;
 }
 
-const ColorInputField: React.FC<ColorInputFieldProps> = ({
+export const ColorInputField: React.FC<ColorInputFieldProps> = ({
   label,
   hideLabel,
   hideErrors,
@@ -85,5 +86,3 @@ const ColorInputField: React.FC<ColorInputFieldProps> = ({
     </Stack>
   );
 };
-
-export default ColorInputField;

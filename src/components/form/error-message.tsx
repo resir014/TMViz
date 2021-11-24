@@ -2,11 +2,11 @@ import { Text, TextProps } from '@chakra-ui/react';
 import { Field, FieldProps, getIn } from 'formik';
 import * as React from 'react';
 
-interface ErrorMessageProps extends TextProps {
+export interface ErrorMessageProps extends TextProps {
   name: string;
 }
 
-const ErrorMessage: React.FC<ErrorMessageProps> = ({ name, ...rest }) => (
+export const ErrorMessage: React.FC<ErrorMessageProps> = ({ name, ...rest }) => (
   <Field name={name}>
     {({ form }: FieldProps) => {
       const error = getIn(form.errors, name);
@@ -20,5 +20,3 @@ const ErrorMessage: React.FC<ErrorMessageProps> = ({ name, ...rest }) => (
     }}
   </Field>
 );
-
-export default ErrorMessage;
