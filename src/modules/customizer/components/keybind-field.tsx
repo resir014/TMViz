@@ -10,7 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { Field, FieldProps } from 'formik';
 import * as React from 'react';
-import controllerActions from '../utils/controllerActions';
+import controllerActions from '../utils/controller-actions';
 import { NumericField } from '~/components/form';
 
 interface KeybindFieldProps {

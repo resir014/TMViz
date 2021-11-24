@@ -1,8 +1,6 @@
 import { CustomizerFormSettings, GlobalOverlaySettings } from '~/types/overlay';
 
-export default function parseFormDataToGlobalConfig(
-  values: CustomizerFormSettings,
-): GlobalOverlaySettings {
+export function parseFormDataToGlobalConfig(values: CustomizerFormSettings): GlobalOverlaySettings {
   const keybinds: GlobalOverlaySettings['config'] = {};
 
   if (values.keybinds) {

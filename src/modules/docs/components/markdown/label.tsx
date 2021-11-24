@@ -3,7 +3,7 @@ import * as React from 'react';
 
 type LabelProps = JSX.IntrinsicElements['span'] & BadgeProps;
 
-const Label: React.FC<LabelProps> = ({ className, children, ...rest }) => {
+export const Label: React.FC<LabelProps> = ({ className, children, ...rest }) => {
   if (className?.includes('feature--new')) {
     return (
       <Badge colorScheme="purple" fontSize="0.8em" {...rest}>
@@ -38,5 +38,3 @@ const Label: React.FC<LabelProps> = ({ className, children, ...rest }) => {
 
   return <span {...rest}>{children}</span>;
 };
-
-export default Label;

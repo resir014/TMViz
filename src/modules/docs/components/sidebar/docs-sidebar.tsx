@@ -4,9 +4,8 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { transparentize } from 'polished';
 import * as React from 'react';
+import sidebarData from '../../sidebar/sidebar-data';
 import { useSidebarDisclosure } from '../../utils/sidebar-disclosure';
-
-import sidebarData from '../../_data/sidebarData.json';
 
 const DocsSidebar: React.FC = () => {
   const { colorMode } = useColorMode();

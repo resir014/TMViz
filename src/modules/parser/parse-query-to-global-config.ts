@@ -1,11 +1,9 @@
 import { ParsedUrlQuery } from 'querystring';
-import normaliseVersionNumber from './utils/normaliseVersionNumber';
-import parseAppearance from './utils/parseAppearance';
-import parseOverlayConfig from './utils/parseOverlayConfig';
+import { normaliseVersionNumber, parseAppearance, parseOverlayConfig } from './utils';
 import theme from '~/utils/theme';
 import { GlobalOverlaySettings } from '~/types/overlay';
 
-export default function parseQueryToGlobalConfig(query?: ParsedUrlQuery): GlobalOverlaySettings {
+export function parseQueryToGlobalConfig(query?: ParsedUrlQuery): GlobalOverlaySettings {
   if (query) {
     const { version, ...rest } = query;
 

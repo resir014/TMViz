@@ -1,3 +1,3 @@
-export { default as normaliseVersionNumber } from './normaliseVersionNumber';
-export { default as parseAppearance } from './parseAppearance';
-export { default as parseOverlayConfig } from './parseOverlayConfig';
+export * from './normalise-version-number';
+export * from './parse-appearance';
+export * from './parse-overlay-config';
