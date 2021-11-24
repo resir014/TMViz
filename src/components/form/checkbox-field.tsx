@@ -1,16 +1,22 @@
 import { Checkbox, Stack } from '@chakra-ui/react';
 import { useField } from 'formik';
 import * as React from 'react';
-import ErrorMessage from './ErrorMessage';
+import { ErrorMessage } from './error-message';
 
-interface CheckboxFieldProps extends Omit<React.ComponentProps<'input'>, 'size' | 'aria-invalid'> {
+export interface CheckboxFieldProps
+  extends Omit<React.ComponentProps<'input'>, 'size' | 'aria-invalid'> {
   label?: string;
   hideLabel?: boolean;
   hideErrors?: boolean;
   name: string;
 }
 
-const CheckboxField: React.FC<CheckboxFieldProps> = ({ label, hideErrors, name, ...props }) => {
+export const CheckboxField: React.FC<CheckboxFieldProps> = ({
+  label,
+  hideErrors,
+  name,
+  ...props
+}) => {
   const [field, meta] = useField({ name, ...props });
 
   return (
@@ -22,5 +28,3 @@ const CheckboxField: React.FC<CheckboxFieldProps> = ({ label, hideErrors, name, 
     </Stack>
   );
 };
-
-export default CheckboxField;
