@@ -3,7 +3,7 @@ import { useField } from 'formik';
 import * as React from 'react';
 import ErrorMessage from './ErrorMessage';
 
-interface CheckboxFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+interface CheckboxFieldProps extends Omit<React.ComponentProps<'input'>, 'size' | 'aria-invalid'> {
   label?: string;
   hideLabel?: boolean;
   hideErrors?: boolean;

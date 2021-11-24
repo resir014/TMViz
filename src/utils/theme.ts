@@ -85,7 +85,7 @@ const theme = extendTheme({
     initialColorMode: 'dark',
   },
   styles: {
-    global: ({ colorMode }) => ({
+    global: ({ colorMode }: any) => ({
       body: {
         bg: 'transparent',
         color: colorMode === 'dark' ? 'gray.50' : 'gray.900',
