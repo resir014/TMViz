@@ -3,6 +3,10 @@ import {
   Grid,
   Input,
   Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverCloseButton,
+  PopoverHeader,
   PopoverContent,
   PopoverTrigger,
   Stack,
@@ -12,11 +16,9 @@ import {
 import { useField } from 'formik';
 import * as React from 'react';
 import { HexColorPicker } from 'react-colorful';
-import isValidHex from '~/utils/is-valid-hex';
 
-import 'react-colorful/dist/index.css';
-import styles from './ColorInputField.module.css';
 import ErrorMessage from './ErrorMessage';
+import isValidHex from '~/utils/is-valid-hex';
 
 interface ColorInputFieldProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
   label?: string;
@@ -32,7 +34,7 @@ const ColorInputField: React.FC<ColorInputFieldProps> = ({
   name,
   ...props
 }) => {
-  const [field, meta, helpers] = useField({ name, ...props });
+  const [field, meta, helpers] = useField<string>({ name, ...props });
 
   const buttonColor = isValidHex(meta.value) ? meta.value : undefined;
 
@@ -65,19 +67,17 @@ const ColorInputField: React.FC<ColorInputFieldProps> = ({
               _active={{ backgroundColor: buttonColor }}
             />
           </PopoverTrigger>
-          <PopoverContent
-            display="flex"
-            alignItems="center"
-            justifyContent="center"
-            border="none"
-            backgroundColor="transparent"
-            borderRadius={8}
-          >
-            <HexColorPicker
-              className={styles.root}
-              color={meta.value}
-              onChange={color => helpers.setValue(color)}
-            />
+          <PopoverContent borderRadius={8}>
+            <PopoverArrow />
+            <PopoverCloseButton />
+            <PopoverHeader>Pick a color.</PopoverHeader>
+            <PopoverBody
+              display="flex"
+              justifyContent="center"
+              sx={{ '> .react-colorful': { width: '100%' } }}
+            >
+              <HexColorPicker color={meta.value} onChange={color => helpers.setValue(color)} />
+            </PopoverBody>
           </PopoverContent>
         </Popover>
       </Grid>

@@ -23,6 +23,9 @@ const nextConfig = {
     // outside of Vercel
     SENTRY_RELEASE: `tmviz@${COMMIT_SHA}`,
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
   async redirects() {
     return [
       {

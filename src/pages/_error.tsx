@@ -1,16 +1,12 @@
 import { NextPageContext } from 'next';
-import ErrorBase, { ErrorProps } from 'next/error';
+import ErrorBase from 'next/error';
 import * as React from 'react';
 import * as Sentry from '@sentry/nextjs';
 import { TelemetryError } from '~/modules/trackmania';
 import { OverlayLayout } from '~/layouts/overlay-layout';
+import { ErrorProps } from '~/types/next';
 
-interface CustomErrorPageProps extends ErrorProps {
-  hasGetInitialPropsRun?: boolean;
-  err?: NextPageContext['err'];
-}
-
-export default function CustomErrorPage({ hasGetInitialPropsRun, err }: CustomErrorPageProps) {
+export default function CustomErrorPage({ hasGetInitialPropsRun, err }: ErrorProps) {
   if (!hasGetInitialPropsRun && err) {
     // getInitialProps is not called in case of
     // https://github.com/vercel/next.js/issues/8592. As a workaround, we pass
@@ -27,7 +23,7 @@ export default function CustomErrorPage({ hasGetInitialPropsRun, err }: CustomEr
 }
 
 CustomErrorPage.getInitialProps = async ({ res, err, asPath }: NextPageContext) => {
-  const errorInitialProps: CustomErrorPageProps = await ErrorBase.getInitialProps({
+  const errorInitialProps: ErrorProps = await ErrorBase.getInitialProps({
     res,
     err,
   } as NextPageContext);

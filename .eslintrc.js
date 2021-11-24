@@ -12,6 +12,7 @@ module.exports = {
   rules: {
     '@typescript-eslint/no-explicit-any': 'warn',
     '@typescript-eslint/no-unnecessary-condition': 'off',
+    '@typescript-eslint/no-unsafe-argument': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
   },
   settings: {

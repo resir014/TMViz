@@ -6,6 +6,7 @@ import {
   NextPageContext as BaseNextPageContext,
 } from 'next';
 import { AppProps as BaseAppProps } from 'next/app';
+import { ErrorProps as BaseErrorProps } from 'next/error';
 import { LayoutType } from '~/layouts';
 
 export type NextPageProps = {
@@ -20,6 +21,12 @@ export type NextPage<P = {}, IP = P> = NextPageProps & BaseNextPage<P, IP>;
 export type NextAppProps = BaseAppProps & {
   Component: NextComponentType;
   pageProps: Record<string, unknown>;
+  err?: BaseNextPageContext['err'];
+};
+
+export type ErrorProps = BaseErrorProps & {
+  hasGetInitialPropsRun?: boolean;
+  err?: BaseNextPageContext['err'];
 };
 
 export type NextApiRequest<T extends Record<string, unknown> = { [k: string]: unknown }> =

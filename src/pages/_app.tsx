@@ -12,12 +12,12 @@ import siteMetadata from '~/_data/siteMetadata.json';
 
 import '~/styles/fonts';
 
-export default function MyApp({ Component, pageProps, router }: NextAppProps) {
+export default function MyApp({ Component, pageProps, router, err }: NextAppProps) {
   const { title, description, siteUrl } = siteMetadata;
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL ?? siteUrl;
 
   const getLayout = Component.layout ?? ((children: JSX.Element) => children);
-  const page = getLayout(<Component {...pageProps} />);
+  const page = getLayout(<Component {...pageProps} err={err} />);
 
   return (
     <CacheProvider value={emotionCache}>
