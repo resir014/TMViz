@@ -6,7 +6,7 @@ function parseIfDefined(text?: string | string[], defaultValue?: any) {
   return text ? JSON.parse(Array.isArray(text) ? text[0] : text) : defaultValue;
 }
 
-export default function parseAppearance({
+export function parseAppearance({
   accelerateColor,
   brakeColor,
   steeringColor,

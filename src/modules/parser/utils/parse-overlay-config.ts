@@ -6,7 +6,7 @@ import {
 } from '~/types/constants';
 import { TrackmaniaOverlayConfig } from '~/types/overlay';
 
-export default function parseOverlayConfig(
+export function parseOverlayConfig(
   config: Partial<ParsedUrlQuery> = {},
   version?: number,
 ): Partial<TrackmaniaOverlayConfig> {

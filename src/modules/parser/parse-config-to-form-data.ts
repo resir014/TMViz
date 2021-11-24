@@ -23,7 +23,7 @@ function parseKeybinds(globalConfig?: GlobalOverlaySettings): CustomizerFormSett
   return [];
 }
 
-export default function parseConfigToFormData(
+export function parseConfigToFormData(
   globalConfig?: GlobalOverlaySettings,
 ): CustomizerFormSettings {
   if (globalConfig) {
