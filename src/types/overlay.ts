@@ -17,6 +17,7 @@ export interface GamepadAppearanceSettings {
   disableSteering?: boolean;
   disableAccelerate?: boolean;
   disableBrake?: boolean;
+  disableTransparency?: boolean;
 }
 
 export interface ControllerTelemetry {

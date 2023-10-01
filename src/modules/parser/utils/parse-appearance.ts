@@ -13,6 +13,7 @@ export function parseAppearance({
   disableAccelerate,
   disableBrake,
   disableSteering,
+  disableTransparency,
 }: Partial<ParsedUrlQuery> = {}): GlobalOverlaySettings['appearance'] {
   return {
     accelerateColor: Array.isArray(accelerateColor)
@@ -25,5 +26,6 @@ export function parseAppearance({
     disableAccelerate: parseIfDefined(disableAccelerate, false),
     disableBrake: parseIfDefined(disableBrake, false),
     disableSteering: parseIfDefined(disableSteering, false),
+    disableTransparency: parseIfDefined(disableTransparency, false),
   };
 }
