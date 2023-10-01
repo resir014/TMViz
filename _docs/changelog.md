@@ -3,6 +3,10 @@ template: changelog
 title: Changelog
 ---
 
+## 01 October 2023
+
+- <span class="feature--new">New</span> Added option to disable transparency on background. (Requested by Ski Freak)
+
 ## 23 November 2021
 
 - <span class="feature--changed">Changed</span> TMVIZ just got a performance boost! Not much has changed visually, but under the hood, there's a major rework in how gamepads are rendered. This makes the overlay much less demanding in terms of render count, which (hopefully) results in way less memory usage + freezing on OBS.
