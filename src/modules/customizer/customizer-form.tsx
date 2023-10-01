@@ -108,6 +108,10 @@ const CustomizerForm: React.FC = () => {
                           />
                           <CheckboxField label="Hide brake" name="appearance.disableBrake" />
                           <CheckboxField label="Hide steering" name="appearance.disableSteering" />
+                          <CheckboxField
+                            label="Disable transparency"
+                            name="appearance.disableTransparency"
+                          />
                         </Grid>
                       </Stack>
                     </FormSection>

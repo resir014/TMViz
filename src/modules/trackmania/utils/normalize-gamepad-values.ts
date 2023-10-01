@@ -6,7 +6,7 @@ export function normalizeSteeringDpadValue(
   if (gamepad && config) {
     const button = gamepad.buttons[Number(config)];
 
-    if (button.value) {
+    if (button?.value) {
       if (direction === 'left') {
         return -button.value;
       }

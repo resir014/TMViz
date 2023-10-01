@@ -41,13 +41,18 @@ function useSteeringProperties() {
   return {
     hide: appearance.disableSteering,
     color: appearance.steeringColor,
+    disableTransparency: appearance.disableTransparency,
   } as const;
 }
 
 const TelemetrySteering: React.FC<TelemetrySteeringProps> = ({ className, style, direction }) => {
   const currentController = useCurrentController();
-  const { hide, color } = useSteeringProperties();
-  const backgroundColor = useTelemetryInputStyle(color, typeof currentController !== 'undefined');
+  const { hide, color, disableTransparency } = useSteeringProperties();
+  const backgroundColor = useTelemetryInputStyle({
+    color,
+    isConnected: typeof currentController !== 'undefined',
+    disableTransparency,
+  });
   const value = useSteeringValue();
 
   return (

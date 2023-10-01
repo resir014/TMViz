@@ -35,6 +35,7 @@ function useButtonProperties(variant: TelemetryButtonVariants) {
   return {
     hide: variant === 'brake' ? appearance.disableBrake : appearance.disableAccelerate,
     color: variant === 'brake' ? appearance.brakeColor : appearance.accelerateColor,
+    disableTransparency: appearance.disableTransparency,
   } as const;
 }
 
@@ -44,8 +45,12 @@ const TelemetryButton: React.FC<TelemetryButtonProps> = ({
   variant = 'accelerate',
 }) => {
   const currentController = useCurrentController();
-  const { hide, color } = useButtonProperties(variant);
-  const backgroundColor = useTelemetryInputStyle(color, typeof currentController !== 'undefined');
+  const { hide, color, disableTransparency } = useButtonProperties(variant);
+  const backgroundColor = useTelemetryInputStyle({
+    color,
+    isConnected: typeof currentController !== 'undefined',
+    disableTransparency,
+  });
   const value = useAxisValue(variant);
 
   return (
